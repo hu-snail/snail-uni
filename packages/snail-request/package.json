@@ -1,0 +1,13 @@
+{
+    "name": "@snail-uni/snail-request",
+    "version": "1.0.0",
+    "description": "snail-uni of request",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "hu-snail 1217437592@qq.com",
+    "license": "MIT"
+  }
+  

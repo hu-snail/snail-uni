@@ -1,0 +1,9 @@
+node_modules
+dist
+pnpm-lock.yaml
+play
+.*
+lib/*
+es/*
+*.md
+.vscode

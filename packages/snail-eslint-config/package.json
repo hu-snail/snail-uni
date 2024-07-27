@@ -1,0 +1,28 @@
+{
+  "name": "@snail-uni/eslint-config",
+  "version": "1.0.0",
+  "description": "snail-uni eslint config",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+  "keywords": [
+    "eslint",
+    "prettier"
+  ],
+  "author": "hu-snail 1217437592@qq.com",
+  "license": "MIT",
+  "peerDependencies": {
+    "eslint": "^8.43.0"
+  },
+  "dependencies": {
+    "eslint-plugin-oxlint": "^0.5.0",
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "@typescript-eslint/parser": "^5.60.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-vue": "^9.15.1"
+  }
+}

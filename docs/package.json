@@ -1,0 +1,20 @@
+{
+  "name": "@red-china/docs",
+  "version": "1.0.0",
+  "description": "docs of red-china",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  },
+  "keywords": [
+    "docs"
+  ],
+  "author": "hu-snail <1217437592@qq.com>",
+  "license": "MIT",
+  "dependencies": {
+    "vitepress": "^1.3.1",
+    "vue": "^3.4.27"
+  }
+}

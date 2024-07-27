@@ -1,0 +1,42 @@
+{
+  "name": "snail-uni",
+  "version": "1.0.0",
+  "description": "snail-ui - 最佳的uni-app开发模版",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "simple-git-hooks",
+    "lint": "npx oxlint && eslint --fix."
+  },
+  "keywords": [],
+  "author": "hu-snail 1217437592@qq.com",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*",
+    "play",
+    "docs"
+  ],
+  "nano-staged": {
+    "*.md": "prettier --write",
+    "*.{ts,tsx,js,vue,scss}": "prettier --write",
+    "*.{ts,tsx,js,vue}": "pnpm lint"
+  },
+  "engines": {
+    "pnpm": ">= 9.0.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx nano-staged",
+    "commit-msg": "npx node ./verify-commit.mjs"
+  },
+  "devDependencies": {
+    "@snail-uni/eslint-config": "workspace:*",
+    "eslint": "8.43.0",
+    "nano-staged": "^0.8.0",
+    "oxlint": "^0.6.0",
+    "prettier": "^3.3.3",
+    "simple-git-hooks": "^2.11.1",
+    "tsx": "^4.16.2"
+  },
+  "dependencies": {
+    "typescript": "^5.5.3"
+  }
+}

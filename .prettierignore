@@ -1,0 +1,12 @@
+node_modules
+dist
+lib
+es
+*.md
+.github/**
+
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+pnpm-workspace.yaml
+

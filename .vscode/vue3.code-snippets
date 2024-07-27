@@ -1,0 +1,40 @@
+{
+  "Print snail-uni Vue3 SFC": {
+    "scope": "vue",
+    "prefix": "v3",
+    "body": [
+      "<route lang=\"json5\" type=\"page\">",
+      "{",
+      "  layout: 'default',",
+      "  style: {",
+      "    navigationBarTitleText: '$1',",
+      "  },",
+      "}",
+      "</route>\n",
+      "<template>",
+      "  <view class=\"\">$2</view>",
+      "</template>\n",
+      "<script lang=\"ts\" setup>",
+      "//$3",
+      "</script>\n",
+      "<style lang=\"scss\" scoped>",
+      "//$4",
+      "</style>\n"
+    ]
+  },
+  "Print snail-uni style": {
+    "scope": "vue",
+    "prefix": "st",
+    "body": ["<style lang=\"scss\" scoped>", "//", "</style>\n"]
+  },
+  "Print snail-uni script": {
+    "scope": "vue",
+    "prefix": "sc",
+    "body": ["<script lang=\"ts\" setup>", "//$3", "</script>\n"]
+  },
+  "Print snail-uni template": {
+    "scope": "vue",
+    "prefix": "te",
+    "body": ["<template>", "  <view class=\"\">$1</view>", "</template>\n"]
+  }
+}
