@@ -1,33 +1,37 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig } from 'vitepress';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   lang: 'zh-Hans',
   head: [['link', { rel: 'icon', href: '/logo.png' }]],
-  title: "snail-uni",
-  description: "uni-app最佳开发模版",
+  title: 'snail-uni',
+  description: 'uni-app最佳开发模版',
   lastUpdated: true,
   themeConfig: {
     logo: '/logo.png',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: '指南', link: '/' },
-      { text: '文档', link: '/markdown-examples' }
+      { text: '指南', link: '/guide/intro' },
+      { text: '文档', link: '/markdown-examples' },
     ],
 
-    sidebar: [
-      {
-        text: 'Examples',
+    sidebar: {
+      '/guide/': {
+        base: '/guide/',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
-      }
-    ],
+          {
+            text: '指南',
+            items: [
+              { text: '介绍', link: 'intro' },
+              { text: '快速上手', link: '/guide/start' },
+              { text: '更新日志', link: '/guide/changelog' },
+            ],
+          },
+        ],
+      },
+    },
 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/vuejs/vitepress' }],
     footer: {
       message: '基于 MIT 许可发布',
       copyright: `版权所有 © ${new Date().getFullYear() !== 2024 ? '2024 - ' + new Date().getFullYear() : new Date().getFullYear()}  hu-snail(蜗牛前端)`,
@@ -58,6 +62,5 @@ export default defineConfig({
     darkModeSwitchLabel: '主题',
     lightModeSwitchTitle: '切换到浅色模式',
     darkModeSwitchTitle: '切换到深色模式',
-
-  }
-})
+  },
+});
