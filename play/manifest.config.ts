@@ -2,17 +2,17 @@
 import { defineManifestConfig } from '@uni-helper/vite-plugin-uni-manifest';
 import path from 'node:path';
 import { loadEnv } from 'vite';
+import { version, name, description } from './package.json';
 
-// 获取环境变量的范例
 const env = loadEnv(process.env.NODE_ENV!, path.resolve(process.cwd(), 'env'));
-const { VITE_APP_TITLE, VITE_UNI_APPID, VITE_WX_APPID, VITE_APP_PUBLIC_BASE, VITE_FALLBACK_LOCALE } = env;
+const { VITE_UNI_APPID, VITE_WX_APPID, VITE_APP_PUBLIC_BASE, VITE_FALLBACK_LOCALE } = env;
 
 export default defineManifestConfig({
-  name: VITE_APP_TITLE,
+  name,
   appid: VITE_UNI_APPID,
-  description: '',
-  versionName: '1.0.0',
-  versionCode: '100',
+  description,
+  versionName: version,
+  versionCode: version.replace(/./g, ''),
   transformPx: false,
   locale: VITE_FALLBACK_LOCALE, // 'zh-Hans'
   h5: {

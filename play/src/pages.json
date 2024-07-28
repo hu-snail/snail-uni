@@ -1,4 +1,11 @@
 {
+  "globalStyle": {
+    "navigationStyle": "default",
+    "navigationBarTitleText": "snail-uni",
+    "navigationBarBackgroundColor": "#f8f8f8",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#FFFFFF"
+  },
   "pages": [
     {
       "path": "pages/index/index",
