@@ -1,7 +1,7 @@
 <route type="home" lang="json">
 {
   "style": { "navigationBarTitleText": "首页" },
-  "layout": "default"
+  "name": "home"
 }
 </route>
 
@@ -11,11 +11,17 @@
     <view class="text-area">
       <text class="title">{{ title }}</text>
     </view>
+    <button type="button" @click="handleToRouter">我的页面</button>
   </view>
 </template>
 
 <script setup lang="ts">
   const title = ref('Hello');
+
+  const router = useRouter();
+  function handleToRouter() {
+    router.push({ name: 'my' });
+  }
 </script>
 
 <style>

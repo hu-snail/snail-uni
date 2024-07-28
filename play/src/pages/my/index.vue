@@ -1,7 +1,8 @@
 <!-- 使用 type="my" 属性设置首页 -->
 <route type="my" lang="json">
 {
-  "style": { "navigationBarTitleText": "我的" }
+  "style": { "navigationBarTitleText": "我的" },
+  "name": "my"
 }
 </route>
 <template>

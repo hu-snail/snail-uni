@@ -51,9 +51,16 @@ export default ({ command, mode }) => {
       Uni(),
 
       AutoImport({
-        imports: ['vue', 'uni-app'],
+        imports: [
+          'vue',
+          'uni-app',
+          {
+            from: 'uni-mini-router',
+            imports: ['createRouter', 'useRouter', 'useRoute'],
+          },
+        ],
         dts: 'src/types/auto-import.d.ts',
-        eslintrc: { enabled: true },
+        eslintrc: { enabled: true, globalsPropValue: true },
         vueTemplate: true,
       }),
 

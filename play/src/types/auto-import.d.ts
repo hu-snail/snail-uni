@@ -8,6 +8,7 @@ declare global {
   const EffectScope: (typeof import('vue'))['EffectScope'];
   const computed: (typeof import('vue'))['computed'];
   const createApp: (typeof import('vue'))['createApp'];
+  const createRouter: (typeof import('uni-mini-router'))['createRouter'];
   const customRef: (typeof import('vue'))['customRef'];
   const defineAsyncComponent: (typeof import('vue'))['defineAsyncComponent'];
   const defineComponent: (typeof import('vue'))['defineComponent'];
@@ -76,6 +77,8 @@ declare global {
   const useAttrs: (typeof import('vue'))['useAttrs'];
   const useCssModule: (typeof import('vue'))['useCssModule'];
   const useCssVars: (typeof import('vue'))['useCssVars'];
+  const useRoute: (typeof import('uni-mini-router'))['useRoute'];
+  const useRouter: (typeof import('uni-mini-router'))['useRouter'];
   const useSlots: (typeof import('vue'))['useSlots'];
   const watch: (typeof import('vue'))['watch'];
   const watchEffect: (typeof import('vue'))['watchEffect'];
@@ -108,6 +111,7 @@ declare module 'vue' {
     readonly EffectScope: UnwrapRef<(typeof import('vue'))['EffectScope']>;
     readonly computed: UnwrapRef<(typeof import('vue'))['computed']>;
     readonly createApp: UnwrapRef<(typeof import('vue'))['createApp']>;
+    readonly createRouter: UnwrapRef<(typeof import('uni-mini-router'))['createRouter']>;
     readonly customRef: UnwrapRef<(typeof import('vue'))['customRef']>;
     readonly defineAsyncComponent: UnwrapRef<(typeof import('vue'))['defineAsyncComponent']>;
     readonly defineComponent: UnwrapRef<(typeof import('vue'))['defineComponent']>;
@@ -184,6 +188,8 @@ declare module 'vue' {
     readonly useAttrs: UnwrapRef<(typeof import('vue'))['useAttrs']>;
     readonly useCssModule: UnwrapRef<(typeof import('vue'))['useCssModule']>;
     readonly useCssVars: UnwrapRef<(typeof import('vue'))['useCssVars']>;
+    readonly useRoute: UnwrapRef<(typeof import('uni-mini-router'))['useRoute']>;
+    readonly useRouter: UnwrapRef<(typeof import('uni-mini-router'))['useRouter']>;
     readonly useSlots: UnwrapRef<(typeof import('vue'))['useSlots']>;
     readonly watch: UnwrapRef<(typeof import('vue'))['watch']>;
     readonly watchEffect: UnwrapRef<(typeof import('vue'))['watchEffect']>;
@@ -197,6 +203,7 @@ declare module '@vue/runtime-core' {
     readonly EffectScope: UnwrapRef<(typeof import('vue'))['EffectScope']>;
     readonly computed: UnwrapRef<(typeof import('vue'))['computed']>;
     readonly createApp: UnwrapRef<(typeof import('vue'))['createApp']>;
+    readonly createRouter: UnwrapRef<(typeof import('uni-mini-router'))['createRouter']>;
     readonly customRef: UnwrapRef<(typeof import('vue'))['customRef']>;
     readonly defineAsyncComponent: UnwrapRef<(typeof import('vue'))['defineAsyncComponent']>;
     readonly defineComponent: UnwrapRef<(typeof import('vue'))['defineComponent']>;
@@ -273,6 +280,8 @@ declare module '@vue/runtime-core' {
     readonly useAttrs: UnwrapRef<(typeof import('vue'))['useAttrs']>;
     readonly useCssModule: UnwrapRef<(typeof import('vue'))['useCssModule']>;
     readonly useCssVars: UnwrapRef<(typeof import('vue'))['useCssVars']>;
+    readonly useRoute: UnwrapRef<(typeof import('uni-mini-router'))['useRoute']>;
+    readonly useRouter: UnwrapRef<(typeof import('uni-mini-router'))['useRouter']>;
     readonly useSlots: UnwrapRef<(typeof import('vue'))['useSlots']>;
     readonly watch: UnwrapRef<(typeof import('vue'))['watch']>;
     readonly watchEffect: UnwrapRef<(typeof import('vue'))['watchEffect']>;
