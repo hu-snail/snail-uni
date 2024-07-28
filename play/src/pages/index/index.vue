@@ -1,3 +1,9 @@
+<route type="home" lang="json">
+{
+  "style": { "navigationBarTitleText": "首页" }
+}
+</route>
+
 <template>
   <view class="content">
     <image class="logo" src="/static/logo.png" />
@@ -8,7 +14,6 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue';
   const title = ref('Hello');
 </script>
 
