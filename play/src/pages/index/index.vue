@@ -1,6 +1,7 @@
 <route type="home" lang="json">
 {
-  "style": { "navigationBarTitleText": "首页" }
+  "style": { "navigationBarTitleText": "首页" },
+  "layout": "default"
 }
 </route>
 

@@ -12,7 +12,8 @@
       "type": "home",
       "style": {
         "navigationBarTitleText": "首页"
-      }
+      },
+      "layout": "default"
     },
     {
       "path": "pages/my/index",

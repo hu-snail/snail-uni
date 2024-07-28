@@ -1,12 +1,16 @@
 import { defineConfig } from 'vite';
 import Uni from '@dcloudio/vite-plugin-uni';
-//
 import AutoImport from 'unplugin-auto-import/vite';
-// https://uni-helper.js.org/vite-plugin-uni-pages
+// docs: https://uni-helper.js.org/vite-plugin-uni-pages
 import UniPages from '@uni-helper/vite-plugin-uni-pages';
-// https://github.com/uni-helper/vite-plugin-uni-manifest?tab=readme-ov-file#readme
+// 与 @uni-helper/vite-plugin-uni-pages 插件一起使用
+// docs:https://github.com/uni-helper/vite-plugin-uni-platform?tab=readme-ov-file#readme
+import UniPlatform from '@uni-helper/vite-plugin-uni-platform';
+// docs:https://github.com/uni-helper/vite-plugin-uni-manifest?tab=readme-ov-file#readme
 import UniManifest from '@uni-helper/vite-plugin-uni-manifest';
-// https://github.com/antfu/vite-plugin-restart?tab=readme-ov-file#readme
+// docs:https://github.com/uni-helper/vite-plugin-uni-layouts?tab=readme-ov-file#readme
+import UniLayouts from '@uni-helper/vite-plugin-uni-layouts';
+// docs:https://github.com/antfu/vite-plugin-restart?tab=readme-ov-file#readme
 import ViteRestart from 'vite-plugin-restart';
 
 // https://vitejs.dev/config/
@@ -23,9 +27,9 @@ export default defineConfig({
       // 配置分包目录
       subPackages: ['src/sub-pages'],
     }),
-
+    UniPlatform(),
+    UniLayouts(),
     UniManifest(),
-
     Uni(),
 
     AutoImport({
