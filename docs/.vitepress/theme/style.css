@@ -49,9 +49,9 @@
   --vp-c-default-3: var(--vp-c-gray-3);
   --vp-c-default-soft: var(--vp-c-gray-soft);
 
-  --vp-c-brand-1: #3eaf7c;
-  --vp-c-brand-2: #3eaf7c;
-  --vp-c-brand-3: #3eaf7c;
+  --vp-c-brand-1: #5468ff;
+  --vp-c-brand-2: #5468ff;
+  --vp-c-brand-3: #5468ff;
   --vp-c-brand-soft: var(--vp-c-indigo-soft);
 
   --vp-c-tip-1: var(--vp-c-brand-1);
@@ -119,6 +119,7 @@
   --vp-custom-block-tip-text: var(--vp-c-text-1);
   --vp-custom-block-tip-bg: var(--vp-c-brand-soft);
   --vp-custom-block-tip-code-bg: var(--vp-c-brand-soft);
+  --vp-code-bg: #f1f3fe;
 }
 
 /**
