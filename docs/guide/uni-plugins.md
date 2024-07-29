@@ -36,7 +36,7 @@ plugins: [
 ## vite-plugin-uni-pages
 `vite-plugin-uni-pages` 约定式路由，可通过`src/pages`目录下创建`.vue`文件，自动生成`pages.json`路由文件。页面全局配置可通过`src/pages.config.ts`进行配置。
 > 注：切勿在`pages.json`进行修改，运行时会被覆盖。
-### 插件配置示例
+### 配置示例
 ```ts
  return defineConfig({
   // ...
@@ -108,7 +108,7 @@ export default defineUniPages({
 
 ## vite-plugin-uni-platform
 `vite-plugin-uni-platform` 基于文件名 `(.<h5|mp-weixin|app>.)` 的按平台编译插件，需配合`vite-plugin-uni-pages`使用
-### 插件配置示例
+### 配置示例
 ```ts
 return defineConfig({
   plugins: [
@@ -136,7 +136,18 @@ return defineConfig({
 │   │   ├── layouts   # 布局文件夹
 │   │   │   ├── default.vue # 默认布局
 ```
-### 插件配置示例
+### 配置示例
+```ts 
+// vite.config.ts
+import { defineConfig } from 'vite'
+import Uni from '@dcloudio/vite-plugin-uni'
+import UniLayouts from '@uni-helper/vite-plugin-uni-layouts'
+
+export default defineConfig({
+  plugins: [UniLayouts(), Uni()],
+})
+```
+### 布局示例
 ```vue
 <!-- default.vue -->
 <template>
@@ -144,5 +155,66 @@ return defineConfig({
     <slot />
   </view>
 </template>
-
 ```
+配合 `vite-plugin-uni-pages`, 只需使用 route-block,`layout` 默认 `default`无需配置
+```vue
+<route type="home" lang="json">
+{
+  "style": { "navigationBarTitleText": "首页" },
+  "name": "home",
+  "layout": "default"
+}
+</route>
+```
+
+## unplugin-auto-import
+`unplugin-auto-import` 自动导入`Vue`、`uni-app`、`Uni-mini-router`、`Pinia`等相关API插件。
+### 配置示例
+```ts
+return defineConfig({
+  plugins: [
+    AutoImport({
+      imports: [
+        'vue',
+        'uni-app',
+        'pinia',
+        {
+          from: 'uni-mini-router',
+          imports: ['createRouter', 'useRouter', 'useRoute'],
+        },
+      ],
+      dts: 'src/types/auto-import.d.ts',
+      eslintrc: { enabled: true, globalsPropValue: true },
+      vueTemplate: true,
+    }),
+  ]
+})
+```
+
+### 使用示例
+- uni-app 自动导入 `onLaunch`、`onShow`
+```vue
+<script setup lang="ts">
+  onLaunch(() => {
+    console.log('App Launch');
+  });
+</script>
+```
+- uni-mini-router 自动导入 `createRouter`、`useRouter`、`useRoute`
+```vue
+<script setup lang="ts">
+  const router = useRouter();
+
+  function handleToRouter() {
+    router.push({ name: 'my' });
+  }
+</script>
+```
+- Pinia 自动导入 `defineStore`、`useStore`
+- Vue 自动导入 `ref`、`computed`
+```vue
+<script setup lang="ts">
+  const title = ref("snail-uni")
+</script>
+```
+
