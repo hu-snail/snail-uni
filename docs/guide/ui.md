@@ -22,14 +22,14 @@
 > 介绍：`uview-plus`，是[uni-app](https://uniapp.dcloud.io/)全面兼容 `nvue` 的 `uni-app` 生态框架，全面的组件和便捷的工具会让您信手拈来，如鱼得水。
   - github: https://github.com/ijry/uview-plus
   - gitee: https://gitee.com/uiadmin/uview-plus
-  - 文档地址: https://uviewui.com
+  - 文档地址: https://uiadmin.net/uview-plus/
   
 ### Tuniao UI Uniapp V3
-> 介绍：`Tuniao UI Uniapp V3` 是一个基于 `uni-app` 的 `Vue3` 组件库，致力于为开发者提供一套简单、易用、高质量的 `uni-app` 组件库，帮助开发者快速搭建 `uni-app` 应用。
+> 介绍：`TuniaoUI vue3 uniapp` 是一款基于 `uniapp`、`vue3`、`Typescript` 进行开发的 `UI`组件库，提供丰富的组件进行快速开发，支持`微信小程序`、`APP` 和 `H5`，包含常用表单组件、信息展示组件等，并提供丰富的酷炫页面模板。
 >
 > 
   - github: https://github.com/tuniaoTech/tuniaoui-rc-vue3-uniapp
-  - 文档地址：https://tuniaoui.com
+  - 文档地址：https://vue3.tuniaokj.com
 ## 🔥 开源热度
 > 注：以下表格均为最新实时热度
   
@@ -61,5 +61,19 @@
 | 百度小程序 | ❌ | ✓ | ✓ | ❌ |
 | QQ小程序 | ❌ | ✓ | ✓ | ❌ |
 | 头条小程序 | ❌ | ✓ | ✓ | ❌ |
+
+## 🌲 组件数量及特性
+> 注：采集时间为：`2024` 年 `7` 月 `29` 日
+
+|  框架   | wot-design-uni  | uv-ui | uview-plus | Tuniao UI Uniapp V3 |
+|  ----  | :----: |  :----: | :----:  |  :----: |
+| 组件数量 | 72 | 75 | 72 | 55 |
+| 暗黑模式 | ✓ |  ❌ | ❌ | ❌ |
+| 国际化 | ✓ | ✓ | ✓ |  ❌ |
+| 自定义主题 | ✓ | ✓ | ✓ | ✓ |
+
+从表格可以看出`wot-design-uni` 组件数量和`uv-ui`、`uview-plus` 相差不大，特性支持上`wot-design-uni`更具优势，笔者在项目中分别使用过`uv-ui`、`uview-plus`、`wot-design-uni`，在使用体验中笔者认为`wot-design-uni`更加灵活，可以很轻松的修改组件和组合。通过以上对比`Snail-uni`最终采用`wot-design-uni`作为`UI`组件库。
+
+
 
 

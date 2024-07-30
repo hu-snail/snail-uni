@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: "snail-uni"
-  text: "uni-app最佳开发模版"
+  name: "Snail-uni"
+  text: "最好用的Uni-app框架"
   tagline: 包含请求封装、公共工具函数、常用组件等
   actions:
     - theme: brand
