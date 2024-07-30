@@ -11,6 +11,11 @@
     <view class="text-area">
       <text class="title">{{ title }}</text>
     </view>
+    <wd-button>主要按钮</wd-button>
+    <wd-button type="success">成功按钮</wd-button>
+    <wd-button type="info">信息按钮</wd-button>
+    <wd-button type="warning">警告按钮</wd-button>
+    <wd-button type="error">危险按钮</wd-button>
     <button type="button" @click="handleToRouter">我的页面</button>
   </view>
 </template>
