@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "Snail-uni"
-  text: "最好用的Uni-app框架"
+  text: "更懂你的Uni-app框架"
   tagline: 包含请求封装、公共工具函数、常用组件等
   actions:
     - theme: brand

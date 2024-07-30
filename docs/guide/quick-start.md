@@ -3,7 +3,7 @@
   - **Node.js** - `>=v18.0.0`
   - **pnpm** - `>=8.15.6`（推荐使用 `9.0.0`）
   - [VSCode](https://code.visualstudio.com/) 开发工具下载
-  - [HBuilderX](https://www.dcloud.io/hbuilderx.html) - `APP` 的运行和发布还是离不开它
+  - [HBuilderX](https://www.dcloud.io/hbuilderx.html) - `APP` 的运行和发布需要
   - [Git](https://git-scm.com/download) 安装
 > 注：无需**App**开发，则无需下载HBuilderX
      
