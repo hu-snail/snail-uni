@@ -18,10 +18,11 @@
   "nano-staged": {
     "*.md": "prettier --write",
     "*.{ts,tsx,js,vue,scss}": "prettier --write",
-    "*.{ts,tsx,js,vue}": "pnpm lint"
+    "*.{ts,tsx,js,vue}": "pnpm lint",
+    "*.{css,scss,vue,html}": "stylelint --fix"
   },
   "engines": {
-    "pnpm": ">= 9.0.0"
+    "pnpm": ">= 8.15.6"
   },
   "simple-git-hooks": {
     "pre-commit": "npx nano-staged",
@@ -29,11 +30,13 @@
   },
   "devDependencies": {
     "@snail-uni/eslint-config": "workspace:*",
+    "@snail-uni/stylelint-config": "workspace:*",
     "eslint": "8.43.0",
     "nano-staged": "^0.8.0",
     "oxlint": "^0.6.0",
     "prettier": "^3.3.3",
     "simple-git-hooks": "^2.11.1",
+    "stylelint": "^16.8.1",
     "tsx": "^4.16.2"
   },
   "dependencies": {

@@ -4,7 +4,7 @@ node_modules
 *.log
 package-lock.json
 .DS_Store
-.env
+dist
 packages/*/dist/*
 packages/*/lib/*
 packages/*/es/*
