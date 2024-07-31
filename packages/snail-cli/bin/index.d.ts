@@ -6,13 +6,12 @@ declare enum ScaffoldUIType {
   TuniaoUI = 'TuniaoUI',
 }
 interface ScaffoldOptions {
-  root: string;
   title?: string;
   description?: string;
   uiType?: ScaffoldUIType;
   useTs?: boolean;
 }
-declare function init(root: string | undefined): Promise<void>;
-declare function scaffold({ root, title, description, uiType, useTs }: ScaffoldOptions): string;
+declare function create(): Promise<void>;
+declare function scaffold({ title, description, uiType, useTs }: ScaffoldOptions): string;
 
-export { ScaffoldOptions, ScaffoldUIType, init, scaffold };
+export { ScaffoldOptions, ScaffoldUIType, create, scaffold };

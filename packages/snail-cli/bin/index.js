@@ -276,9 +276,12 @@ var require_minimist = __commonJS({
 // src/index.ts
 var import_minimist = __toESM(require_minimist(), 1);
 import { intro, outro, group, text, select, cancel, confirm, log } from '@clack/prompts';
+import fs from 'fs-extra';
 import { fileURLToPath } from 'url';
 import path from 'path';
-import c from 'picocolors';
+import pic from 'picocolors';
+import template from 'lodash.template';
+var { bold, cyan } = pic;
 var argv = (0, import_minimist.default)(process.argv.slice(2));
 var ScaffoldUIType = /* @__PURE__ */ ((ScaffoldUIType2) => {
   ScaffoldUIType2['Default'] = 'Wot Design Ui';
@@ -287,39 +290,22 @@ var ScaffoldUIType = /* @__PURE__ */ ((ScaffoldUIType2) => {
   ScaffoldUIType2['TuniaoUI'] = 'TuniaoUI';
   return ScaffoldUIType2;
 })(ScaffoldUIType || {});
-async function init(root2) {
-  intro(c.bold(c.cyan('\u6B22\u8FCE\u4F7F\u7528snail-uni\u811A\u624B\u67B6\uFF01')));
+async function create() {
+  intro(bold(cyan('\u6B22\u8FCE\u4F7F\u7528snail-uni\u811A\u624B\u67B6\uFF01')));
   const options = await group(
     {
-      root: async () => {
-        if (root2) return root2;
-        return text({
-          message: '\u9879\u76EE\u6839\u76EE\u5F55\u8DEF\u5F84:',
-          initialValue: './',
-          placeholder: '\u8BF7\u8F93\u5165\u9879\u76EE\u6839\u76EE\u5F55\u8DEF\u5F84',
-          validate: (value) => {
-            if (!value) return '\u6839\u76EE\u5F55\u8DEF\u5F84\u4E0D\u80FD\u4E3A\u7A7A';
-            if (value.includes(' ')) return '\u6839\u76EE\u5F55\u8DEF\u5F84\u4E0D\u80FD\u6709\u7A7A\u683C';
-          },
-        });
-      },
       title: () =>
         text({
           message: '\u9879\u76EE\u540D\u79F0:',
-          initialValue: 'snail-uni-app',
-          placeholder: '\u8BF7\u8F93\u5165\u9879\u76EE\u540D\u79F0',
+          placeholder: 'snai-uni-app',
           validate: (value) => {
-            if (!value) return '\u9879\u76EE\u540D\u79F0\u4E0D\u80FD\u4E3A\u7A7A';
+            if (fs.existsSync(value)) return '\u6539\u540D\u79F0\u5DF2\u5B58\u5728\uFF0C\u8BF7\u91CD\u65B0\u8F93\u5165';
           },
         }),
       description: () =>
         text({
           message: '\u9879\u76EE\u63CF\u8FF0:',
-          initialValue: 'A Snail-uni-app project',
-          placeholder: '\u8BF7\u8F93\u5165\u9879\u76EE\u63CF\u8FF0',
-          validate: (value) => {
-            if (!value) return '\u9879\u76EE\u63CF\u8FF0\u4E0D\u80FD\u4E3A\u7A7A';
-          },
+          placeholder: 'A snail-uni-app project',
         }),
       uiType: () =>
         select({
@@ -367,36 +353,64 @@ var getPackageManger = () => {
   const name = process.env?.npm_config_user_agent || 'npm';
   return name.split('/')[0];
 };
-function scaffold({
-  root: root2 = './',
-  title = 'My Awesome Project',
-  description = 'A Vite + Vue3 + TypeScript project',
-  uiType,
-  useTs,
-}) {
-  console.log('root:' + root2);
-  const resolvedRoot = path.resolve(root2);
+function scaffold({ title = 'snail-uni-app', description = 'A snail-uni-app project', uiType, useTs }) {
+  const resolvedRoot = path.resolve('./', title);
+  const templateDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../template');
   console.log('resolvedRoot:' + resolvedRoot);
-  const templateDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../play');
-  console.log('templateDir' + templateDir);
   const data = {
     title: JSON.stringify(title),
     description: JSON.stringify(description),
     uiType,
     useTs,
   };
-  console.log(data);
+  const renderFile = (file) => {
+    const filePath = path.resolve(templateDir, file);
+    let targetPath = path.resolve(resolvedRoot, file);
+    const src = fs.readFileSync(filePath, 'utf-8');
+    const compiled = template(src)(data);
+    if (useTs) {
+      targetPath = targetPath.replace(/\.(m?)js$/, '.$1ts');
+    }
+    fs.outputFileSync(targetPath, compiled);
+  };
+  const filesToScaffold = [
+    'src/layouts/default.vue',
+    'src/pages/index/index.vue',
+    'src/pages/my/index.vue',
+    'index.html',
+    'src/App.vue',
+    'src/main.ts',
+    'manifest.config.ts',
+    'pages.config.ts',
+  ];
+  const projectConfigFilesToScaffold = [
+    '.vscode/extensions.json',
+    '.vscode/settings.json',
+    '.editorconfig',
+    '.eslintignore',
+    '.eslintrc.json',
+    '.prettierignore',
+    '.stylelintignore',
+    'tsconfig.json',
+    'shims-uni.d.ts',
+    '.npmrc',
+    '.gitignore',
+    'package.json',
+  ];
+  const staticFilesToScaffold = ['src/static/logo.png'];
+  filesToScaffold.push(...projectConfigFilesToScaffold);
+  filesToScaffold.push(...staticFilesToScaffold);
+  fs.copySync(path.resolve(templateDir, 'verify-commit.mjs'), path.resolve(resolvedRoot, 'verify-commit.mjs'));
+  for (const file of filesToScaffold) {
+    renderFile(file);
+  }
   const pm = getPackageManger();
-  return `\u4F60\u5DF2\u6210\u529F\u521B\u5EFA! \u73B0\u5728\u8BF7\u4F7F\u7528 ${c.cyan(`${pm === 'npm' ? 'npx' : pm}`)} \u8FD0\u884C\u4F60\u7684\u9879\u76EE`;
+  return `\u4F60\u5DF2\u6210\u529F\u521B\u5EFA! \u73B0\u5728\u8BF7\u4F7F\u7528 ${cyan(`${pm === 'npm' ? 'npx' : pm}`)} \u8FD0\u884C\u4F60\u7684\u9879\u76EE`;
 }
 var command = argv._[0];
-var root = argv._[command ? 1 : 0];
-if (root) {
-  argv.root = root;
-}
-if (command === 'init') {
-  init(argv.root);
+if (command === 'create') {
+  create();
 } else {
   log.warning(`\u65E0\u6548\u7684\u547D\u4EE4: ${command}`);
 }
-export { ScaffoldUIType, init, scaffold };
+export { ScaffoldUIType, create, scaffold };

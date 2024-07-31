@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 import minimist from 'minimist';
 import { intro, outro, group, text, select, cancel, confirm, log } from '@clack/prompts';
-// import fs from 'fs-extra';
+import fs from 'fs-extra';
 import { fileURLToPath } from 'url';
 import path from 'path';
-import c from 'picocolors';
+import pic from 'picocolors';
+import template from 'lodash.template';
 
+const { bold, cyan } = pic;
 const argv: any = minimist(process.argv.slice(2));
 
 export enum ScaffoldUIType {
@@ -16,47 +18,29 @@ export enum ScaffoldUIType {
 }
 
 export interface ScaffoldOptions {
-  root: string;
   title?: string;
   description?: string;
   uiType?: ScaffoldUIType;
   useTs?: boolean;
 }
 
-export async function init(root: string | undefined) {
-  intro(c.bold(c.cyan('欢迎使用snail-uni脚手架！')));
+export async function create() {
+  intro(bold(cyan('欢迎使用snail-uni脚手架！')));
 
   const options: ScaffoldOptions = await group(
     {
-      root: async () => {
-        if (root) return root;
-        return text({
-          message: '项目根目录路径:',
-          initialValue: './',
-          placeholder: '请输入项目根目录路径',
-          validate: (value) => {
-            if (!value) return '根目录路径不能为空';
-            if (value.includes(' ')) return '根目录路径不能有空格';
-          },
-        });
-      },
       title: () =>
         text({
           message: '项目名称:',
-          initialValue: 'snail-uni-app',
-          placeholder: '请输入项目名称',
+          placeholder: 'snai-uni-app',
           validate: (value) => {
-            if (!value) return '项目名称不能为空';
+            if (fs.existsSync(value)) return '改名称已存在，请重新输入';
           },
         }),
       description: () =>
         text({
           message: '项目描述:',
-          initialValue: 'A Snail-uni-app project',
-          placeholder: '请输入项目描述',
-          validate: (value) => {
-            if (!value) return '项目描述不能为空';
-          },
+          placeholder: 'A snail-uni-app project',
         }),
       uiType: () =>
         select({
@@ -108,37 +92,77 @@ const getPackageManger = () => {
 };
 
 export function scaffold({
-  root = './',
-  title = 'My Awesome Project',
-  description = 'A Vite + Vue3 + TypeScript project',
+  title = 'snail-uni-app',
+  description = 'A snail-uni-app project',
   uiType,
   useTs,
 }: ScaffoldOptions): string {
-  console.log('root:' + root);
-  const resolvedRoot = path.resolve(root);
+  const resolvedRoot = path.resolve('./', title);
+  const templateDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../template');
   console.log('resolvedRoot:' + resolvedRoot);
-  const templateDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../play');
-
-  console.log('templateDir' + templateDir);
-
   const data = {
     title: JSON.stringify(title),
     description: JSON.stringify(description),
     uiType,
     useTs,
   };
-  console.log(data);
+
+  const renderFile = (file: string) => {
+    const filePath = path.resolve(templateDir, file);
+    let targetPath = path.resolve(resolvedRoot, file);
+    const src = fs.readFileSync(filePath, 'utf-8');
+    const compiled = template(src)(data);
+    if (useTs) {
+      targetPath = targetPath.replace(/\.(m?)js$/, '.$1ts');
+    }
+    fs.outputFileSync(targetPath, compiled);
+  };
+  const filesToScaffold = [
+    'src/layouts/default.vue',
+    'src/pages/index/index.vue',
+    'src/pages/my/index.vue',
+    'index.html',
+    'src/App.vue',
+    'src/main.ts',
+    'manifest.config.ts',
+    'pages.config.ts',
+  ];
+
+  const projectConfigFilesToScaffold = [
+    '.vscode/extensions.json',
+    '.vscode/settings.json',
+    '.editorconfig',
+    '.eslintignore',
+    '.eslintrc.json',
+    '.prettierignore',
+    '.stylelintignore',
+    'tsconfig.json',
+    'shims-uni.d.ts',
+    '.npmrc',
+    '.gitignore',
+    'package.json',
+  ];
+
+  const staticFilesToScaffold = ['src/static/logo.png'];
+
+  // 添加项目配置文件
+  filesToScaffold.push(...projectConfigFilesToScaffold);
+  // 添加静态文件
+  filesToScaffold.push(...staticFilesToScaffold);
+  // 复制verify-commit.mjs
+  fs.copySync(path.resolve(templateDir, 'verify-commit.mjs'), path.resolve(resolvedRoot, 'verify-commit.mjs'));
+
+  for (const file of filesToScaffold) {
+    renderFile(file);
+  }
   const pm = getPackageManger();
-  return `你已成功创建! 现在请使用 ${c.cyan(`${pm === 'npm' ? 'npx' : pm}`)} 运行你的项目`;
+  return `你已成功创建! 现在请使用 ${cyan(`${pm === 'npm' ? 'npx' : pm}`)} 运行你的项目`;
 }
 
 const command = argv._[0];
-const root = argv._[command ? 1 : 0];
-if (root) {
-  argv.root = root;
-}
-if (command === 'init') {
-  init(argv.root);
+
+if (command === 'create') {
+  create();
 } else {
   log.warning(`无效的命令: ${command}`);
 }
