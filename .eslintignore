@@ -7,3 +7,6 @@ lib/*
 es/*
 *.md
 .vscode
+bin
+template
+snail-uni-app

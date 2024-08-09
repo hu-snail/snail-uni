@@ -5,9 +5,13 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "simple-git-hooks",
-    "lint": "npx oxlint && eslint --fix."
+    "lint": "npx oxlint && eslint --fix.",
+    "create-ui": "snail-uni init"
   },
-  "keywords": [],
+  "keywords": [
+    "snail-uni",
+    "uni-app"
+  ],
   "author": "hu-snail 1217437592@qq.com",
   "license": "MIT",
   "workspaces": [
@@ -22,13 +26,14 @@
     "*.{css,scss,vue,html}": "stylelint --fix"
   },
   "engines": {
-    "pnpm": ">= 8.15.6"
+    "pnpm": ">= 8.6.0"
   },
   "simple-git-hooks": {
     "pre-commit": "npx nano-staged",
     "commit-msg": "npx node ./verify-commit.mjs"
   },
   "devDependencies": {
+    "@snail-uni/cli": "workspace:*",
     "@snail-uni/eslint-config": "workspace:*",
     "@snail-uni/stylelint-config": "workspace:*",
     "eslint": "8.43.0",

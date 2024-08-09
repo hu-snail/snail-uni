@@ -5,6 +5,7 @@ node_modules
 package-lock.json
 .DS_Store
 dist
+snail-uni-app
 packages/*/dist/*
 packages/*/lib/*
 packages/*/es/*

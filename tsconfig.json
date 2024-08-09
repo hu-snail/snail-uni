@@ -13,6 +13,6 @@
     "moduleResolution": "node",
     "outDir": "./lib"
   },
-  "include": ["packages/**/*.ts", "packages/**/*.tsx"],
-  "exclude": ["node_modules", "lib"]
+  // "include": ["packages/**/*.ts", "packages/**/*.tsx"],
+  "exclude": ["**/node_modules/**", "lib", "bin", "template"]
 }
