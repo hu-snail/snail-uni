@@ -9,4 +9,6 @@
     console.log('App Hide');
   });
 </script>
-<style></style>
+<style>
+  @import '@tuniao/tn-style/dist/uniapp/index.css';
+</style>

@@ -20,6 +20,8 @@ export default defineUniPages({
       '^u--(.*)': 'uview-plus/components/u-$1/u-$1.vue',
       '^up-(.*)': 'uview-plus/components/u-$1/u-$1.vue',
       '^u-([^-].*)': 'uview-plus/components/u-$1/u-$1.vue',
+      '^tn-(.*)-(item|group)$': '@tuniao/tnui-vue3-uniapp/components/$1/src/$1-$2.vue',
+      '^tn-(.*)': '@tuniao/tnui-vue3-uniapp/components/$1/src/$1.vue',
     },
   },
 });

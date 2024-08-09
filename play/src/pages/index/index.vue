@@ -37,6 +37,11 @@
       <up-button text="渐变色按钮" color="linear-gradient(to right, rgb(66, 83, 216), rgb(213, 51, 186))"></up-button>
       <up-button type="primary" size="small" text="大小尺寸"></up-button>
     </view>
+    <tn-button type="primary">按钮</tn-button>
+    <TnButton type="success">按钮</TnButton>
+    <TnButton type="warning">按钮</TnButton>
+    <TnButton type="danger">按钮</TnButton>
+    <TnButton type="info">按钮</TnButton>
   </view>
 </template>
 
