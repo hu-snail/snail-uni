@@ -15,7 +15,9 @@ export default defineUniPages({
   easycom: {
     autoscan: true,
     custom: {
-      '^wd-(.*)': 'wot-design-uni/components/wd-$1/wd-$1.vue',
+      <% if (uiType === 'Wot-Design') { %>'^wd-(.*)': 'wot-design-uni/components/wd-$1/wd-$1.vue'<% } %><% if (uiType === 'Uv-ui') { %>'^uv-(.*)': '@climblee/uv-ui/components/uv-$1/uv-$1.vue'<% } %><% if (uiType === 'Uview-plus') { %>"^u--(.*)": "uview-plus/components/u-$1/u-$1.vue",
+      "^up-(.*)": "uview-plus/components/u-$1/u-$1.vue",
+      "^u-([^-].*)": "uview-plus/components/u-$1/u-$1.vue"<% } %>
     },
   },
 });

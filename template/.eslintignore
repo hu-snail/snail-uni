@@ -4,3 +4,4 @@ dist
 pnpm-lock.yaml
 yarn.lock
 *.log
+template
