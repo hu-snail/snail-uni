@@ -397,7 +397,7 @@ function scaffold({ title = 'snail-uni-app', description = 'A snail-uni-app proj
     '.gitignore',
     'package.json',
   ];
-  const staticFilesToScaffold = ['src/static/logo.png'];
+  const staticFilesToScaffold = ['src/static/logo.png', 'src/uni.scss'];
   filesToScaffold.push(...projectConfigFilesToScaffold);
   filesToScaffold.push(...staticFilesToScaffold);
   fs.copySync(path.resolve(templateDir, 'verify-commit.mjs'), path.resolve(resolvedRoot, 'verify-commit.mjs'));

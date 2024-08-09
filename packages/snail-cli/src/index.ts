@@ -143,7 +143,7 @@ export function scaffold({
     'package.json',
   ];
 
-  const staticFilesToScaffold = ['src/static/logo.png'];
+  const staticFilesToScaffold = ['src/static/logo.png', 'src/uni.scss'];
 
   // 添加项目配置文件
   filesToScaffold.push(...projectConfigFilesToScaffold);
