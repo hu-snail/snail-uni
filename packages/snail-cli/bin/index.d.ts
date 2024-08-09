@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 declare enum ScaffoldUIType {
-  Default = 'Wot Design Ui',
+  Default = 'Wot-Design',
   UvUi = 'Uv-ui',
   UviewPlus = 'Uview-plus',
   TuniaoUI = 'TuniaoUI',

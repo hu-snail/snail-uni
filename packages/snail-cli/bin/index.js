@@ -284,7 +284,7 @@ import template from 'lodash.template';
 var { bold, cyan } = pic;
 var argv = (0, import_minimist.default)(process.argv.slice(2));
 var ScaffoldUIType = /* @__PURE__ */ ((ScaffoldUIType2) => {
-  ScaffoldUIType2['Default'] = 'Wot Design Ui';
+  ScaffoldUIType2['Default'] = 'Wot-Design';
   ScaffoldUIType2['UvUi'] = 'Uv-ui';
   ScaffoldUIType2['UviewPlus'] = 'Uview-plus';
   ScaffoldUIType2['TuniaoUI'] = 'TuniaoUI';
@@ -313,7 +313,7 @@ async function create() {
           options: [
             {
               // @ts-ignore
-              value: 'Wot Design Ui' /* Default */,
+              value: 'Wot-Design' /* Default */,
               label: 'wot-design-ui',
               hint: '\u63A8\u8350',
             },

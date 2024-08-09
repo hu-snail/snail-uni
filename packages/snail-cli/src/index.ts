@@ -11,7 +11,7 @@ const { bold, cyan } = pic;
 const argv: any = minimist(process.argv.slice(2));
 
 export enum ScaffoldUIType {
-  Default = 'Wot Design Ui',
+  Default = 'Wot-Design',
   UvUi = 'Uv-ui',
   UviewPlus = 'Uview-plus',
   TuniaoUI = 'TuniaoUI',
