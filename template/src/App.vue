@@ -9,4 +9,6 @@
     console.log('App Hide');
   });
 </script>
-<style></style>
+<style>
+<% if (uiType === 'TuniaoUI') { %>@import '@tuniao/tn-style/dist/uniapp/index.css'; <% } %>
+</style>
