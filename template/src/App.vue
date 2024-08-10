@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup<% if (useTs) { %> lang="ts"<% } %>>
   onLaunch(() => {
     console.log('App Launch');
   });

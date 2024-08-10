@@ -20,7 +20,7 @@
   </view>
 </template>
 
-<script setup lang="ts">
+<script setup<% if (useTs) { %> lang="ts"<% } %>>
   const title = ref('Hello');
 
   const router = useRouter();

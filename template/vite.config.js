@@ -41,7 +41,6 @@ export default ({ command, mode }) => {
         exclude: ['**/components/**/**.*'],
         // 'json5' | 'json' | 'yaml' | 'yml', 具体使用参看文档：https://uni-helper.js.org/vite-plugin-uni-pages
         routeBlockLang: 'json5',
-        dts: 'src/types/uni-pages.d.ts',
         // 配置分包目录
         subPackages: ['src/sub-pages'],
       }),
@@ -59,13 +58,12 @@ export default ({ command, mode }) => {
             imports: ['createRouter', 'useRouter', 'useRoute'],
           },
         ],
-        dts: 'src/types/auto-import.d.ts',
         eslintrc: { enabled: true, globalsPropValue: true },
         vueTemplate: true,
       }),
 
       ViteRestart({
-        restart: ['vite.config.ts'], // 监听vite.config.js文件修改,无需重启
+        restart: ['vite.config.js'], // 监听vite.config.js文件修改,无需重启
       }),
     ],
     // 开发配置
