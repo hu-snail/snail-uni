@@ -7,7 +7,7 @@ import path from 'path';
 import pic from 'picocolors';
 import template from 'lodash.template';
 
-const { bold, green } = pic;
+const { bold, green, red } = pic;
 const argv: any = minimist(process.argv.slice(2));
 
 export enum ScaffoldUIType {
@@ -34,7 +34,7 @@ export async function create() {
           message: '项目名称:',
           placeholder: 'snai-uni-app',
           validate: (value) => {
-            if (fs.existsSync(value)) return '改名称已存在，请重新输入';
+            if (fs.existsSync(value)) return '该名称已存在，请重新输入';
           },
         }),
       description: () =>
@@ -82,7 +82,6 @@ export async function create() {
       },
     },
   );
-
   outro(scaffold(options));
 }
 
@@ -157,13 +156,17 @@ export function scaffold({
     renderFile(file);
   }
   const pm = getPackageManger();
-  return `你已成功创建! 现在请使用 ${green(`${pm === 'npm' ? 'npx' : pm}`)} 运行你的项目\n\n   进入项目：${green(`cd ${title}`)}\n   安装依赖：${green(`${pm === 'npm' ? 'npx' : pm} install`)}`;
+  return `你已成功创建! 现在请使用 ${green(`${pm}`)} 运行你的项目\n\n   进入项目：${green(`cd ${title}`)}\n   安装依赖：${green(`${pm} install`)}`;
 }
 
 const command = argv._[0];
-
+const title = argv._[1];
+const useTs = argv._[2];
 if (command === 'create') {
-  create();
+  if (title) {
+    if (fs.existsSync(title)) log.error(red('该名称已存在，请重新输入'));
+    else outro(scaffold({ title, useTs: useTs === 'ts' }));
+  } else create();
 } else {
   log.warning(`无效的命令: ${command}`);
 }

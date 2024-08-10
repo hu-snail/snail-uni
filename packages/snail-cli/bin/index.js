@@ -281,7 +281,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import pic from 'picocolors';
 import template from 'lodash.template';
-var { bold, green } = pic;
+var { bold, green, red } = pic;
 var argv = (0, import_minimist.default)(process.argv.slice(2));
 var ScaffoldUIType = /* @__PURE__ */ ((ScaffoldUIType2) => {
   ScaffoldUIType2['Default'] = 'Wot-Design';
@@ -299,7 +299,7 @@ async function create() {
           message: '\u9879\u76EE\u540D\u79F0:',
           placeholder: 'snai-uni-app',
           validate: (value) => {
-            if (fs.existsSync(value)) return '\u6539\u540D\u79F0\u5DF2\u5B58\u5728\uFF0C\u8BF7\u91CD\u65B0\u8F93\u5165';
+            if (fs.existsSync(value)) return '\u8BE5\u540D\u79F0\u5DF2\u5B58\u5728\uFF0C\u8BF7\u91CD\u65B0\u8F93\u5165';
           },
         }),
       description: () =>
@@ -353,21 +353,21 @@ var getPackageManger = () => {
   const name = process.env?.npm_config_user_agent || 'npm';
   return name.split('/')[0];
 };
-function scaffold({ title = 'snail-uni-app', description = 'A snail-uni-app project', uiType, useTs }) {
-  const resolvedRoot = path.resolve('./', title);
+function scaffold({ title: title2 = 'snail-uni-app', description = 'A snail-uni-app project', uiType, useTs: useTs2 }) {
+  const resolvedRoot = path.resolve('./', title2);
   const templateDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../template');
   const data = {
-    title: JSON.stringify(title),
+    title: JSON.stringify(title2),
     description: JSON.stringify(description),
     uiType,
-    useTs,
+    useTs: useTs2,
   };
   const renderFile = (file) => {
     const filePath = path.resolve(templateDir, file);
     let targetPath = path.resolve(resolvedRoot, file);
     const src = fs.readFileSync(filePath, 'utf-8');
     const compiled = template(src)(data);
-    if (useTs) {
+    if (useTs2) {
       targetPath = targetPath.replace(/\.(m?)js$/, '.$1ts');
     } else targetPath = targetPath.replace(/\.(m?)ts$/, '.$1js');
     fs.outputFileSync(targetPath, compiled);
@@ -394,25 +394,31 @@ function scaffold({ title = 'snail-uni-app', description = 'A snail-uni-app proj
     '.gitignore',
     'package.json',
   ];
-  if (useTs) projectConfigFilesToScaffold.push(...['tsconfig.json', 'shims-uni.d.ts']);
+  if (useTs2) projectConfigFilesToScaffold.push(...['tsconfig.json', 'shims-uni.d.ts']);
   const staticFilesToScaffold = ['src/static/logo.png', 'src/uni.scss'];
   filesToScaffold.push(...projectConfigFilesToScaffold);
   filesToScaffold.push(...staticFilesToScaffold);
   fs.copySync(path.resolve(templateDir, 'verify-commit.mjs'), path.resolve(resolvedRoot, 'verify-commit.mjs'));
-  const fileName = useTs ? 'vite.config.ts' : 'vite.config.js';
+  const fileName = useTs2 ? 'vite.config.ts' : 'vite.config.js';
   fs.copySync(path.resolve(templateDir, fileName), path.resolve(resolvedRoot, fileName));
   for (const file of filesToScaffold) {
     renderFile(file);
   }
   const pm = getPackageManger();
-  return `\u4F60\u5DF2\u6210\u529F\u521B\u5EFA! \u73B0\u5728\u8BF7\u4F7F\u7528 ${green(`${pm === 'npm' ? 'npx' : pm}`)} \u8FD0\u884C\u4F60\u7684\u9879\u76EE
+  return `\u4F60\u5DF2\u6210\u529F\u521B\u5EFA! \u73B0\u5728\u8BF7\u4F7F\u7528 ${green(`${pm}`)} \u8FD0\u884C\u4F60\u7684\u9879\u76EE
 
-   \u8FDB\u5165\u9879\u76EE\uFF1A${green(`cd ${title}`)}
-   \u5B89\u88C5\u4F9D\u8D56\uFF1A${green(`${pm === 'npm' ? 'npx' : pm} install`)}`;
+   \u8FDB\u5165\u9879\u76EE\uFF1A${green(`cd ${title2}`)}
+   \u5B89\u88C5\u4F9D\u8D56\uFF1A${green(`${pm} install`)}`;
 }
 var command = argv._[0];
+var title = argv._[1];
+var useTs = argv._[2];
 if (command === 'create') {
-  create();
+  if (title) {
+    if (fs.existsSync(title))
+      log.error(red('\u8BE5\u540D\u79F0\u5DF2\u5B58\u5728\uFF0C\u8BF7\u91CD\u65B0\u8F93\u5165'));
+    else outro(scaffold({ title, useTs: useTs === 'ts' }));
+  } else create();
 } else {
   log.warning(`\u65E0\u6548\u7684\u547D\u4EE4: ${command}`);
 }
