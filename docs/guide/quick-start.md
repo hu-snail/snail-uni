@@ -21,7 +21,7 @@
 npx snail-uni create
 ```
 ```sh [pnpm]
-npx snail-uni create
+pnpm snail-uni create
 ```
 ```sh [yarn]
 yarn snail-uni create
@@ -32,5 +32,66 @@ yarn snail-uni create
 
 <<< @/snippets/create.ansi
 
-## 安装与运行
+你还可以通过附加的命令行选项直接指定项目名称和你想要使用的模板, 例如：
+`snail-uni create <project-name> <语言类型（js/ts）>` 不指定类型默认为 `js` 版本， `ts`版本如下：
+::: code-group
+```sh [npm]
+npx snail-uni create snail-uni-app ts
+```
+```sh [pnpm]
+pnpm snail-uni create snail-uni-app ts
+```
+```sh [yarn]
+yarn snail-uni create  snail-uni-app ts
+```
+:::
+
+执行完之后，将生成一个新的项目
+
+<<< @/snippets/create_title.ansi
+
+
+## 启动并运行
+`snail-uni` 启动运行脚本在`package.json`中配置：
+```json
+{
+  ...
+  "scripts": {
+    "dev": "uni -p mp-weixin",
+    "dev:h5": "uni",
+    "build": "uni build -p mp-weixin",
+    "build:h5": "uni build"
+    ...
+  },
+  ...
+}
+```
+`dev` 脚本将启动具有即时热更新的本地开发服务器。使用以下命令运行它：
+> 默认启动微信小程序,根据自己需求在`package.json` 中进行调整
+> 
+::: code-group
+```sh [npm]
+npm run dev
+```
+```sh [pnpm]
+pnpm run dev # or pnpm dev
+```
+```sh [yarn]
+yarn dev
+```
+:::
+
+`build` 脚本将构建应用，并生成一个或多个平台包。使用以下命令运行它：
+> 默认构建微信小程序,根据自己需求在`package.json` 中进行调整
+
+::: code-group
+```sh [npm]
+npm run build
+```
+```sh [pnpm]
+pnpm run build # or pnpm build
+```
+```sh [yarn]
+yarn build
+```
 
