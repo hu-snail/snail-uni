@@ -281,7 +281,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import pic from 'picocolors';
 import template from 'lodash.template';
-var { bold, cyan } = pic;
+var { bold, green } = pic;
 var argv = (0, import_minimist.default)(process.argv.slice(2));
 var ScaffoldUIType = /* @__PURE__ */ ((ScaffoldUIType2) => {
   ScaffoldUIType2['Default'] = 'Wot-Design';
@@ -291,7 +291,7 @@ var ScaffoldUIType = /* @__PURE__ */ ((ScaffoldUIType2) => {
   return ScaffoldUIType2;
 })(ScaffoldUIType || {});
 async function create() {
-  intro(bold(cyan('\u6B22\u8FCE\u4F7F\u7528snail-uni\u811A\u624B\u67B6\uFF01')));
+  intro(bold(green('\u6B22\u8FCE\u4F7F\u7528snail-uni\u811A\u624B\u67B6\uFF01')));
   const options = await group(
     {
       title: () =>
@@ -356,7 +356,6 @@ var getPackageManger = () => {
 function scaffold({ title = 'snail-uni-app', description = 'A snail-uni-app project', uiType, useTs }) {
   const resolvedRoot = path.resolve('./', title);
   const templateDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../template');
-  console.log('resolvedRoot:' + resolvedRoot);
   const data = {
     title: JSON.stringify(title),
     description: JSON.stringify(description),
@@ -370,7 +369,7 @@ function scaffold({ title = 'snail-uni-app', description = 'A snail-uni-app proj
     const compiled = template(src)(data);
     if (useTs) {
       targetPath = targetPath.replace(/\.(m?)js$/, '.$1ts');
-    }
+    } else targetPath = targetPath.replace(/\.(m?)ts$/, '.$1js');
     fs.outputFileSync(targetPath, compiled);
   };
   const filesToScaffold = [
@@ -391,21 +390,25 @@ function scaffold({ title = 'snail-uni-app', description = 'A snail-uni-app proj
     '.eslintrc.json',
     '.prettierignore',
     '.stylelintignore',
-    'tsconfig.json',
-    'shims-uni.d.ts',
     '.npmrc',
     '.gitignore',
     'package.json',
   ];
+  if (useTs) projectConfigFilesToScaffold.push(...['tsconfig.json', 'shims-uni.d.ts']);
   const staticFilesToScaffold = ['src/static/logo.png', 'src/uni.scss'];
   filesToScaffold.push(...projectConfigFilesToScaffold);
   filesToScaffold.push(...staticFilesToScaffold);
   fs.copySync(path.resolve(templateDir, 'verify-commit.mjs'), path.resolve(resolvedRoot, 'verify-commit.mjs'));
+  const fileName = useTs ? 'vite.config.ts' : 'vite.config.js';
+  fs.copySync(path.resolve(templateDir, fileName), path.resolve(resolvedRoot, fileName));
   for (const file of filesToScaffold) {
     renderFile(file);
   }
   const pm = getPackageManger();
-  return `\u4F60\u5DF2\u6210\u529F\u521B\u5EFA! \u73B0\u5728\u8BF7\u4F7F\u7528 ${cyan(`${pm === 'npm' ? 'npx' : pm}`)} \u8FD0\u884C\u4F60\u7684\u9879\u76EE`;
+  return `\u4F60\u5DF2\u6210\u529F\u521B\u5EFA! \u73B0\u5728\u8BF7\u4F7F\u7528 ${green(`${pm === 'npm' ? 'npx' : pm}`)} \u8FD0\u884C\u4F60\u7684\u9879\u76EE
+
+   \u8FDB\u5165\u9879\u76EE\uFF1A${green(`cd ${title}`)}
+   \u5B89\u88C5\u4F9D\u8D56\uFF1A${green(`${pm === 'npm' ? 'npx' : pm} install`)}`;
 }
 var command = argv._[0];
 if (command === 'create') {

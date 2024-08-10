@@ -7,7 +7,7 @@ import path from 'path';
 import pic from 'picocolors';
 import template from 'lodash.template';
 
-const { bold, cyan } = pic;
+const { bold, green } = pic;
 const argv: any = minimist(process.argv.slice(2));
 
 export enum ScaffoldUIType {
@@ -25,7 +25,7 @@ export interface ScaffoldOptions {
 }
 
 export async function create() {
-  intro(bold(cyan('欢迎使用snail-uni脚手架！')));
+  intro(bold(green('欢迎使用snail-uni脚手架！')));
 
   const options: ScaffoldOptions = await group(
     {
@@ -99,7 +99,6 @@ export function scaffold({
 }: ScaffoldOptions): string {
   const resolvedRoot = path.resolve('./', title);
   const templateDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../template');
-  console.log('resolvedRoot:' + resolvedRoot);
   const data = {
     title: JSON.stringify(title),
     description: JSON.stringify(description),
@@ -114,7 +113,7 @@ export function scaffold({
     const compiled = template(src)(data);
     if (useTs) {
       targetPath = targetPath.replace(/\.(m?)js$/, '.$1ts');
-    }
+    } else targetPath = targetPath.replace(/\.(m?)ts$/, '.$1js');
     fs.outputFileSync(targetPath, compiled);
   };
   const filesToScaffold = [
@@ -136,12 +135,11 @@ export function scaffold({
     '.eslintrc.json',
     '.prettierignore',
     '.stylelintignore',
-    'tsconfig.json',
-    'shims-uni.d.ts',
     '.npmrc',
     '.gitignore',
     'package.json',
   ];
+  if (useTs) projectConfigFilesToScaffold.push(...['tsconfig.json', 'shims-uni.d.ts']);
 
   const staticFilesToScaffold = ['src/static/logo.png', 'src/uni.scss'];
 
@@ -151,12 +149,15 @@ export function scaffold({
   filesToScaffold.push(...staticFilesToScaffold);
   // 复制verify-commit.mjs
   fs.copySync(path.resolve(templateDir, 'verify-commit.mjs'), path.resolve(resolvedRoot, 'verify-commit.mjs'));
+  // 复制vite.config.ts
+  const fileName = useTs ? 'vite.config.ts' : 'vite.config.js';
+  fs.copySync(path.resolve(templateDir, fileName), path.resolve(resolvedRoot, fileName));
 
   for (const file of filesToScaffold) {
     renderFile(file);
   }
   const pm = getPackageManger();
-  return `你已成功创建! 现在请使用 ${cyan(`${pm === 'npm' ? 'npx' : pm}`)} 运行你的项目`;
+  return `你已成功创建! 现在请使用 ${green(`${pm === 'npm' ? 'npx' : pm}`)} 运行你的项目\n\n   进入项目：${green(`cd ${title}`)}\n   安装依赖：${green(`${pm === 'npm' ? 'npx' : pm} install`)}`;
 }
 
 const command = argv._[0];
