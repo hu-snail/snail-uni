@@ -134,6 +134,7 @@ export function scaffold({
     '.eslintrc.json',
     '.prettierignore',
     '.stylelintignore',
+    '.stylelintrc.json',
     '.npmrc',
     '.gitignore',
     'package.json',
