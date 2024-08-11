@@ -10,4 +10,4 @@ pnpm-lock.yaml
 yarn.lock
 package-lock.json
 pnpm-workspace.yaml
-template
+template/

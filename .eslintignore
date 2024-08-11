@@ -8,5 +8,5 @@ es/*
 *.md
 .vscode
 bin
-template
+template/
 snail-uni-app
