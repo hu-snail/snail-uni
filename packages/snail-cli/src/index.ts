@@ -93,7 +93,7 @@ const getPackageManger = () => {
 export function scaffold({
   title = 'snail-uni-app',
   description = 'A snail-uni-app project',
-  uiType,
+  uiType = ScaffoldUIType.Default,
   useTs,
 }: ScaffoldOptions): string {
   const resolvedRoot = path.resolve('./', title);
@@ -122,9 +122,15 @@ export function scaffold({
     'index.html',
     'src/App.vue',
     'src/main.ts',
+    'src/router/index.ts',
+    'src/manifest.json',
+    'src/pages.json',
+    'uno.config.ts',
     'manifest.config.ts',
     'pages.config.ts',
   ];
+
+  const envFilesToScaffold = ['env/.env', 'env/.env.development', 'env/.env.production', 'env/.env.test'];
 
   const projectConfigFilesToScaffold = [
     '.vscode/extensions.json',
@@ -139,25 +145,35 @@ export function scaffold({
     '.gitignore',
     'package.json',
   ];
-  if (useTs) projectConfigFilesToScaffold.push(...['tsconfig.json', 'shims-uni.d.ts']);
 
+  const tsFilesToScaffold = ['src/env.d.ts', 'tsconfig.json', 'shims-uni.d.ts'];
+  if (useTs) projectConfigFilesToScaffold.push(...tsFilesToScaffold);
   const staticFilesToScaffold = ['src/static/logo.png', 'src/uni.scss'];
 
   // 添加项目配置文件
   filesToScaffold.push(...projectConfigFilesToScaffold);
   // 添加静态文件
   filesToScaffold.push(...staticFilesToScaffold);
-  // 复制verify-commit.mjs
-  fs.copySync(path.resolve(templateDir, 'verify-commit.mjs'), path.resolve(resolvedRoot, 'verify-commit.mjs'));
-  // 复制vite.config.ts
+  // 添加env文件
+  filesToScaffold.push(...envFilesToScaffold);
+  // 移动文件
+  const moveFilesToScaffold = ['verify-commit.mjs', 'src/types/auto-import.d.ts', 'src/types/uni-pages.d.ts'];
   const fileName = useTs ? 'vite.config.ts' : 'vite.config.js';
-  fs.copySync(path.resolve(templateDir, fileName), path.resolve(resolvedRoot, fileName));
+  moveFilesToScaffold.push(fileName);
+
+  for (const filePath of moveFilesToScaffold) {
+    moveFiles(templateDir, resolvedRoot, filePath);
+  }
 
   for (const file of filesToScaffold) {
     renderFile(file);
   }
   const pm = getPackageManger();
   return `你已成功创建! 现在请使用 ${green(`${pm}`)} 运行你的项目\n\n   进入项目：${green(`cd ${title}`)}\n   安装依赖：${green(`${pm} install`)}`;
+}
+
+export function moveFiles(templateDir: string, resolvedRoot: string, filePath: string) {
+  fs.copySync(path.resolve(templateDir, filePath), path.resolve(resolvedRoot, filePath));
 }
 
 const command = argv._[0];

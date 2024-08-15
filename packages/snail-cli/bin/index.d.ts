@@ -13,5 +13,6 @@ interface ScaffoldOptions {
 }
 declare function create(): Promise<void>;
 declare function scaffold({ title, description, uiType, useTs }: ScaffoldOptions): string;
+declare function moveFiles(templateDir: string, resolvedRoot: string, filePath: string): void;
 
-export { ScaffoldOptions, ScaffoldUIType, create, scaffold };
+export { ScaffoldOptions, ScaffoldUIType, create, moveFiles, scaffold };

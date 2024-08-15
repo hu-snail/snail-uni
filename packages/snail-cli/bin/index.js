@@ -353,7 +353,12 @@ var getPackageManger = () => {
   const name = process.env?.npm_config_user_agent || 'npm';
   return name.split('/')[0];
 };
-function scaffold({ title: title2 = 'snail-uni-app', description = 'A snail-uni-app project', uiType, useTs: useTs2 }) {
+function scaffold({
+  title: title2 = 'snail-uni-app',
+  description = 'A snail-uni-app project',
+  uiType = 'Wot-Design' /* Default */,
+  useTs: useTs2,
+}) {
   const resolvedRoot = path.resolve('./', title2);
   const templateDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../template');
   const data = {
@@ -379,9 +384,14 @@ function scaffold({ title: title2 = 'snail-uni-app', description = 'A snail-uni-
     'index.html',
     'src/App.vue',
     'src/main.ts',
+    'src/router/index.ts',
+    'src/manifest.json',
+    'src/pages.json',
+    'uno.config.ts',
     'manifest.config.ts',
     'pages.config.ts',
   ];
+  const envFilesToScaffold = ['env/.env', 'env/.env.development', 'env/.env.production', 'env/.env.test'];
   const projectConfigFilesToScaffold = [
     '.vscode/extensions.json',
     '.vscode/settings.json',
@@ -390,17 +400,23 @@ function scaffold({ title: title2 = 'snail-uni-app', description = 'A snail-uni-
     '.eslintrc.json',
     '.prettierignore',
     '.stylelintignore',
+    '.stylelintrc.json',
     '.npmrc',
     '.gitignore',
     'package.json',
   ];
-  if (useTs2) projectConfigFilesToScaffold.push(...['tsconfig.json', 'shims-uni.d.ts']);
+  const tsFilesToScaffold = ['src/env.d.ts', 'tsconfig.json', 'shims-uni.d.ts'];
+  if (useTs2) projectConfigFilesToScaffold.push(...tsFilesToScaffold);
   const staticFilesToScaffold = ['src/static/logo.png', 'src/uni.scss'];
   filesToScaffold.push(...projectConfigFilesToScaffold);
   filesToScaffold.push(...staticFilesToScaffold);
-  fs.copySync(path.resolve(templateDir, 'verify-commit.mjs'), path.resolve(resolvedRoot, 'verify-commit.mjs'));
+  filesToScaffold.push(...envFilesToScaffold);
+  const moveFilesToScaffold = ['verify-commit.mjs', 'src/types/auto-import.d.ts', 'src/types/uni-pages.d.ts'];
   const fileName = useTs2 ? 'vite.config.ts' : 'vite.config.js';
-  fs.copySync(path.resolve(templateDir, fileName), path.resolve(resolvedRoot, fileName));
+  moveFilesToScaffold.push(fileName);
+  for (const filePath of moveFilesToScaffold) {
+    moveFiles(templateDir, resolvedRoot, filePath);
+  }
   for (const file of filesToScaffold) {
     renderFile(file);
   }
@@ -409,6 +425,9 @@ function scaffold({ title: title2 = 'snail-uni-app', description = 'A snail-uni-
 
    \u8FDB\u5165\u9879\u76EE\uFF1A${green(`cd ${title2}`)}
    \u5B89\u88C5\u4F9D\u8D56\uFF1A${green(`${pm} install`)}`;
+}
+function moveFiles(templateDir, resolvedRoot, filePath) {
+  fs.copySync(path.resolve(templateDir, filePath), path.resolve(resolvedRoot, filePath));
 }
 var command = argv._[0];
 var title = argv._[1];
@@ -422,4 +441,4 @@ if (command === 'create') {
 } else {
   log.warning(`\u65E0\u6548\u7684\u547D\u4EE4: ${command}`);
 }
-export { ScaffoldUIType, create, scaffold };
+export { ScaffoldUIType, create, moveFiles, scaffold };
