@@ -90,3 +90,6 @@ table {
 .link-text {
   color: var(--vp-c-brand-1);
 }
+.shell {
+  width: 560px !important;
+}
