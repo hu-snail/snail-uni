@@ -10,7 +10,8 @@
     <image class="logo" src="/static/logo.png" />
     <view class="text-area">
       <text class="title text-cyan-400">{{ title }}</text>
-      <button :class="iconName" />
+      <button class="icon" :class="iconName" />
+      <i class="iconfont icon-xiaochengxu"></i>
     </view>
     <button class="btn-green">111</button>
     <wd-button>主要按钮</wd-button>
@@ -37,6 +38,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+  .icon {
+    font-size: 12px;
+    color: #f45;
   }
 
   .logo {
