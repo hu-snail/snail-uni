@@ -24,9 +24,9 @@ export default defineConfig({
             items: [
               { text: '介绍', link: 'intro' },
               { text: '快速上手', link: 'quick-start' },
+              { text: '代码规范篇', link: 'code-style' },
               { text: '插件篇', link: 'uni-plugins' },
               { text: '图标篇', link: 'icon' },
-              { text: '代码规范篇', link: 'code-style' },
               { text: 'UI选型篇', link: 'ui' },
               { text: 'UI使用篇', link: 'ui-use' },
               { text: 'Axios请求', link: 'axios' },

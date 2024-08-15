@@ -92,7 +92,7 @@ export default defineConfig({
 
 <img src="../public/icon-use.jpg" alt="sn-icon-park-outline" />
 
-- 代码示例：
+- 代码示例, 使用 `class` 类名添加：
 
 ```vue
 <template>
@@ -115,4 +115,125 @@ export default defineConfig({
 </style>
 ```
 
+## iconfont 图标库
+`iconfont` 是阿里的图标库，国内功能很强大且图标内容很丰富的矢量图标库。拥有海量免费的的图标资源，同时支持上传自己的图标。
+### 图标项目
+- 图标官网地址： [iconfont](https://www.iconfont.cn/)
 
+`snail-uni` 推荐方案使用 `Font Class` 模式，兼容性且方便引用。`Symbol` 兼容性较差，不推荐。
+  
+> 加入或者创建项目（公司/个人），以 `snail-uni` 项目图标为案例：
+
+<img src="../public/iconfont-project.jpg" alt="iconfont" />
+
+### 使用案例
+选择 `Font Class` 点击 `查看在线链接` , 第一次点击会提示 `暂无代码，点此生成` ， 按照提示操作生成链接如下：
+![iconfont](../public//open-iconfont.jpg)
+
+点击链接会生成代码如下：
+```css
+@font-face {
+  font-family: "iconfont"; /* Project id 4655097 */
+  src: url('//at.alicdn.com/t/c/font_4655097_xv0h1hn7w9.woff2?t=1723726575635') format('woff2'),
+       url('//at.alicdn.com/t/c/font_4655097_xv0h1hn7w9.woff?t=1723726575635') format('woff'),
+       url('//at.alicdn.com/t/c/font_4655097_xv0h1hn7w9.ttf?t=1723726575635') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-xiaochengxu_tubiao:before {
+  content: "\e608";
+}
+
+.icon-xiaochengxu:before {
+  content: "\e63a";
+}
+```
+::: warning 温馨提示
+上述代码中：`//at.alicdn.com` 路径要改为 `https://at.alicdn.com`，因为 `APP` 里面 `//`是文件协议。
+::: details 查看修改后的代码
+```css
+@font-face {
+  font-family: 'iconfont'; /* Project id 4655097 */
+  src:
+    url('https://at.alicdn.com/t/c/font_4655097_xv0h1hn7w9.woff2?t=1723726575635') format('woff2'),
+    url('https://at.alicdn.com/t/c/font_4655097_xv0h1hn7w9.woff?t=1723726575635') format('woff'),
+    url('https://at.alicdn.com/t/c/font_4655097_xv0h1hn7w9.ttf?t=1723726575635') format('truetype');
+}
+
+.iconfont {
+  font-family: 'iconfont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-xiaochengxu_tubiao:before {
+  content: '\e608';
+}
+
+.icon-xiaochengxu:before {
+  content: '\e63a';
+}
+```
+:::
+
+复制上述代码在 `src/styles` 目录下创建 `iconfont.css` 文件
+> 注： 拷贝修改后代码
+::: details 查看代码
+```css
+@font-face {
+  font-family: 'iconfont'; /* Project id 4655097 */
+  src:
+    url('https://at.alicdn.com/t/c/font_4655097_xv0h1hn7w9.woff2?t=1723726575635') format('woff2'),
+    url('https://at.alicdn.com/t/c/font_4655097_xv0h1hn7w9.woff?t=1723726575635') format('woff'),
+    url('https://at.alicdn.com/t/c/font_4655097_xv0h1hn7w9.ttf?t=1723726575635') format('truetype');
+}
+
+.iconfont {
+  font-family: 'iconfont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-xiaochengxu_tubiao:before {
+  content: '\e608';
+}
+
+.icon-xiaochengxu:before {
+  content: '\e63a';
+}
+```
+:::
+
+### 页面中使用
+- 复制代码
+![iconfont](../public//copy-icon.jpg)
+- 页面代码
+```vue
+ <template>
+  <i class="iconfont icon-xiaochengxu"></i>
+</template>
+```
+- 修改大小和颜色
+```vue
+<template>
+  <i class="iconfont icon-xiaochengxu"></i>
+</template>
+
+<style lang="scss" scoped>
+  .iconfont {
+    color: #f45;
+    font-size: 14px;
+  }
+</style>
+```
