@@ -51,6 +51,9 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
+  "resolutions": {
+    "esbuild": "npm:esbuild-wasm@latest"
+  },
   "dependencies": {
     "@climblee/uv-ui": "^1.1.20",
     "@dcloudio/uni-app": "3.0.0-alpha-4020520240726003",
@@ -81,12 +84,14 @@
     "@dcloudio/uni-cli-shared": "3.0.0-alpha-4020520240726003",
     "@dcloudio/uni-stacktracey": "3.0.0-alpha-4020520240726003",
     "@dcloudio/vite-plugin-uni": "3.0.0-alpha-4020520240726003",
+    "@iconify-json/icon-park-outline": "^1.1.16",
     "@types/node": "^20.14.12",
     "@types/wechat-miniprogram": "^3.4.7",
     "@uni-helper/vite-plugin-uni-layouts": "^0.1.10",
     "@uni-helper/vite-plugin-uni-manifest": "^0.2.6",
     "@uni-helper/vite-plugin-uni-pages": "^0.2.26",
     "@uni-helper/vite-plugin-uni-platform": "^0.0.4",
+    "@unocss/preset-legacy-compat": "^0.62.1",
     "@vue/runtime-core": "^3.4.34",
     "@vue/tsconfig": "^0.5.1",
     "add": "^2.0.6",
@@ -94,6 +99,8 @@
     "typescript": "^5.5.4",
     "uni-mini-router": "^0.1.6",
     "uni-parse-pages": "^0.0.1",
+    "unocss": "^0.62.1",
+    "unocss-applet": "^0.8.2",
     "unplugin-auto-import": "^0.18.2",
     "vite": "^5.3.5",
     "vite-plugin-restart": "^0.4.1",

@@ -1,9 +1,10 @@
 import { defineConfig, loadEnv } from 'vite';
 import path from 'node:path';
-import Uni from '@dcloudio/vite-plugin-uni';
+import uniModule from '@dcloudio/vite-plugin-uni';
 import AutoImport from 'unplugin-auto-import/vite';
 // docs: https://uni-helper.js.org/vite-plugin-uni-pages
 import UniPages from '@uni-helper/vite-plugin-uni-pages';
+
 // 与 @uni-helper/vite-plugin-uni-pages 插件一起使用
 // docs:https://github.com/uni-helper/vite-plugin-uni-platform?tab=readme-ov-file#readme
 import UniPlatform from '@uni-helper/vite-plugin-uni-platform';
@@ -14,8 +15,12 @@ import UniLayouts from '@uni-helper/vite-plugin-uni-layouts';
 // docs:https://github.com/antfu/vite-plugin-restart?tab=readme-ov-file#readme
 import ViteRestart from 'vite-plugin-restart';
 
+// @ts-expect-error missing types
+const Uni = uniModule.default || uniModule;
 // https://vitejs.dev/config/
-export default ({ command, mode }) => {
+export default async ({ command, mode }) => {
+  // docs: https://unocss.dev/
+  const UnoCSS = (await import('unocss/vite')).default;
   const env = loadEnv(mode, path.resolve(process.cwd(), 'env'));
   const {
     VITE_APP_PORT,
@@ -49,6 +54,7 @@ export default ({ command, mode }) => {
       UniLayouts(),
       UniManifest(),
       Uni(),
+      UnoCSS(),
 
       AutoImport({
         imports: [
