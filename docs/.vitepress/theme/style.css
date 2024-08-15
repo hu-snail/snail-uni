@@ -87,12 +87,6 @@ table {
   z-index: 9999;
 }
 
-html:not(.rainbow) {
-  --vp-c-brand-1: #ec747d;
-  --vp-c-brand-light: #eb7186;
-  --vp-c-brand-lighter: #78fadc;
-  --vp-c-brand-dark: #008269;
-  --vp-c-brand-darker: #005d47;
-  --vp-c-brand-next: #009ff7;
-  animation: none !important;
+.link-text {
+  color: var(--vp-c-brand-1);
 }

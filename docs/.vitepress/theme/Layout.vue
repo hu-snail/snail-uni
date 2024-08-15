@@ -7,7 +7,7 @@
   const { isDark } = useData();
 
   onMounted(() => {
-    document.documentElement.classList.add('rainbow');
+    // document.documentElement.classList.add('rainbow');
   });
 
   function enableTransitions() {
