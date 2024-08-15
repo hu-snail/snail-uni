@@ -15,7 +15,9 @@ import UniLayouts from '@uni-helper/vite-plugin-uni-layouts';
 import ViteRestart from 'vite-plugin-restart';
 
 // https://vitejs.dev/config/
-export default ({ command, mode }) => {
+export default async ({ command, mode }) => {
+  // docs: https://unocss.dev/
+  const UnoCSS = (await import('unocss/vite')).default;
   const env = loadEnv(mode, path.resolve(process.cwd(), 'env'));
   const {
     VITE_APP_PORT,
@@ -41,6 +43,7 @@ export default ({ command, mode }) => {
         exclude: ['**/components/**/**.*'],
         // 'json5' | 'json' | 'yaml' | 'yml', 具体使用参看文档：https://uni-helper.js.org/vite-plugin-uni-pages
         routeBlockLang: 'json5',
+        dts: 'src/types/uni-pages.d.ts',
         // 配置分包目录
         subPackages: ['src/sub-pages'],
       }),
@@ -48,7 +51,7 @@ export default ({ command, mode }) => {
       UniLayouts(),
       UniManifest(),
       Uni(),
-
+      UnoCSS(),
       AutoImport({
         imports: [
           'vue',
@@ -58,6 +61,7 @@ export default ({ command, mode }) => {
             imports: ['createRouter', 'useRouter', 'useRoute'],
           },
         ],
+        dts: 'src/types/auto-import.d.ts',
         eslintrc: { enabled: true, globalsPropValue: true },
         vueTemplate: true,
       }),

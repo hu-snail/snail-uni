@@ -4,7 +4,7 @@ import path from 'node:path';
 import { loadEnv } from 'vite';
 import { version, name, description } from './package.json';
 
-const env = loadEnv(process.env.NODE_ENV!, path.resolve(process.cwd(), 'env'));
+const env = loadEnv(process.env.NODE_ENV<% if (useTs) { %>!<% }%>, path.resolve(process.cwd(), 'env'));
 const { VITE_UNI_APPID, VITE_WX_APPID, VITE_APP_PUBLIC_BASE, VITE_FALLBACK_LOCALE } = env;
 
 export default defineManifestConfig({

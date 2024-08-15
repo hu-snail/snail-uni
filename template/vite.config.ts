@@ -15,7 +15,9 @@ import UniLayouts from '@uni-helper/vite-plugin-uni-layouts';
 import ViteRestart from 'vite-plugin-restart';
 
 // https://vitejs.dev/config/
-export default ({ command, mode }) => {
+export default async({ command, mode }) => {
+  // docs: https://unocss.dev/
+  const UnoCSS = (await import('unocss/vite')).default;
   const env = loadEnv(mode, path.resolve(process.cwd(), 'env'));
   const {
     VITE_APP_PORT,
@@ -49,7 +51,7 @@ export default ({ command, mode }) => {
       UniLayouts(),
       UniManifest(),
       Uni(),
-
+      UnoCSS(),
       AutoImport({
         imports: [
           'vue',
