@@ -9,6 +9,7 @@
   <view class="content">
     <image class="logo" src="/static/logo.png" />
     <view class="text-area">
+      <text class="username">{{ userInfo.nickName }}</text>
       <text class="title text-cyan-400">{{ title }}</text>
       <button class="icon" :class="iconName" />
       <i class="iconfont icon-xiaochengxu"></i>
@@ -23,6 +24,11 @@
 </template>
 
 <script setup lang="ts">
+  import { useUserStore } from '@/store';
+  const userStore = useUserStore();
+
+  const userInfo = computed(() => userStore.userInfo);
+
   const iconName = ref('sn-icon-park-outline:add-four');
   const title = ref('Hello');
 
