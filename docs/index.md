@@ -20,8 +20,8 @@ hero:
 
 features:
   - icon: 🚀
-    title: Vue3 + Vite5 + Ts 最新技术栈
-    details: 体验最新技术，编写uni-app有更好的体验
+    title: Vue3 + Vite5 + Ts最新技术栈
+    details: 体验最新技术，编写uni-app有更好的体验，同时支持js版本
     link: 'https://juejin.cn/post/7244192313844154424'
     linkText: '博客文章'
     
@@ -52,4 +52,3 @@ features:
  
    
 ---
-

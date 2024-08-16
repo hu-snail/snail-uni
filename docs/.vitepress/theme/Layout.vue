@@ -7,6 +7,7 @@
   const { isDark } = useData();
 
   onMounted(() => {
+    console.log(window._hmt, '---');
     // document.documentElement.classList.add('rainbow');
   });
 
@@ -47,5 +48,24 @@
     <template #home-features-after>
       <HomePage />
     </template>
+    <template #layout-bottom>
+      <div class="busuanzi-container">
+        <span id="busuanzi_container_site_pv"> 本站总访问量<span id="busuanzi_value_site_pv"></span>次 </span>
+        <span id="busuanzi_container_site_uv"> 本站总访客数<span id="busuanzi_value_site_uv"></span>人 </span>
+        <span id="busuanzi_container_page_pv"> 本文总阅读量<span id="busuanzi_value_page_pv"></span>次 </span>
+      </div>
+    </template>
   </DefaultTheme.Layout>
 </template>
+
+<style scoped>
+  .busuanzi-container {
+    max-width: 1152px;
+    padding: 25px 0;
+    margin: 0 auto;
+    color: var(--vp-c-text-2);
+    #busuanzi_container_site_pv {
+      margin-right: 10px;
+    }
+  }
+</style>
