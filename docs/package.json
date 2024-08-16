@@ -8,7 +8,8 @@
     "build": "vitepress build",
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview"
+    "docs:preview": "vitepress preview",
+    "deploy-gh": "GH=1 pnpm docs:build && bash deploy-gh.sh"
   },
   "keywords": [
     "docs"

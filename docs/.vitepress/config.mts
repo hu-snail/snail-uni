@@ -2,8 +2,40 @@ import { defineConfig } from 'vitepress';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: '/snail-uni/',
   lang: 'zh-Hans',
-  head: [['link', { rel: 'icon', href: '/logo.png' }]],
+  head: [
+    ['meta', { name: 'author', content: 'hu-snail' }],
+    [
+      'meta',
+      {
+        name: 'keywords',
+        content: 'uni-app, snail-uni, vite, vitepress, vue3',
+      },
+    ],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.png' }],
+    [
+      'meta',
+      {
+        name: 'viewport',
+        content: 'width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no',
+      },
+    ],
+    [
+      'script',
+      {},
+      `
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e86ba2b14d9592ffd01c57ef4611af14";
+      hm.src = "https://cdn.jsdelivr.net/npm/@docsearch/js@3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  `,
+    ],
+  ],
   title: 'snail-uni',
   description: 'uni-app最佳开发模版',
   lastUpdated: true,
@@ -48,7 +80,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' },
+      { icon: 'github', link: 'https://github.com/hu-snail/snail-uni' },
       {
         icon: {
           svg: `<svg width="36" height="28" viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg">
