@@ -10,12 +10,10 @@ const initUserState = <IUserInfo>{
 };
 
 export const useUserStore = defineStore('user', {
-  state() {
-    return {
-      userInfo: { ...initUserState },
-      Authorization: 'SNAIL_UNI00000001',
-    };
-  },
+  state: () => ({
+    userInfo: { ...initUserState },
+    Authorization: 'SNAIL_UNI00000001',
+  }),
 
   getters: {
     nickName: (state) => state.userInfo.nickName,
@@ -33,10 +31,10 @@ export const useUserStore = defineStore('user', {
     },
   },
 
-  // persist: true, // 默认缓存state全部参数
+  unistorage: true,
 
   // 缓存指定参数
-  // persist: {
+  //  unistorage: {
   //   key: 'user', // 缓存key, 默认当前模块
   //   paths: ['Authorization'],
   // },

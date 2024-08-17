@@ -5,6 +5,7 @@ import 'virtual:uno.css';
 import '@/styles/iconfont.css';
 
 import * as Pinia from 'pinia';
+// @docs https://github.com/dishait/pinia-plugin-unistorage?tab=readme-ov-file#readme
 import { createUnistorage } from 'pinia-plugin-unistorage';
 
 export function createApp() {
