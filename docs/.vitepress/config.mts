@@ -52,6 +52,17 @@ export default defineConfig({
           { text: 'Arco-admin-template', link: 'https://github.com/hu-snail/arco-admin-template' },
         ],
       },
+      {
+        text: '相关链接',
+        items: [
+          { text: 'Uni App 文档', link: 'https://uniapp.dcloud.net.cn/' },
+          { text: 'Uni Helper 团队', link: 'https://github.com/uni-helper' },
+          { text: 'Wot-design-uni 文档', link: 'https://wot-design-uni.pages.dev' },
+          { text: 'Uv-ui 文档', link: 'https://www.uvui.cn/' },
+          { text: 'Uview-plus 文档', link: 'https://uiadmin.net/uview-plus/' },
+          { text: 'Pinia 文档', link: 'https://pinia.vuejs.org/zh/' },
+        ],
+      },
     ],
 
     sidebar: {
@@ -135,7 +146,7 @@ export default defineConfig({
         // make this `root` if you want to translate the default locale
         translations: {
           button: {
-            buttonText: '搜索',
+            buttonText: '搜索文档',
             buttonAriaLabel: '搜索文档',
           },
           modal: {

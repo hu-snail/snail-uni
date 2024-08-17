@@ -74,16 +74,8 @@
  * Component: Custom Block
  * -------------------------------------------------------------------------- */
 
-:root {
-  --vp-custom-block-tip-border: var(--vp-c-brand-1);
-  --vp-custom-block-tip-text: var(--vp-c-brand-darker);
-  --vp-custom-block-tip-bg: var(--vp-c-brand-dimm);
-}
-
 .dark {
-  --vp-custom-block-tip-border: var(--vp-c-brand-1);
-  --vp-custom-block-tip-text: var(--vp-c-brand-lightest);
-  --vp-custom-block-tip-bg: var(--vp-c-brand-dimm);
+  --vp-c-bg: #111827;
 }
 /**
  * Component: Algolia
