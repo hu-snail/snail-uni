@@ -1,6 +1,6 @@
-export type IUserInfo = {
-  nickName?: string;
+export interface IUserInfo {
+  nickName: string;
   avatarUrl?: string;
   userId?: string;
   gender?: number;
-};
+}

@@ -14,8 +14,12 @@
       <button class="icon" :class="iconName" />
       <i class="iconfont icon-xiaochengxu"></i>
     </view>
+    <view>
+      <text>{{ count }}</text>
+    </view>
+    <wd-button @click="handleIncrement">添加</wd-button>
     <button class="btn-green">111</button>
-    <wd-button>主要按钮</wd-button>
+    <wd-button @click="handleSetToken">主要按钮</wd-button>
     <wd-button type="success">成功按钮</wd-button>
     <wd-button type="info">信息按钮</wd-button>
     <wd-button type="warning">警告按钮</wd-button>
@@ -24,17 +28,27 @@
 </template>
 
 <script setup lang="ts">
-  import { useUserStore } from '@/store';
+  import { useUserStore, useCounterStore } from '@/store';
   const userStore = useUserStore();
+  const counterStore = useCounterStore();
 
   const userInfo = computed(() => userStore.userInfo);
-
+  const count = computed(() => counterStore.count);
   const iconName = ref('sn-icon-park-outline:add-four');
   const title = ref('Hello');
 
   const router = useRouter();
   function handleToRouter() {
     router.push({ name: 'my' });
+  }
+
+  function handleSetToken() {
+    userStore.setToken('123456');
+    console.log(userStore.nickName);
+  }
+
+  function handleIncrement() {
+    counterStore.increment();
   }
 </script>
 

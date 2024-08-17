@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+
 import { IUserInfo } from '@/types/user';
 
-const initUserState = {
-  nickName: '微信用户',
+const initUserState = <IUserInfo>{
+  nickName: '',
   avatarUrl: '',
   userId: '',
   gender: 0,
@@ -12,9 +12,13 @@ const initUserState = {
 export const useUserStore = defineStore('user', {
   state() {
     return {
-      userInfo: ref<IUserInfo>({ ...initUserState }),
-      Authorization: '11',
+      userInfo: { ...initUserState },
+      Authorization: 'SNAIL_UNI00000001',
     };
+  },
+
+  getters: {
+    nickName: (state) => state.userInfo.nickName,
   },
 
   actions: {
@@ -28,10 +32,12 @@ export const useUserStore = defineStore('user', {
       this.Authorization = token;
     },
   },
-  // 开始数据持久化 false 关闭
-  persist: true,
-  /**
-   * 缓存指定参数
-   * persist: ['Authorization']
-   */
+
+  // persist: true, // 默认缓存state全部参数
+
+  // 缓存指定参数
+  // persist: {
+  //   key: 'user', // 缓存key, 默认当前模块
+  //   paths: ['Authorization'],
+  // },
 });
