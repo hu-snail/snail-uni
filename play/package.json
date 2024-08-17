@@ -76,6 +76,7 @@
     "@tuniao/tnui-vue3-uniapp": "^1.0.21",
     "pinia": "^2.2.1",
     "pinia-plugin-persistedstate": "^3.2.1",
+    "pinia-plugin-unistorage": "^0.1.2",
     "pnpm": "^9.7.1",
     "uview-plus": "^3.3.15",
     "vue": "^3.4.27",
