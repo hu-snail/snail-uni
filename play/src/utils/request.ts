@@ -11,15 +11,13 @@ const {
 } = import.meta.env;
 const timeout = JSON.parse(VITE_REQUEST_TIMEOUT);
 
-let requestNum = 0;
-
-// 定义额外的请求配置
-interface RequestConfig extends AxiosRequestConfig {
-  /**
-   * 是否显示loading
-   */
-  loading?: boolean;
+export interface ResponseType<T = any> {
+  code: number;
+  message: string;
+  data: T;
 }
+
+let requestNum = 0;
 
 const addLoading = () => {
   requestNum++;
@@ -36,7 +34,7 @@ const removeLoading = () => {
   }
 };
 
-export const useRequest = (config?: RequestConfig): AxiosInstance => {
+export const useRequest = (config?: AxiosRequestConfig): AxiosInstance => {
   const instance = axios.create({
     baseURL,
     timeout,
@@ -49,14 +47,14 @@ export const useRequest = (config?: RequestConfig): AxiosInstance => {
 
   // 请求拦截器
   instance.interceptors.request.use(
-    (config: RequestConfig): any => {
-      // 根据自己的项目进行修改
+    (config: AxiosRequestConfig): any => {
+      // 根据自己的项目进行修改参数
       const Authorization = useUserStore().Authorization;
       // 设置token
       if (Authorization && config.headers) {
         config.headers['Authorization'] = Authorization;
       }
-      const { loading = true } = config;
+      const { loading = true } = config.params;
       if (loading) addLoading();
       return config;
     },
@@ -73,7 +71,7 @@ export const useRequest = (config?: RequestConfig): AxiosInstance => {
      */
     (response: AxiosResponse) => {
       const res = response.data;
-      const { loading = true } = response.config as RequestConfig;
+      const { loading = true } = response.config.params;
       if (loading) removeLoading();
       // 请求出错处理
       if (res.status === -1) {
