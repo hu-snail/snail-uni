@@ -32,6 +32,7 @@ export default async ({ command, mode }) => {
   } = env;
 
   return defineConfig({
+    envDir: './env',
     // 配置别名
     resolve: {
       alias: {
@@ -71,7 +72,7 @@ export default async ({ command, mode }) => {
       }),
 
       ViteRestart({
-        restart: ['vite.config.js'], // 监听vite.config.js文件修改,无需重启
+        restart: ['vite.config.ts'], // 监听vite.config.ts文件修改,无需重启
       }),
     ],
     // 开发配置

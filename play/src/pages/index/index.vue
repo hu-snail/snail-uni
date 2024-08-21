@@ -18,6 +18,7 @@
       <text>{{ count }}</text>
     </view>
     <wd-button @click="handleIncrement">添加</wd-button>
+    <wd-button @click="handleRequest">请求接口</wd-button>
     <button class="btn-green">111</button>
     <wd-button @click="handleSetToken">主要按钮</wd-button>
     <wd-button type="success">成功按钮</wd-button>
@@ -31,6 +32,8 @@
   import { useUserStore, useCounterStore } from '@/store';
   const userStore = useUserStore();
   const counterStore = useCounterStore();
+
+  import { getChannel } from '@/apis';
 
   const userInfo = computed(() => userStore.userInfo);
   const count = computed(() => counterStore.count);
@@ -49,6 +52,11 @@
 
   function handleIncrement() {
     counterStore.increment();
+  }
+
+  async function handleRequest() {
+    const res = await getChannel({ stationId: 1 });
+    console.log(res);
   }
 </script>
 
