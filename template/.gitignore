@@ -14,3 +14,10 @@ lerna-debug.log*
 .DS_Store
 .idea
 .hbuilderx
+
+# 自动生成的文件
+uni-pages.d.ts
+components.d.ts
+auto-import.d.ts
+pages.json
+manifest.json

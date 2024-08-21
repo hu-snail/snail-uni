@@ -9,3 +9,6 @@ snail-uni-app
 packages/*/dist/*
 packages/*/lib/*
 packages/*/es/*
+
+auto-import.d.ts
+uni-pages.d.ts
