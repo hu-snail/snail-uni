@@ -48,6 +48,8 @@ const removeLoading = () => {
   }
 };
 
+const debounceTokenCancel = new Map();
+
 export const request = (config?: IRequestConfig): any => {
   const instance = axios.create({
     baseURL,
@@ -68,7 +70,19 @@ export const request = (config?: IRequestConfig): any => {
       if (Authorization) config.headers![tokenKey] = Authorization;
       const { loading = showLoading } = config;
       if (loading) addLoading();
-      return config;
+      const requestTokenKey = `${config.method}_${config.url}`;
+      const cancelToken = debounceTokenCancel.get(requestTokenKey);
+      if (cancelToken) cancelToken();
+      return new Promise((resolve) => {
+        const timer = setTimeout(() => {
+          clearTimeout(timer);
+          resolve(config);
+        }, 800);
+        debounceTokenCancel.set(requestTokenKey, () => {
+          clearTimeout(timer);
+          resolve(new Error('请勿重复请求'));
+        });
+      });
     },
     (error) => {
       // do something with request error
