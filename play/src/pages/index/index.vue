@@ -55,7 +55,7 @@
   }
 
   async function handleRequest() {
-    const res = await getChannel({ stationId: 1, loading: true });
+    const res = await getChannel({ stationId: 1 });
     console.log(res);
   }
 </script>
