@@ -65,9 +65,9 @@ export const request = (config?: IRequestConfig): any => {
   instance.interceptors.request.use(
     (config: IRequestConfig): any => {
       // 根据自己的项目进行修改参数
-      const Authorization = useUserStore().Authorization;
+      const token = useUserStore().token;
       // 设置token
-      if (Authorization) config.headers![tokenKey] = Authorization;
+      if (token) config.headers![tokenKey] = token;
       const { loading = showLoading } = config;
       if (loading) addLoading();
       const requestTokenKey = `${config.method}_${config.url}`;

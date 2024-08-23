@@ -1,6 +1,7 @@
 import { createSSRApp } from 'vue';
 import App from './App.vue';
-import router from './router';
+import router, { routeInterceptor } from './router';
+
 import 'virtual:uno.css';
 import '@/styles/iconfont.css';
 
@@ -13,6 +14,7 @@ export function createApp() {
   const store = Pinia.createPinia();
   store.use(createUnistorage());
   app.use(router);
+  app.use(routeInterceptor);
   app.use(store);
   return {
     app,

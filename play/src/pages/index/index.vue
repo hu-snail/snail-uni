@@ -21,7 +21,7 @@
     <wd-button @click="handleRequest">请求接口</wd-button>
     <button class="btn-green">111</button>
     <wd-button @click="handleSetToken">主要按钮</wd-button>
-    <wd-button type="success">成功按钮</wd-button>
+    <wd-button type="success" @click="handleToRouter">路由跳转</wd-button>
     <wd-button type="info">信息按钮</wd-button>
     <wd-button type="warning">警告按钮</wd-button>
     <wd-button type="error">危险按钮</wd-button>
@@ -42,7 +42,10 @@
 
   const router = useRouter();
   function handleToRouter() {
-    router.push({ name: 'my' });
+    // uni.navigateTo({
+    //   url: '/sub-pages/detail/index',
+    // });
+    router.push({ path: 'sub-pages/detail/index' });
   }
 
   function handleSetToken() {

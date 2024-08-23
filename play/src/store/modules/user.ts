@@ -12,7 +12,7 @@ const initUserState = <IUserInfo>{
 export const useUserStore = defineStore('user', {
   state: () => ({
     userInfo: { ...initUserState },
-    Authorization: 'SNAIL_UNI00000001',
+    token: '',
   }),
 
   getters: {
@@ -27,7 +27,7 @@ export const useUserStore = defineStore('user', {
 
     /** 设置请求token */
     setToken(token: string) {
-      this.Authorization = token;
+      this.token = token;
     },
   },
 

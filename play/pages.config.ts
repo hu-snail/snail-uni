@@ -24,4 +24,28 @@ export default defineUniPages({
       // '^tn-(.*)': '@tuniao/tnui-vue3-uniapp/components/$1/src/$1.vue',
     },
   },
+  tabBar: {
+    color: '#999999',
+    selectedColor: '#018d71',
+    backgroundColor: '#F8F8F8',
+    borderStyle: 'black',
+    height: '50px',
+    fontSize: '10px',
+    iconWidth: '24px',
+    spacing: '3px',
+    list: [
+      {
+        iconPath: 'static/logo.png',
+        selectedIconPath: 'static/logo.png',
+        pagePath: 'pages/index/index',
+        text: '首页',
+      },
+      {
+        iconPath: 'static/logo.png',
+        selectedIconPath: 'static/logo.png',
+        pagePath: 'pages/my/index',
+        text: '我的',
+      },
+    ],
+  },
 });
