@@ -58,12 +58,7 @@ VITE_SERVER_BASEURL = 'https://xxx'
 ```
 
 ## 接口管理
-接口管理在 `src/apis` 目录下，每个业务模块对应一个文件，如用户相关模块 `src/apis/user.ts`, 根据自己的业务进行调整，为了统一管理，建议在 `src/apis/index.ts` 中统一导出管理：
-```ts
-// src/apis/index.ts
-import * from './user'
-import * from './common'
-```
+接口管理在 `src/apis` 目录下，每个业务模块对应一个文件，如用户相关模块 `src/apis/user.ts`, 根据自己的业务进行调整。
 
 ## 使用示例
 接口案例如下，具体参数根据自己的业务调整，这里以 `user` 模块为例，其他模块请自行调整
@@ -104,3 +99,18 @@ VITE_SERVER_BASEURL_2 = 'https://xxx'
 - `showError` 为是否开启异常提示，默认为 `true` 全局开启，不需要单独设置，可以设置为 `false`，表示不显示异常提示
 > 注： 需要全局开启关闭请在 `.env` 配置文件中设置 `VITE_SHOW_ERROR` 为 `true` 或 `false`
 ## 接口请求
+```vue
+<template>
+  <button type="primary" @click="onGetChannel">获取栏目频道</button>
+</template>
+
+<script setup lang="ts">
+import { getChannel } from '@/apis/user'
+
+const onGetChannel = async () => {
+  await getChannel({ id: 1 }).then((res) => {
+    console.log(res)
+  })
+}
+</script>
+```
