@@ -61,6 +61,7 @@ export default defineConfig({
           { text: 'Uv-ui 文档', link: 'https://www.uvui.cn/' },
           { text: 'Uview-plus 文档', link: 'https://uiadmin.net/uview-plus/' },
           { text: 'Pinia 文档', link: 'https://pinia.vuejs.org/zh/' },
+          { text: 'uni-mini-router 文档', link: 'https://moonofweisheng.github.io/uni-mini-router/' },
         ],
       },
     ],
