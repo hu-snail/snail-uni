@@ -1,10 +1,16 @@
 # 介绍
+
 `snail-uni` 是 `uniapp` 最佳的开发框架，使用最新的前端技术栈 `Vite5` + `Vue3` + `Ts` +  `Uni Mini Router` + `UnoCss` 构建，让你可以使用 `Vscode` 编辑器进行高效编码，通过命令行方式即可运行 `web`、`小程序` 和 `App`, 无需依靠 `HBuilderX`
 > 注：App 需要依赖 `HBuilderX`
 
 `snail-uni` 集成了 `Uni Mini Router`路由插件系统，让你可以使用 `vue-router`的方式进行路由交互, 内置了`常用组件`，`layout布局`，`请求封装`，`UnoCSS`，`i18n多语言`等基础功能。`snail-uni` 提供了专用的`脚手架工具`，通过命令方式即可创建不同启动模板，`snail-uni`集成了`Oxlint`最新的代码规范，更高效的检测代码质量。
 
+::: warning 注意！！！
+`snail-uni` 这个版本主要是配合 `vscode` 开发工具的开发，关于 `HBuilderX` 相关的支持作者后续的版本会支持。
+:::
+
 ## 特性
+
 - 使用 `Vue3` + `Vite5` + `Ts` 等最新技术栈构建
 - 采用 `pnpm` + `Monorepo` 模式构建
 - 路由自动注册，无需手动配置路由，同时集成了`Uni Mini Router`路由插件系统
@@ -15,7 +21,9 @@
 - 支持`微信云开发`
 
 ## 目录结构
+
 本项目采用`pnpm` + `Monorepo` 模式，具体目录结构如下：
+
 ```shell
 ├── .vscode                      # vscode 配置   
 ├── docs                         # 项目文档

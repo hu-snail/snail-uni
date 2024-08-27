@@ -81,7 +81,7 @@ export default defineConfig({
               { text: 'UI选型篇', link: 'ui' },
               { text: 'UI使用篇', link: 'ui-use' },
               { text: 'Axios请求', link: 'axios' },
-              { text: 'Request请求', link: 'request' },
+              // { text: 'Request请求', link: 'request' },
               // { text: 'Utils工具', link: 'utils' },
               { text: 'Pinia状态', link: 'pinia' },
               { text: '路由篇', link: 'router' },
