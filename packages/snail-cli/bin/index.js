@@ -385,6 +385,12 @@ function scaffold({
     'src/App.vue',
     'src/main.ts',
     'src/router/index.ts',
+    'src/router/interceptors.ts',
+    'src/router/white-list.ts',
+    'src/store/index.ts',
+    'src/store/modules/user.ts',
+    'src/store/modules/counter.ts',
+    'src/apis/index.ts',
     'src/manifest.json',
     'src/pages.json',
     'uno.config.ts',
@@ -413,7 +419,8 @@ function scaffold({
   filesToScaffold.push(...envFilesToScaffold);
   const moveFilesToScaffold = ['verify-commit.mjs', 'src/types/auto-import.d.ts', 'src/types/uni-pages.d.ts'];
   const fileName = useTs2 ? 'vite.config.ts' : 'vite.config.js';
-  moveFilesToScaffold.push(fileName);
+  const requestFile = useTs2 ? 'src/utils/request.ts' : 'src/utils/request.js';
+  moveFilesToScaffold.push(...[requestFile, fileName]);
   for (const filePath of moveFilesToScaffold) {
     moveFiles(templateDir, resolvedRoot, filePath);
   }
