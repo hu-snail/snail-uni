@@ -2,7 +2,7 @@ import { useUserStore } from '@/store';
 import { isWhiteList } from '@/router';
 
 const navigateToInterceptor = {
-  invoke({ url }: { url: string }) {
+  invoke({ url }<% if (useTs) { %>: { url: string }<% } %>) {
     // 判断是否登录
     if (useUserStore().token) {
       return true;
