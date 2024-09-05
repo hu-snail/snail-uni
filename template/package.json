@@ -73,7 +73,11 @@
     "uview-plus": "^3.3.15"<% } %><% if (uiType === 'TuniaoUI') { %>,
     "@tuniao/tn-icon": "^1.9.0",
     "@tuniao/tn-style": "^1.0.19",
-    "@tuniao/tnui-vue3-uniapp": "^1.0.21"<% } %>
+    "@tuniao/tnui-vue3-uniapp": "^1.0.21"<% } %>,
+    "@uni-helper/axios-adapter": "^1.5.2",
+    "axios": "^1.7.4",
+    "pinia": "^2.2.1",
+    "pinia-plugin-unistorage": "^0.1.2"
   },
   "devDependencies": {<% if (useTs) { %>
     "@dcloudio/types": "^3.4.12",<% } %>
