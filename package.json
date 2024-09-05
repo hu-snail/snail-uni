@@ -19,6 +19,21 @@
     "play",
     "docs"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hu-snail/snail-uni.git"
+  },
+  "repository-gitee": {
+    "type": "git",
+    "url": "https://gitee.com/hu-snail/snail-uni.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hu-snail/snail-uni/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "nano-staged": {
     "*.md": "prettier --write",
     "*.{ts,tsx,js,vue,scss}": "prettier --write",
@@ -26,6 +41,7 @@
     "*.{css,scss,vue,html}": "stylelint --fix"
   },
   "engines": {
+    "node": ">= 18.0.0",
     "pnpm": ">= 8.6.0"
   },
   "simple-git-hooks": {
@@ -37,9 +53,11 @@
     "@snail-uni/eslint-config": "workspace:*",
     "@snail-uni/stylelint-config": "workspace:*",
     "eslint": "8.43.0",
+    "gulp": "^5.0.0",
     "nano-staged": "^0.8.0",
     "oxlint": "^0.6.0",
     "prettier": "^3.3.3",
+    "release-it": "^17.6.0",
     "simple-git-hooks": "^2.11.1",
     "stylelint": "^16.8.1",
     "tsx": "^4.16.2"
