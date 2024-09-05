@@ -1,7 +1,7 @@
 {
-  "name": "@red-china/docs",
+  "name": "@snail-uni/docs",
   "version": "1.0.0",
-  "description": "docs of red-china",
+  "description": "docs of snail-uni",
   "main": "index.js",
   "scripts": {
     "dev": "vitepress dev",
