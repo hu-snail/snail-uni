@@ -6,7 +6,12 @@
   "scripts": {
     "postinstall": "simple-git-hooks",
     "lint": "npx oxlint && eslint --fix.",
-    "create-ui": "snail-uni init"
+    "create-ui": "snail-uni init",
+    "changeset": "changeset init",
+    "preversion": "changeset",
+    "version": "changeset version && pnpm install --no-frozen-lockfile && pnpm run format:code",
+    "release": "pnpm run clean && pnpm run build:packages && changeset publish",
+    "release:nobuild": "changeset publish"
   },
   "keywords": [
     "snail-uni",
@@ -16,8 +21,8 @@
   "license": "MIT",
   "workspaces": [
     "packages/*",
-    "play",
-    "docs"
+    "docs",
+    "play"
   ],
   "repository": {
     "type": "git",
@@ -30,6 +35,19 @@
   "bugs": {
     "url": "https://github.com/hu-snail/snail-uni/issues"
   },
+  "bin": {
+    "snail-uni": "packages/snail-cli/bin/index.js"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "types",
+    "template",
+    "client.d.ts",
+    "theme.d.ts",
+    "theme-without-fonts.d.ts",
+    "lib"
+  ],
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
@@ -49,6 +67,7 @@
     "commit-msg": "npx node ./verify-commit.mjs"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.8",
     "@snail-uni/cli": "workspace:*",
     "@snail-uni/eslint-config": "workspace:*",
     "@snail-uni/stylelint-config": "workspace:*",
