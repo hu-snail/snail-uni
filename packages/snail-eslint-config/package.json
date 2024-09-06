@@ -6,10 +6,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "keywords": [
     "eslint",
     "prettier"
+  ],
+  "files": [
+    "index.js",
+    "package.json"
   ],
   "author": "hu-snail 1217437592@qq.com",
   "license": "MIT",
