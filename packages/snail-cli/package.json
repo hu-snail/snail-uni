@@ -11,7 +11,19 @@
   "bin": {
     "snail-uni": "./bin/index.js"
   },
-  "keywords": [],
+  "files": [
+    "bin",
+    "src",
+    "package.json"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "keywords": [
+    "snail-uni",
+    "snail-uni-cli"
+  ],
   "author": "hu-snail <1217437592@qq.com>",
   "license": "MIT",
   "dependencies": {
