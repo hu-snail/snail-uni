@@ -10,6 +10,14 @@
     "stylelint",
     "prettier"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "index.js",
+    "package.json"
+  ],
   "author": "hu-snail 1217437592@qq.com",
   "license": "MIT",
   "peerDependencies": {
