@@ -38,16 +38,6 @@
   "bin": {
     "snail-uni": "packages/snail-cli/bin/index.js"
   },
-  "files": [
-    "bin",
-    "dist",
-    "types",
-    "template",
-    "client.d.ts",
-    "theme.d.ts",
-    "theme-without-fonts.d.ts",
-    "lib"
-  ],
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
