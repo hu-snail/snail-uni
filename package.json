@@ -1,7 +1,7 @@
 {
   "name": "snail-uni",
-  "version": "1.0.1",
-  "description": "snail-ui - 最佳的uni-app开发模版",
+  "version": "1.0.2",
+  "description": "snail-uni - 最佳的uni-app开发模版",
   "main": "index.js",
   "scripts": {
     "postinstall": "simple-git-hooks",
@@ -12,6 +12,7 @@
     "version": "changeset version && pnpm install --no-frozen-lockfile",
     "release:nobuild": "changeset publish"
   },
+  "homepage": "https://hu-snail.github.io/snail-uni/",
   "keywords": [
     "snail-uni",
     "uni-app"
@@ -34,12 +35,9 @@
   "bugs": {
     "url": "https://github.com/hu-snail/snail-uni/issues"
   },
+  "sideEffects": false,
   "bin": {
-    "snail-uni": "packages/snail-cli/bin/index.js"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
+    "snail-uni": "./packages/snail-cli/bin/index.js"
   },
   "nano-staged": {
     "*.md": "prettier --write",
