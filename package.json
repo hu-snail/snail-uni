@@ -1,6 +1,6 @@
 {
   "name": "snail-uni",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "snail-ui - 最佳的uni-app开发模版",
   "main": "index.js",
   "scripts": {

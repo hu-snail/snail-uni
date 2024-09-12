@@ -1,6 +1,6 @@
 {
   "name": "@snail-uni/eslint-config",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "snail-uni eslint config",
   "main": "index.js",
   "scripts": {
