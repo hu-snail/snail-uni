@@ -86,6 +86,7 @@ export default defineConfig({
               { text: 'Pinia状态', link: 'pinia' },
               { text: '路由篇', link: 'router' },
               { text: '环境配置', link: 'env' },
+              { text: '常见问题', link: 'question' },
               // { text: 'i18n多语言', link: 'i18n' },
               // { text: '微信云开发', link: 'wx-cloud' },
             ],

@@ -149,13 +149,12 @@ export default defineConfig({
 `snail-uni` 推荐方案使用 `Font Class` 模式，兼容性且方便引用。`Symbol` 兼容性较差，不推荐。
   
 > 加入或者创建项目（公司/个人），以 `snail-uni` 项目图标为案例：
-
-<img src="../public/iconfont-project.jpg" alt="iconfont" />
+![iconfont](../public/iconfont-project.jpg)
 
 ### 使用案例
 
 选择 `Font Class` 点击 `查看在线链接` , 第一次点击会提示 `暂无代码，点此生成` ， 按照提示操作生成链接如下：
-![iconfont](../public//open-iconfont.jpg)
+![iconfont](../public/open-iconfont.jpg)
 
 点击链接会生成代码如下：
 
