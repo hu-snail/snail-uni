@@ -5,12 +5,7 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "simple-git-hooks",
-    "lint": "npx oxlint && eslint --fix.",
-    "create-ui": "snail-uni init",
-    "changeset": "changeset init",
-    "preversion": "changeset",
-    "version": "changeset version && pnpm install --no-frozen-lockfile",
-    "release:nobuild": "changeset publish"
+    "lint": "npx oxlint && eslint --fix."
   },
   "homepage": "https://hu-snail.github.io/snail-uni/",
   "keywords": [

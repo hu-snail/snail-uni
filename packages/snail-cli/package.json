@@ -1,6 +1,6 @@
 {
   "name": "@snail-uni/cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "snail-uni cli",
   "type": "module",
   "scripts": {
@@ -16,10 +16,6 @@
     "src",
     "package.json"
   ],
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
   "keywords": [
     "snail-uni",
     "snail-uni-cli"
