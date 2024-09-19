@@ -1,8 +1,7 @@
 {
-  "name": "snail-uni",
-  "version": "1.0.2",
+  "name": "snail-uni-app",
+  "version": "1.0.0",
   "description": "snail-uni - 最佳的uni-app开发模版",
-  "main": "index.js",
   "scripts": {
     "postinstall": "simple-git-hooks",
     "lint": "npx oxlint && eslint --fix."
@@ -14,6 +13,7 @@
   ],
   "author": "hu-snail 1217437592@qq.com",
   "license": "MIT",
+  "type": "module",
   "workspaces": [
     "packages/*",
     "docs",
@@ -32,7 +32,7 @@
   },
   "sideEffects": false,
   "bin": {
-    "snail-uni": "./packages/snail-cli/bin/index.js"
+    "snail-uni": "bin/snail-uni.js"
   },
   "nano-staged": {
     "*.md": "prettier --write",
@@ -49,8 +49,6 @@
     "commit-msg": "npx node ./verify-commit.mjs"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.8",
-    "@snail-uni/cli": "workspace:*",
     "@snail-uni/eslint-config": "workspace:*",
     "@snail-uni/stylelint-config": "workspace:*",
     "eslint": "8.43.0",

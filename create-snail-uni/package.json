@@ -8,8 +8,20 @@
   },
   "main": "bin/index.js",
   "types": "bin/index.d.ts",
+  "homepage": "https://hu-snail.github.io/snail-uni/",
   "bin": {
     "snail-uni": "bin/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hu-snail/snail-uni.git"
+  },
+  "repository-gitee": {
+    "type": "git",
+    "url": "https://gitee.com/hu-snail/snail-uni.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hu-snail/snail-uni/issues"
   },
   "files": [
     "bin",
