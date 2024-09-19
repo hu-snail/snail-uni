@@ -4,7 +4,8 @@
   "description": "used for quickly creating snail-uni app",
   "type": "module",
   "scripts": {
-    "build": "rimraf bin && tsup index.ts --format esm --out-dir=bin --watch --dts"
+    "build": "rimraf bin && tsup index.ts --format esm --out-dir=bin --watch --dts",
+    "init": "node ./bin/index.js create"
   },
   "main": "bin/index.js",
   "types": "bin/index.d.ts",

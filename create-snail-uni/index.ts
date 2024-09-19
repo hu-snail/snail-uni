@@ -96,8 +96,8 @@ export function scaffold({
   uiType = ScaffoldUIType.Default,
   useTs,
 }: ScaffoldOptions): string {
-  const resolvedRoot = path.resolve('./', title);
-  const templateDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../template');
+  const resolvedRoot = path.resolve('../', title);
+  const templateDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../template');
   const data = {
     title: JSON.stringify(title),
     description: JSON.stringify(description),
