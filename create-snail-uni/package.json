@@ -28,6 +28,7 @@
     "bin",
     "template",
     "package.json",
+    "static",
     "README.md"
   ],
   "keywords": [
