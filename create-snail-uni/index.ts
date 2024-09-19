@@ -192,5 +192,5 @@ if (command === 'create') {
     else outro(scaffold({ title, useTs: useTs === 'ts' }));
   } else create();
 } else {
-  log.warning(`无效的命令: ${command}`);
+  create();
 }

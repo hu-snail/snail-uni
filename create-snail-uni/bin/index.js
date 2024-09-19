@@ -446,6 +446,6 @@ if (command === 'create') {
     else outro(scaffold({ title, useTs: useTs === 'ts' }));
   } else create();
 } else {
-  log.warning(`\u65E0\u6548\u7684\u547D\u4EE4: ${command}`);
+  create();
 }
 export { ScaffoldUIType, create, moveFiles, scaffold };

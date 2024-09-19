@@ -30,7 +30,7 @@ yarn create snail-uni
 
 将需要回答几个简单的问题：
 
-![image.png](static/cli.jpg)
+![image.png](https://gitee.com/hu-snail/snail-uni/raw/main/create-snail-uni/static/cli.jpg)
 
 ### 二.命令行选项
 
@@ -49,4 +49,4 @@ yarn create snail-uni snail-uni-app ts
 
 执行完之后，将生成一个新的项目
 
-![image.png](static/cli-res.jpg)
+![image.png](https://gitee.com/hu-snail/snail-uni/raw/main/create-snail-uni/static/cli-res.jpg)
