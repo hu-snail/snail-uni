@@ -1,0 +1,8 @@
+node_modules
+uni_modules
+dist
+*.md
+.github/**
+pnpm-lock.yaml
+yarn.lock
+package-lock.json

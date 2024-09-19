@@ -1,0 +1,23 @@
+dist
+node_modules
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ide files
+.DS_Store
+.idea
+.hbuilderx
+
+# 自动生成的文件
+uni-pages.d.ts
+components.d.ts
+auto-import.d.ts
+pages.json
+manifest.json

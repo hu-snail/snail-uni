@@ -1,0 +1,41 @@
+{
+  "name": "create-snail-uni",
+  "version": "1.0.0",
+  "description": "used for quickly creating snail-uni app",
+  "type": "module",
+  "scripts": {
+    "build": "rimraf bin && tsup index.ts --format esm --out-dir=bin --watch --dts"
+  },
+  "main": "bin/index.js",
+  "types": "bin/index.d.ts",
+  "bin": {
+    "snail-uni": "bin/index.js"
+  },
+  "files": [
+    "bin",
+    "template",
+    "package.json",
+    "README.md"
+  ],
+  "keywords": [
+    "snail-uni",
+    "snail-uni-cli"
+  ],
+  "author": "hu-snail <1217437592@qq.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@clack/prompts": "^0.7.0",
+    "fs-extra": "^11.2.0",
+    "lodash.template": "^4.5.0",
+    "picocolors": "^1.0.1",
+    "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/lodash.template": "^4.5.3",
+    "@types/minimist": "^1.2.5",
+    "minimist": "^1.2.8",
+    "rimraf": "^6.0.1",
+    "tsup": "7.2.0"
+  }
+}

@@ -1,0 +1,7 @@
+node_modules
+uni_modules
+dist
+pnpm-lock.yaml
+yarn.lock
+*.log
+template
