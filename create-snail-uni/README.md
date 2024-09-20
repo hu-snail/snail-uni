@@ -1,14 +1,14 @@
-<h1 align="center">🌾 snail-uni 🌾</h1>
+<h1 align="center">🌾 create-snail-uni 🌾</h1>
 <p align="center">
-    <a href="https://www.npmjs.com/package/snail-uni"><img src="https://img.shields.io/npm/dm/snail-uni?colorA=363a4f&colorB=f5a97f&style=for-the-badge"></a>
-    <a href="https://www.npmjs.com/package/snail-uni"><img src="https://img.shields.io/npm/v/snail-uni?colorA=363a4f&colorB=a6da95&style=for-the-badge"></a>
+    <a href="https://www.npmjs.com/package/create-snail-uni"><img src="https://img.shields.io/npm/dm/create-snail-uni?colorA=363a4f&colorB=f5a97f&style=for-the-badge"></a>
+    <a href="https://www.npmjs.com/package/create-snail-uni"><img src="https://img.shields.io/npm/v/create-snail-uni?colorA=363a4f&colorB=a6da95&style=for-the-badge"></a>
 </p>
 
 <p align="center">snail-uni脚手架工具</p>
 
 ## 🌴 介绍
 
-一个用于快速构建 `snail-uni` 项目的脚手架工具。内置命令行创建向导，可以帮助你快速搭建一个 基于 `Vite` + `Vue3` + `Typescript` + `Pinia` + `Sass` 的 `uni-app` 项目，同时也支持命令行选项直接创建你想要的项目。
+`create-snail-uni` 一个用于快速构建 `snail-uni` 项目的脚手架工具。内置命令行创建向导，可以帮助你快速搭建一个 基于 `Vite` + `Vue3` + `Typescript` + `Pinia` + `Sass` 的 `uni-app` 项目，同时也支持命令行选项直接创建你想要的项目。
 
 - [项目文档](https://hu-snail.github.io/snail-uni/)
 - [github地址](https://github.com/hu-snail/snail-uni)
@@ -20,7 +20,7 @@
 
 ```sh
 # npm
-npx snail-uni create
+npx create-snail-uni create
 # pnpm
 pnpm create snail-uni 
 # yarn
@@ -38,7 +38,7 @@ yarn create snail-uni
 
 ```sh
 # npm
-npx snail-uni create snail-uni-app ts
+npx create-snail-uni create snail-uni-app ts
 
 # pnpm
 pnpm create snail-uni snail-uni-app ts

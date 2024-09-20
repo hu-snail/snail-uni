@@ -113,6 +113,7 @@ export function scaffold({
     if (useTs) {
       targetPath = targetPath.replace(/\.(m?)js$/, '.$1ts');
     } else targetPath = targetPath.replace(/\.(m?)ts$/, '.$1js');
+    targetPath = targetPath.replace(/\.(m?)temp$/, '');
     fs.outputFileSync(targetPath, compiled);
   };
   const filesToScaffold = [
@@ -148,7 +149,7 @@ export function scaffold({
     '.stylelintignore',
     '.stylelintrc.json',
     '.npmrc',
-    '.gitignore',
+    '.gitignore.temp',
     'package.json',
   ];
 
@@ -183,14 +184,15 @@ export function moveFiles(templateDir: string, resolvedRoot: string, filePath: s
   fs.copySync(path.resolve(templateDir, filePath), path.resolve(resolvedRoot, filePath));
 }
 
-const command = argv._[0];
-const title = argv._[1];
-const useTs = argv._[2];
-if (command === 'create') {
+export const createTemp = (title?: string, useTs?: string) => {
   if (title) {
     if (fs.existsSync(title)) log.error(red('该名称已存在，请重新输入'));
     else outro(scaffold({ title, useTs: useTs === 'ts' }));
   } else create();
-} else {
-  create();
-}
+};
+const command = argv._[0];
+const title = argv._[1];
+const useTs = argv._[2];
+if (command === 'create') {
+  createTemp(title, useTs);
+} else createTemp(title, useTs);

@@ -1,18 +1,18 @@
 {
-  "name": "snail-uni",
-  "version": "1.1.1",
+  "name": "create-snail-uni",
+  "version": "1.1.0",
   "description": "used for quickly creating snail-uni app",
   "type": "module",
   "scripts": {
     "build": "rimraf bin && tsup index.ts --format esm --out-dir=bin --watch --dts",
-    "test": "node ./bin/index.js"
+    "test": "node bin/index.js"
   },
   "main": "bin/index.js",
   "types": "bin/index.d.ts",
   "homepage": "https://hu-snail.github.io/snail-uni/",
   "sideEffects": false,
   "bin": {
-    "snail-uni": "./bin/index.js"
+    "snail-uni": "bin/index.js"
   },
   "repository": {
     "type": "git",
