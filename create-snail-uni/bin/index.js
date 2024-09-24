@@ -255,7 +255,7 @@ import { fileURLToPath } from "url";
 import path from "path";
 import pic from "picocolors";
 import template from "lodash.template";
-var { bold, green, red } = pic;
+var { bold, green, red, gray } = pic;
 var argv = (0, import_minimist.default)(process.argv.slice(2));
 var ScaffoldUIType = /* @__PURE__ */ ((ScaffoldUIType2) => {
   ScaffoldUIType2["Default"] = "Wot-Design";
@@ -265,7 +265,7 @@ var ScaffoldUIType = /* @__PURE__ */ ((ScaffoldUIType2) => {
   return ScaffoldUIType2;
 })(ScaffoldUIType || {});
 async function create() {
-  intro(bold(green("\u6B22\u8FCE\u4F7F\u7528snail-uni\u811A\u624B\u67B6\uFF01")));
+  intro(bold(green("\u6B22\u8FCE\u4F7F\u7528 snail-uni \u811A\u624B\u67B6\uFF01")));
   const options = await group(
     {
       title: () => text({
@@ -309,6 +309,10 @@ async function create() {
       useTs: () => confirm({
         message: "\u662F\u5426\u4F7F\u7528 TypeScript?",
         initialValue: true
+      }),
+      useTabbar: () => confirm({
+        message: "\u662F\u5426\u4F7F\u7528\u81EA\u5B9A\u4E49 Tabbar?",
+        initialValue: true
       })
     },
     {
@@ -328,7 +332,8 @@ function scaffold({
   title: title2 = "snail-uni-app",
   description = "A snail-uni-app project",
   uiType = "Wot-Design" /* Default */,
-  useTs: useTs2
+  useTs: useTs2,
+  useTabbar
 }) {
   const resolvedRoot = path.resolve("../", title2);
   const templateDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../template");
@@ -336,13 +341,19 @@ function scaffold({
     title: JSON.stringify(title2),
     description: JSON.stringify(description),
     uiType,
-    useTs: useTs2
+    useTs: useTs2,
+    useTabbar
   };
   const renderFile = (file) => {
     const filePath = path.resolve(templateDir, file);
     let targetPath = path.resolve(resolvedRoot, file);
     const src = fs.readFileSync(filePath, "utf-8");
-    const compiled = template(src)(data);
+    const templateSettings = {
+      interpolate: /<%=([\s\S]+?)%>/g,
+      evaluate: /<%([\s\S]+?)%>/g,
+      importData: true
+    };
+    const compiled = template(src, templateSettings)(data);
     if (useTs2) {
       targetPath = targetPath.replace(/\.(m?)js$/, ".$1ts");
     } else
@@ -384,6 +395,7 @@ function scaffold({
     ".gitignore.temp",
     "package.json"
   ];
+  const tabbarFilesToScaffold = ["src/layouts/tabbar.vue", "src/components/su-tabbar/su-tabbar.vue"];
   const tsFilesToScaffold = ["src/env.d.ts", "tsconfig.json", "shims-uni.d.ts"];
   if (useTs2)
     projectConfigFilesToScaffold.push(...tsFilesToScaffold);
@@ -391,6 +403,8 @@ function scaffold({
   filesToScaffold.push(...projectConfigFilesToScaffold);
   filesToScaffold.push(...staticFilesToScaffold);
   filesToScaffold.push(...envFilesToScaffold);
+  if (useTabbar)
+    filesToScaffold.push(...tabbarFilesToScaffold);
   const moveFilesToScaffold = ["verify-commit.mjs", "src/types/auto-import.d.ts", "src/types/uni-pages.d.ts"];
   const fileName = useTs2 ? "vite.config.ts" : "vite.config.js";
   const requestFile = useTs2 ? "src/utils/request.ts" : "src/utils/request.js";
@@ -405,7 +419,8 @@ function scaffold({
   return `\u4F60\u5DF2\u6210\u529F\u521B\u5EFA! \u73B0\u5728\u8BF7\u4F7F\u7528 ${green(`${pm}`)} \u8FD0\u884C\u4F60\u7684\u9879\u76EE
 
    \u8FDB\u5165\u9879\u76EE\uFF1A${green(`cd ${title2}`)}
-   \u5B89\u88C5\u4F9D\u8D56\uFF1A${green(`${pm} install`)}`;
+   \u5B89\u88C5\u4F9D\u8D56\uFF1A${green(`${pm} install`)} 
+   \u8FD0\u884C\u9879\u76EE\uFF1A${green(`${pm} dev`)} ${gray(`(\u9ED8\u8BA4\u8FD0\u884C\u5FAE\u4FE1\u5C0F\u7A0B\u5E8F)`)}`;
 }
 function moveFiles(templateDir, resolvedRoot, filePath) {
   fs.copySync(path.resolve(templateDir, filePath), path.resolve(resolvedRoot, filePath));

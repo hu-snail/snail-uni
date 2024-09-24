@@ -7,7 +7,7 @@ import path from 'path';
 import pic from 'picocolors';
 import template from 'lodash.template';
 
-const { bold, green, red } = pic;
+const { bold, green, red, gray } = pic;
 const argv: any = minimist(process.argv.slice(2));
 
 export enum ScaffoldUIType {
@@ -22,10 +22,11 @@ export interface ScaffoldOptions {
   description?: string;
   uiType?: ScaffoldUIType;
   useTs?: boolean;
+  useTabbar?: boolean;
 }
 
 export async function create() {
-  intro(bold(green('欢迎使用snail-uni脚手架！')));
+  intro(bold(green('欢迎使用 snail-uni 脚手架！')));
 
   const options: ScaffoldOptions = await group(
     {
@@ -74,6 +75,11 @@ export async function create() {
           message: '是否使用 TypeScript?',
           initialValue: true,
         }),
+      useTabbar: () =>
+        confirm({
+          message: '是否使用自定义 Tabbar?',
+          initialValue: true,
+        }),
     },
     {
       onCancel: () => {
@@ -95,6 +101,7 @@ export function scaffold({
   description = 'A snail-uni-app project',
   uiType = ScaffoldUIType.Default,
   useTs,
+  useTabbar,
 }: ScaffoldOptions): string {
   const resolvedRoot = path.resolve('../', title);
   const templateDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../template');
@@ -103,13 +110,21 @@ export function scaffold({
     description: JSON.stringify(description),
     uiType,
     useTs,
+    useTabbar,
   };
 
   const renderFile = (file: string) => {
     const filePath = path.resolve(templateDir, file);
     let targetPath = path.resolve(resolvedRoot, file);
     const src = fs.readFileSync(filePath, 'utf-8');
-    const compiled = template(src)(data);
+
+    const templateSettings = {
+      interpolate: /<%=([\s\S]+?)%>/g,
+      evaluate: /<%([\s\S]+?)%>/g,
+      importData: true,
+    };
+
+    const compiled = template(src, templateSettings)(data);
     if (useTs) {
       targetPath = targetPath.replace(/\.(m?)js$/, '.$1ts');
     } else targetPath = targetPath.replace(/\.(m?)ts$/, '.$1js');
@@ -153,6 +168,8 @@ export function scaffold({
     'package.json',
   ];
 
+  const tabbarFilesToScaffold = ['src/layouts/tabbar.vue', 'src/components/su-tabbar/su-tabbar.vue'];
+
   const tsFilesToScaffold = ['src/env.d.ts', 'tsconfig.json', 'shims-uni.d.ts'];
   if (useTs) projectConfigFilesToScaffold.push(...tsFilesToScaffold);
   const staticFilesToScaffold = ['src/static/logo.png', 'src/uni.scss'];
@@ -163,6 +180,8 @@ export function scaffold({
   filesToScaffold.push(...staticFilesToScaffold);
   // 添加env文件
   filesToScaffold.push(...envFilesToScaffold);
+  // 添加tabbar文件
+  if (useTabbar) filesToScaffold.push(...tabbarFilesToScaffold);
   // 移动文件
   const moveFilesToScaffold = ['verify-commit.mjs', 'src/types/auto-import.d.ts', 'src/types/uni-pages.d.ts'];
   const fileName = useTs ? 'vite.config.ts' : 'vite.config.js';
@@ -177,7 +196,7 @@ export function scaffold({
     renderFile(file);
   }
   const pm = getPackageManger();
-  return `你已成功创建! 现在请使用 ${green(`${pm}`)} 运行你的项目\n\n   进入项目：${green(`cd ${title}`)}\n   安装依赖：${green(`${pm} install`)}`;
+  return `你已成功创建! 现在请使用 ${green(`${pm}`)} 运行你的项目\n\n   进入项目：${green(`cd ${title}`)}\n   安装依赖：${green(`${pm} install`)} \n   运行项目：${green(`${pm} dev`)} ${gray(`(默认运行微信小程序)`)}`;
 }
 
 export function moveFiles(templateDir: string, resolvedRoot: string, filePath: string) {

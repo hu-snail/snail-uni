@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "rimraf bin && tsup index.ts --format esm --out-dir=bin --watch --dts",
-    "test": "node bin/index.js"
+    "test": "node bin/index.js",
+    "publish": "npm publish --access public"
   },
   "main": "bin/index.js",
   "types": "bin/index.d.ts",

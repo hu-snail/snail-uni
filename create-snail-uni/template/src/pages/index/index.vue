@@ -1,5 +1,7 @@
+<!-- 使用 type="home" 属性设置首页 -->
 <route type="home" lang="json">
-{
+{<% if (useTabbar) { %>
+  "layout": "tabbar",<% } %>
   "style": { "navigationBarTitleText": "首页" },
   "name": "home"
 }

@@ -10,9 +10,10 @@ interface ScaffoldOptions {
     description?: string;
     uiType?: ScaffoldUIType;
     useTs?: boolean;
+    useTabbar?: boolean;
 }
 declare function create(): Promise<void>;
-declare function scaffold({ title, description, uiType, useTs, }: ScaffoldOptions): string;
+declare function scaffold({ title, description, uiType, useTs, useTabbar, }: ScaffoldOptions): string;
 declare function moveFiles(templateDir: string, resolvedRoot: string, filePath: string): void;
 declare const createTemp: (title?: string, useTs?: string) => void;
 
