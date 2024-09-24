@@ -1,30 +1,43 @@
 <route type="home" lang="json">
 {
+  "layout": "tabbar",
   "style": { "navigationBarTitleText": "首页" },
   "name": "home"
 }
 </route>
 
 <template>
-  <view class="content">
-    <image class="logo" src="/static/logo.png" />
-    <view class="text-area">
-      <text class="username">{{ userInfo.nickName }}</text>
-      <text class="title text-cyan-400">{{ title }}</text>
-      <button class="icon" :class="iconName" />
-      <i class="iconfont icon-xiaochengxu"></i>
+  <view class="app-container">
+    <view class="header-wrap">
+      <view class="header-logo">
+        <view class="logo">
+          <image w-60rpx h-60rpx src="/static/logo.png" />
+        </view>
+        <text class="title">Snail Uni App</text>
+      </view>
+      <view class="header-desc">
+        <wd-text
+          text="专为开发者打造的 UniApp 框架模板。 基于 UniApp + Vue3 + TypeScript + Vite + Wot Design Uni 的高效框架模板。它内置了 Snail-Uni 脚手架工具，帮助您快速创建 TypeScript 或 JavaScript 版本项目。Snail-Uni 配备了丰富的开箱即用配置，让您从一开始就拥有高效的开发体验。"
+        ></wd-text>
+      </view>
+      <view class="switch">
+        <wd-text text="开启/关闭暗黑模式"></wd-text>
+        <wd-switch size="20px" v-model="isDark" />
+      </view>
     </view>
-    <view>
-      <text>{{ count }}</text>
-    </view>
-    <wd-button @click="handleIncrement">添加</wd-button>
-    <wd-button @click="handleRequest">请求接口</wd-button>
-    <button class="btn-green">111</button>
-    <wd-button @click="handleSetToken">主要按钮</wd-button>
-    <wd-button type="success" @click="handleToRouter">路由跳转</wd-button>
-    <wd-button type="info">信息按钮</wd-button>
-    <wd-button type="warning">警告按钮</wd-button>
-    <wd-button type="error">危险按钮</wd-button>
+
+    <wd-cell-group border>
+      <wd-cell title="路由跳转" is-link to="/pages/index/index" />
+      <wd-cell title="登录拦截" is-link to="/pages/index/index" />
+      <wd-cell title="Pinia 状态" is-link to="/pages/index/index" />
+      <wd-cell title="Axios 请求" is-link to="/pages/index/index" />
+      <wd-cell title="文件上传" is-link to="/pages/index/index" />
+      <wd-cell title="分享设置" is-link to="/pages/index/index" />
+      <wd-cell title="常用模版" is-link to="/pages/index/index" />
+      <wd-cell title="自定义Tabbar" is-link to="/pages/index/index" />
+      <wd-cell title="自定义Navbar" is-link to="/pages/index/index" />
+      <wd-cell title="文档地址" is-link to="/pages/index/index" />
+    </wd-cell-group>
   </view>
 </template>
 
@@ -32,6 +45,7 @@
   import { useUserStore, useCounterStore } from '@/store';
   const userStore = useUserStore();
   const counterStore = useCounterStore();
+  const isDark = ref(true);
 
   import { getChannel } from '@/apis';
 
@@ -63,33 +77,27 @@
   }
 </script>
 
-<style>
-  .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .icon {
-    font-size: 12px;
-    color: #f45;
-  }
-
-  .logo {
-    width: 200rpx;
-    height: 200rpx;
-    margin-top: 200rpx;
-    margin-right: auto;
-    margin-bottom: 50rpx;
-    margin-left: auto;
-  }
-
-  .text-area {
-    display: flex;
-    justify-content: center;
-  }
-
-  .title {
-    font-size: 36rpx;
+<style lang="scss" scoped>
+  .app-container {
+    width: 100vw;
+    overflow-y: auto;
+    .header-wrap {
+      padding: 60rpx 50rpx;
+      .header-logo {
+        display: flex;
+        align-items: center;
+        .title {
+          padding-left: 20rpx;
+          font-size: 40rpx;
+          font-weight: bold;
+          color: #5474f2;
+        }
+      }
+      .switch {
+        display: flex;
+        align-items: center;
+        padding: 15px 0;
+      }
+    }
   }
 </style>

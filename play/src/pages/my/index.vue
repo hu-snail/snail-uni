@@ -1,6 +1,6 @@
-<!-- 使用 type="my" 属性设置首页 -->
-<route type="my" lang="json">
+<route lang="json">
 {
+  "layout": "tabbar",
   "style": { "navigationBarTitleText": "我的" },
   "name": "my"
 }

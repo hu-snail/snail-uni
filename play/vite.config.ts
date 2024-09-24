@@ -14,6 +14,9 @@ import UniManifest from '@uni-helper/vite-plugin-uni-manifest';
 import UniLayouts from '@uni-helper/vite-plugin-uni-layouts';
 // docs:https://github.com/antfu/vite-plugin-restart?tab=readme-ov-file#readme
 import ViteRestart from 'vite-plugin-restart';
+// docs https://github.com/vbenjs/vite-plugin-vue-setup-extend
+import vueSetupExtend from 'vite-plugin-vue-setup-extend';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 // @ts-expect-error missing types
 const Uni = uniModule.default || uniModule;
@@ -56,7 +59,7 @@ export default async ({ command, mode }) => {
       UniManifest(),
       Uni(),
       UnoCSS(),
-
+      vueSetupExtend(),
       AutoImport({
         imports: [
           'vue',
@@ -70,6 +73,15 @@ export default async ({ command, mode }) => {
         eslintrc: { enabled: true, globalsPropValue: true },
         vueTemplate: true,
       }),
+
+      // 打包分析插件
+      mode === 'production' &&
+        visualizer({
+          filename: './node_modules/.cache/visualizer/stats.html',
+          open: true,
+          gzipSize: true,
+          brotliSize: true,
+        }),
 
       ViteRestart({
         restart: ['vite.config.ts'], // 监听vite.config.ts文件修改,无需重启
