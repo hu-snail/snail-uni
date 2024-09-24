@@ -10,5 +10,5 @@ packages/*/dist/*
 packages/*/lib/*
 packages/*/es/*
 
-auto-import.d.ts
-uni-pages.d.ts
+play/auto-import.d.ts
+play/uni-pages.d.ts
