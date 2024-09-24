@@ -38,7 +38,7 @@ yarn create snail-uni
 
 ```sh
 # npm
-npx create-snail-uni create snail-uni-app ts
+npx snail-uni create snail-uni-app ts
 
 # pnpm
 pnpm create snail-uni snail-uni-app ts

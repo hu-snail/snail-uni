@@ -148,7 +148,7 @@ export function scaffold({
     '.prettierignore',
     '.stylelintignore',
     '.stylelintrc.json',
-    '.npmrc',
+    '.npmrc.temp',
     '.gitignore.temp',
     'package.json',
   ];

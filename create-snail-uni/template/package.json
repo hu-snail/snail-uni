@@ -107,6 +107,7 @@
     "vite-plugin-restart": "^0.4.1" <% if (useTs) { %>,
     "vue-tsc": "^2.0.29"<% } %>,
     "@snail-uni/eslint-config": "^1.0.1",
-    "@snail-uni/stylelint-config": "^1.0.1"
+    "@snail-uni/stylelint-config": "^1.0.1",
+    "vite-plugin-vue-setup-extend": "^0.4.0"
   }
 }

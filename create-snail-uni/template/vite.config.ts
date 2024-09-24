@@ -13,6 +13,8 @@ import UniManifest from '@uni-helper/vite-plugin-uni-manifest';
 import UniLayouts from '@uni-helper/vite-plugin-uni-layouts';
 // docs:https://github.com/antfu/vite-plugin-restart?tab=readme-ov-file#readme
 import ViteRestart from 'vite-plugin-restart';
+// docs https://github.com/vbenjs/vite-plugin-vue-setup-extend
+import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 
 // https://vitejs.dev/config/
 export default async({ command, mode }) => {
@@ -65,6 +67,7 @@ export default async({ command, mode }) => {
         eslintrc: { enabled: true, globalsPropValue: true },
         vueTemplate: true,
       }),
+      vueSetupExtend(),
 
       ViteRestart({
         restart: ['vite.config.ts'], // 监听vite.config.js文件修改,无需重启
