@@ -8,6 +8,7 @@
       >
         <view class="su-tabbar__item_icon">
           <image
+            class="img"
             v-if="item.iconType === 'image' || !item.iconType"
             :src="currentPath === item.pagePath ? item.selectedIconPath : item.iconPath"
           ></image>
@@ -22,16 +23,21 @@
 
 <script lang="ts" setup>
   import { tabBar } from '@/pages.json';
-  const tabbarList = tabBar.list.map((item) => ({ ...item, path: `/${item.pagePath}` }));
   <% if (useTs) { %>
   interface IRouter {
-    route: string;
-    path: string;
-    pagePath: string;
-    text: string;
-    iconPath: string;
-    selectedIconPath: string;
+    route?: string;
+    path?: string;
+    pagePath?: string;
+    text?: string;
+    iconPath?: string;
+    iconType?: string;
+    icon?: string;
+    isProtrusion?: boolean;
+    selectedIconPath?: string;
   }<% } %>
+
+  const tabbarList<% if (useTs) { %>: IRouter[]<% } %> = tabBar.list.map((item) => ({ ...item, path: `/${item.pagePath}` }));
+
   defineProps({
     fixed: {
       type: Boolean,

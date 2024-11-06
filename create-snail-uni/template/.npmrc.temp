@@ -1,2 +1,3 @@
 shell-emulator=true
-auto-install-peers=false
+auto-install-peers=true
+strict-peer-dependencies=false

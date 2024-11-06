@@ -103,7 +103,7 @@ export function scaffold({
   useTs,
   useTabbar,
 }: ScaffoldOptions): string {
-  const resolvedRoot = path.resolve('../', title);
+  const resolvedRoot = path.resolve('./', title);
   const templateDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../template');
   const data = {
     title: JSON.stringify(title),
@@ -173,7 +173,6 @@ export function scaffold({
   const tsFilesToScaffold = ['src/env.d.ts', 'tsconfig.json', 'shims-uni.d.ts'];
   if (useTs) projectConfigFilesToScaffold.push(...tsFilesToScaffold);
   const staticFilesToScaffold = ['src/static/logo.png', 'src/uni.scss'];
-
   // 添加项目配置文件
   filesToScaffold.push(...projectConfigFilesToScaffold);
   // 添加静态文件
@@ -187,6 +186,7 @@ export function scaffold({
   const fileName = useTs ? 'vite.config.ts' : 'vite.config.js';
   const requestFile = useTs ? 'src/utils/request.ts' : 'src/utils/request.js';
   moveFilesToScaffold.push(...[requestFile, fileName]);
+  if (useTabbar) moveFilesToScaffold.push('src/static/tabbar/home_active.png', 'src/static/tabbar/home_default.png');
 
   for (const filePath of moveFilesToScaffold) {
     moveFiles(templateDir, resolvedRoot, filePath);

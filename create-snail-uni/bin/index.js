@@ -335,7 +335,7 @@ function scaffold({
   useTs: useTs2,
   useTabbar
 }) {
-  const resolvedRoot = path.resolve("../", title2);
+  const resolvedRoot = path.resolve("./", title2);
   const templateDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../template");
   const data = {
     title: JSON.stringify(title2),
@@ -409,6 +409,8 @@ function scaffold({
   const fileName = useTs2 ? "vite.config.ts" : "vite.config.js";
   const requestFile = useTs2 ? "src/utils/request.ts" : "src/utils/request.js";
   moveFilesToScaffold.push(...[requestFile, fileName]);
+  if (useTabbar)
+    moveFilesToScaffold.push("src/static/tabbar/home_active.png", "src/static/tabbar/home_default.png");
   for (const filePath of moveFilesToScaffold) {
     moveFiles(templateDir, resolvedRoot, filePath);
   }

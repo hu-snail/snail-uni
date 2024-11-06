@@ -17,7 +17,8 @@
   "workspaces": [
     "packages/*",
     "docs",
-    "play"
+    "play",
+    "create-snail-uni"
   ],
   "repository": {
     "type": "git",

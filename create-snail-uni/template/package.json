@@ -45,67 +45,97 @@
     "build:mp-xhs": "uni build -p mp-xhs",
     "build:quickapp-webview": "uni build -p quickapp-webview",
     "build:quickapp-webview-huawei": "uni build -p quickapp-webview-huawei",
-    "build:quickapp-webview-union": "uni build -p quickapp-webview-union"<% if (useTs) { %>,
-    "type-check": "vue-tsc --noEmit"<% } %>
+    "build:quickapp-webview-union": "uni build -p quickapp-webview-union",
+    "postinstall": "simple-git-hooks",
+    "lint": "npx oxlint && eslint --fix."<% if (useTs) { %>,
+      "type-check": "vue-tsc --noEmit"<%
+    } %>
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
+  "nano-staged": {
+    "*.md": "prettier --write",
+    "*.{ts,tsx,js,vue,scss}": "prettier --write",
+    "*.{ts,tsx,js,vue}": "pnpm lint",
+    "*.{css,scss,vue,html}": "stylelint --fix"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx nano-staged",
+    "commit-msg": "npx node ./verify-commit.mjs"
+  },
+  "engines": {
+    "node": ">= 18.0.0"
+  },
   "dependencies": {
-    "@dcloudio/uni-app": "3.0.0-alpha-4020820240920001",
-    "@dcloudio/uni-app-harmony": "3.0.0-alpha-4020820240920001",
-    "@dcloudio/uni-app-plus": "3.0.0-alpha-4020820240920001",
-    "@dcloudio/uni-components": "3.0.0-alpha-4020820240920001",
-    "@dcloudio/uni-h5": "3.0.0-alpha-4020820240920001",
-    "@dcloudio/uni-mp-alipay": "3.0.0-alpha-4020820240920001",
-    "@dcloudio/uni-mp-baidu": "3.0.0-alpha-4020820240920001",
-    "@dcloudio/uni-mp-jd": "3.0.0-alpha-4020820240920001",
-    "@dcloudio/uni-mp-kuaishou": "3.0.0-alpha-4020820240920001",
-    "@dcloudio/uni-mp-lark": "3.0.0-alpha-4020820240920001",
-    "@dcloudio/uni-mp-qq": "3.0.0-alpha-4020820240920001",
-    "@dcloudio/uni-mp-toutiao": "3.0.0-alpha-4020820240920001",
-    "@dcloudio/uni-mp-weixin": "3.0.0-alpha-4020820240920001",
-    "@dcloudio/uni-mp-xhs": "3.0.0-alpha-4020820240920001",
-    "@dcloudio/uni-quickapp-webview": "3.0.0-alpha-4020820240920001",
-    "vue": "^3.4.27"<% if (uiType === 'Wot-Design') { %>,
-    "wot-design-uni": "^1.3.6"<% } %><% if (uiType === 'Uv-ui') { %>,
-    "@climblee/uv-ui": "^1.1.20"<% } %><% if (uiType === 'Uview-plus') { %>,
-    "uview-plus": "^3.3.15"<% } %><% if (uiType === 'TuniaoUI') { %>,
-    "@tuniao/tn-icon": "^1.9.0",
-    "@tuniao/tn-style": "^1.0.19",
-    "@tuniao/tnui-vue3-uniapp": "^1.0.21"<% } %>,
+    "@dcloudio/uni-app": "3.0.0-4020920240930001",
+    "@dcloudio/uni-app-harmony": "3.0.0-4020920240930001",
+    "@dcloudio/uni-app-plus": "3.0.0-4020920240930001",
+    "@dcloudio/uni-components": "3.0.0-4020920240930001",
+    "@dcloudio/uni-h5": "3.0.0-4020920240930001",
+    "@dcloudio/uni-mp-alipay": "3.0.0-4020920240930001",
+    "@dcloudio/uni-mp-baidu": "3.0.0-4020920240930001",
+    "@dcloudio/uni-mp-jd": "3.0.0-4020920240930001",
+    "@dcloudio/uni-mp-kuaishou": "3.0.0-4020920240930001",
+    "@dcloudio/uni-mp-lark": "3.0.0-4020920240930001",
+    "@dcloudio/uni-mp-qq": "3.0.0-4020920240930001",
+    "@dcloudio/uni-mp-toutiao": "3.0.0-4020920240930001",
+    "@dcloudio/uni-mp-weixin": "3.0.0-4020920240930001",
+    "@dcloudio/uni-mp-xhs": "3.0.0-4020920240930001",
+    "@dcloudio/uni-quickapp-webview": "3.0.0-4020920240930001",
+    "vue": "3.4.21"<% if (uiType === 'Wot-Design') { %>,
+      "wot-design-uni": "^1.3.13"<%
+    } %><% if (uiType === 'Uv-ui') { %>,
+      "@climblee/uv-ui": "^1.1.20"<%
+    } %><% if (uiType === 'Uview-plus') { %>,
+      "uview-plus": "^3.3.15"<%
+    } %><% if (uiType === 'TuniaoUI') { %>,
+      "@tuniao/tn-icon": "^1.9.0",
+      "@tuniao/tn-style": "^1.0.19",
+      "@tuniao/tnui-vue3-uniapp": "^1.0.21"<%
+    } %>,
     "@uni-helper/axios-adapter": "^1.5.2",
-    "axios": "^1.7.4",
-    "pinia": "^2.2.1",
+    "axios": "^1.7.7",
+    "pinia": "^2.2.4",
     "pinia-plugin-unistorage": "^0.1.2"
   },
   "devDependencies": {<% if (useTs) { %>
-    "@dcloudio/types": "^3.4.12",<% } %>
-    "@dcloudio/uni-automator": "3.0.0-alpha-4020820240920001",
-    "@dcloudio/uni-cli-shared": "3.0.0-alpha-4020820240920001",
-    "@dcloudio/uni-stacktracey": "3.0.0-alpha-4020820240920001",
-    "@dcloudio/vite-plugin-uni": "3.0.0-alpha-4020820240920001",<% if (useTs) { %>
-    "@iconify-json/icon-park-outline": "^1.1.16",
-    "@types/node": "^20.14.12",
-    "@types/wechat-miniprogram": "^3.4.7",<% } %>
+    "@dcloudio/types": "^3.4.14",<%
+    } %>
+    "@dcloudio/uni-automator": "3.0.0-4020920240930001",
+    "@dcloudio/uni-cli-shared": "3.0.0-4020920240930001",
+    "@dcloudio/uni-stacktracey": "3.0.0-4020920240930001",
+    "@dcloudio/vite-plugin-uni": "3.0.0-4020920240930001",<% if (useTs) { %>
+    "@iconify-json/icon-park-outline": "^1.2.1",
+      "@types/node": "^22.8.2",
+      "@types/wechat-miniprogram": "^3.4.8",<%
+    } %>
     "@uni-helper/vite-plugin-uni-layouts": "^0.1.10",
-    "@uni-helper/vite-plugin-uni-manifest": "^0.2.6",
-    "@uni-helper/vite-plugin-uni-pages": "^0.2.26",
+    "@uni-helper/vite-plugin-uni-manifest": "^0.2.7",
+    "@uni-helper/vite-plugin-uni-pages": "^0.2.28",
     "@uni-helper/vite-plugin-uni-platform": "^0.0.4",
-    "@unocss/preset-legacy-compat": "^0.62.1",
-    "@vue/runtime-core": "^3.4.34",<% if (useTs) { %>
-   "@vue/tsconfig": "^0.5.1",<% } %>
-    "add": "^2.0.6",
-    "sass": "^1.77.8",<% if (useTs) { %>
-    "typescript": "^5.5.4",<% } %>
+    "@unocss/preset-legacy-compat": "^0.63.6",
+    "@vue/runtime-core": "^3.5.12",<% if (useTs) { %>
+    "@vue/tsconfig": "^0.5.1",<%
+    } %>
+    "nano-staged": "^0.8.0",
+    "eslint": "^9.9.1",
+    "oxlint": "^0.10.3",
+    "prettier": "^3.3.3",
+    "stylelint": "^16.8.1",
+    "simple-git-hooks": "^2.11.1",
+    "sass": "1.78.0",<% if (useTs) { %>
+    "typescript": "^5.5.4",<%
+    } %>
     "uni-mini-router": "^0.1.6",
     "uni-parse-pages": "^0.0.1",
-    "unocss": "^0.62.1",
+    "unocss": "^0.63.4",
     "unocss-applet": "^0.8.2",
     "unplugin-auto-import": "^0.18.2",
     "vite": "^5.3.5",
     "vite-plugin-restart": "^0.4.1" <% if (useTs) { %>,
-    "vue-tsc": "^2.0.29"<% } %>,
+      "vue-tsc": "^2.0.29"<%
+    } %>,
     "@snail-uni/eslint-config": "^1.0.1",
     "@snail-uni/stylelint-config": "^1.0.1",
     "vite-plugin-vue-setup-extend": "^0.4.0"

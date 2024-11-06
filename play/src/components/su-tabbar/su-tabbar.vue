@@ -8,6 +8,7 @@
       >
         <view class="su-tabbar__item_icon">
           <image
+            class="img"
             v-if="item.iconType === 'image' || !item.iconType"
             :src="currentPath === item.pagePath ? item.selectedIconPath : item.iconPath"
           ></image>
@@ -22,7 +23,7 @@
 
 <script lang="ts" setup>
   import { tabBar } from '@/pages.json';
-  const tabbarList = tabBar.list.map((item) => ({ ...item, path: `/${item.pagePath}` }));
+  const tabbarList: any = tabBar.list.map((item) => ({ ...item, path: `/${item.pagePath}` }));
 
   interface IRouter {
     route: string;
