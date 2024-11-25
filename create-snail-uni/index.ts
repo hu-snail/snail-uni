@@ -23,6 +23,8 @@ export interface ScaffoldOptions {
   uiType?: ScaffoldUIType;
   useTs?: boolean;
   useTabbar?: boolean;
+
+  useEslint?: boolean;
 }
 
 export async function create() {
@@ -80,6 +82,11 @@ export async function create() {
           message: '是否使用自定义 Tabbar?',
           initialValue: true,
         }),
+      useEslint: () =>
+        confirm({
+          message: '是否使用Eslint代码规范？',
+          initialValue: true,
+        }),
     },
     {
       onCancel: () => {
@@ -102,6 +109,7 @@ export function scaffold({
   uiType = ScaffoldUIType.Default,
   useTs,
   useTabbar,
+  useEslint,
 }: ScaffoldOptions): string {
   const resolvedRoot = path.resolve('./', title);
   const templateDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../template');
@@ -111,6 +119,7 @@ export function scaffold({
     uiType,
     useTs,
     useTabbar,
+    useEslint,
   };
 
   const renderFile = (file: string) => {
@@ -154,24 +163,30 @@ export function scaffold({
 
   const envFilesToScaffold = ['env/.env', 'env/.env.development', 'env/.env.production', 'env/.env.test'];
 
+  // 项目文件配置
   const projectConfigFilesToScaffold = [
     '.vscode/extensions.json',
     '.vscode/settings.json',
     '.editorconfig',
+    '.npmrc.temp',
+    '.gitignore.temp',
+    'package.json',
+  ];
+
+  // eslint文件配置
+  const eslintFilesToScaffold = [
     '.eslintignore',
     '.eslintrc.json',
     '.prettierignore',
     '.stylelintignore',
     '.stylelintrc.json',
-    '.npmrc.temp',
-    '.gitignore.temp',
-    'package.json',
   ];
 
   const tabbarFilesToScaffold = ['src/layouts/tabbar.vue', 'src/components/su-tabbar/su-tabbar.vue'];
 
   const tsFilesToScaffold = ['src/env.d.ts', 'tsconfig.json', 'shims-uni.d.ts'];
   if (useTs) projectConfigFilesToScaffold.push(...tsFilesToScaffold);
+  if (useEslint) projectConfigFilesToScaffold.push(...eslintFilesToScaffold);
   const staticFilesToScaffold = ['src/static/logo.png', 'src/uni.scss'];
   // 添加项目配置文件
   filesToScaffold.push(...projectConfigFilesToScaffold);

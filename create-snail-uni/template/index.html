@@ -14,11 +14,9 @@
       );
     </script>
     <title></title>
-    <!--preload-links-->
-    <!--app-context-->
   </head>
   <body>
-    <div id="app"><!--app-html--></div>
-    <script type="module" src="/src/main.ts"></script>
+    <div id="app"></div>
+    <script type="module" src="/src/main.<% if (useTs) { %>ts<%} %><% if (!useTs) {%>js<%} %>"></script>
   </body>
 </html>

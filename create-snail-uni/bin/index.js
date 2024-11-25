@@ -313,6 +313,10 @@ async function create() {
       useTabbar: () => confirm({
         message: "\u662F\u5426\u4F7F\u7528\u81EA\u5B9A\u4E49 Tabbar?",
         initialValue: true
+      }),
+      useEslint: () => confirm({
+        message: "\u662F\u5426\u4F7F\u7528Eslint\u4EE3\u7801\u89C4\u8303\uFF1F",
+        initialValue: true
       })
     },
     {
@@ -333,7 +337,8 @@ function scaffold({
   description = "A snail-uni-app project",
   uiType = "Wot-Design" /* Default */,
   useTs: useTs2,
-  useTabbar
+  useTabbar,
+  useEslint
 }) {
   const resolvedRoot = path.resolve("./", title2);
   const templateDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../template");
@@ -342,7 +347,8 @@ function scaffold({
     description: JSON.stringify(description),
     uiType,
     useTs: useTs2,
-    useTabbar
+    useTabbar,
+    useEslint
   };
   const renderFile = (file) => {
     const filePath = path.resolve(templateDir, file);
@@ -386,19 +392,23 @@ function scaffold({
     ".vscode/extensions.json",
     ".vscode/settings.json",
     ".editorconfig",
+    ".npmrc.temp",
+    ".gitignore.temp",
+    "package.json"
+  ];
+  const eslintFilesToScaffold = [
     ".eslintignore",
     ".eslintrc.json",
     ".prettierignore",
     ".stylelintignore",
-    ".stylelintrc.json",
-    ".npmrc.temp",
-    ".gitignore.temp",
-    "package.json"
+    ".stylelintrc.json"
   ];
   const tabbarFilesToScaffold = ["src/layouts/tabbar.vue", "src/components/su-tabbar/su-tabbar.vue"];
   const tsFilesToScaffold = ["src/env.d.ts", "tsconfig.json", "shims-uni.d.ts"];
   if (useTs2)
     projectConfigFilesToScaffold.push(...tsFilesToScaffold);
+  if (useEslint)
+    projectConfigFilesToScaffold.push(...eslintFilesToScaffold);
   const staticFilesToScaffold = ["src/static/logo.png", "src/uni.scss"];
   filesToScaffold.push(...projectConfigFilesToScaffold);
   filesToScaffold.push(...staticFilesToScaffold);

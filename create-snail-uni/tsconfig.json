@@ -8,6 +8,6 @@
     "lib": ["esnext", "dom"],
     "outDir": "./bin"
   },
-  "exclude": ["node_modules", "bin", "template"],
+  "exclude": ["node_modules", "bin", "template", "package.json"],
   "include": ["*.ts", "*.d.ts"]
 }
