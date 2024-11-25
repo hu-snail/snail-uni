@@ -6,7 +6,19 @@
   - [HBuilderX](https://www.dcloud.io/hbuilderx.html) - `APP` 的运行和发布需要
   - [Git](https://git-scm.com/download) 安装
 > 注：无需**App**开发，则无需下载HBuilderX
-     
+
+**Snail-uni** 自带脚手架工具, 在使用前建议先请先执行以下安装命令：
+::: code-group
+```sh [npm]
+npm add snail-uni -g
+```
+```sh [pnpm]
+pnpm add snail-uni -g
+```
+```sh [yarn]
+yarn add snail-uni -g
+```
+:::
 ## Vscode插件安装
 `snail-uni`内置了插件安装配置文件，使用`Vscode`打开项目文件夹，点击`安装插件`即可安装插件。
 ```shell
@@ -16,6 +28,9 @@
 
 ## 创建项目
 `snail-uni` 附带一个命令行创建向导，可以帮助你构建一个基本项目。支持创建 `js` 与 `ts` 让你无需纠结。
+::: warning 注意
+如果使用 `pnpm` , `yarn` 命令安装，请先全局安装 `snail-uni` 脚手架工具, 否则命令无效，全局安装方法请查看前置准备安装命令！
+:::
 ::: code-group
 ```sh [npm]
 npx snail-uni create
