@@ -15,16 +15,25 @@
 - [gitee地址](https://gitee.com/hu-snail/snail-uni)
 
 ## 🚀 使用
+在使用前建议先全局安装脚手架，命令如下：
+```sh
+# npm
+npm install snail-uni -g
+# or pnpm
+pnpm add snail-uni -g
+# or yarn
+yarn add snail-uni 
+```
 
 ### 一.命令导向方式
-
+如果使用 `pnpm`, `yarn` 命令安装，请先全局安装 `snail-uni` 脚手架工具, 否则命令无效!
 ```sh
 # npm
 npx snail-uni create
 # pnpm
-pnpm create snail-uni 
+pnpm snail-uni create  
 # yarn
-yarn create snail-uni
+yarn snail-uni create
 
 ```
 
