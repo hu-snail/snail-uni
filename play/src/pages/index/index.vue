@@ -1,7 +1,7 @@
 <route type="home" lang="json">
 {
   "layout": "tabbar",
-  "style": { "navigationBarTitleText": "首页" },
+  "style": { "navigationBarTitleText": "SnailUni" },
   "name": "home"
 }
 </route>
@@ -11,18 +11,15 @@
     <view class="header-wrap">
       <view class="header-logo">
         <view class="logo">
-          <image w-60rpx h-60rpx src="/static/logo.png" />
+          <wd-img :width="80" :height="80" src="/static/logo.png" />
         </view>
-        <text class="title">Snail Uni App</text>
-      </view>
-      <view class="header-desc">
-        <wd-text
-          text="专为开发者打造的 UniApp 框架模板。 基于 UniApp + Vue3 + TypeScript + Vite + Wot Design Uni 的高效框架模板。它内置了 Snail-Uni 脚手架工具，帮助您快速创建 TypeScript 或 JavaScript 版本项目。Snail-Uni 配备了丰富的开箱即用配置，让您从一开始就拥有高效的开发体验。"
-        ></wd-text>
-      </view>
-      <view class="switch">
-        <wd-text text="开启/关闭暗黑模式"></wd-text>
-        <wd-switch size="20px" v-model="isDark" />
+        <view class="header-desc">
+          <view class="title">
+            SnailUni
+            <wd-text text="foruni-app"></wd-text>
+          </view>
+          <wd-text text="更懂你的uni-app框架" size="12px"></wd-text>
+        </view>
       </view>
     </view>
 
@@ -46,7 +43,6 @@
   const userStore = useUserStore();
   const counterStore = useCounterStore();
   const isDark = ref(true);
-
   import { getChannel } from '@/apis';
 
   const userInfo = computed(() => userStore.userInfo);
@@ -81,6 +77,7 @@
   .app-container {
     width: 100vw;
     overflow-y: auto;
+    background-color: #f5f5f5;
     .header-wrap {
       padding: 60rpx 50rpx;
       .header-logo {
@@ -88,7 +85,7 @@
         align-items: center;
         .title {
           padding-left: 20rpx;
-          font-size: 40rpx;
+          font-size: 60rpx;
           font-weight: bold;
           color: #5474f2;
         }

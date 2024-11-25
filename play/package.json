@@ -1,5 +1,5 @@
 {
-  "name": "snail-uni",
+  "name": "snail-uni-play",
   "version": "1.0.1",
   "description": "",
   "main": "index.js",
@@ -97,9 +97,8 @@
     "@unocss/preset-legacy-compat": "^0.62.1",
     "@vue/runtime-core": "^3.4.34",
     "@vue/tsconfig": "^0.5.1",
-    "add": "^2.0.6",
     "rollup-plugin-visualizer": "^5.12.0",
-    "sass": "^1.77.8",
+    "sass": "1.77.8",
     "typescript": "^5.5.4",
     "uni-mini-router": "^0.1.6",
     "uni-parse-pages": "^0.0.1",

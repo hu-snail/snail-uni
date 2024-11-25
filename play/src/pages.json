@@ -1,7 +1,7 @@
 {
   "globalStyle": {
     "navigationStyle": "default",
-    "navigationBarTitleText": "snail-uni",
+    "navigationBarTitleText": "snail-uni-play",
     "navigationBarBackgroundColor": "#FFFFFF",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#FFFFFF"
@@ -32,16 +32,18 @@
         "iconType": "image"
       },
       {
+        "iconPath": "/static/tabbar/temp_default.png",
+        "selectedIconPath": "/static/tabbar/temp_active.png",
         "pagePath": "pages/template/index",
         "text": "模版",
-        "icon": "heart-filled",
-        "iconType": "ui"
+        "iconType": "image"
       },
       {
+        "iconPath": "/static/tabbar/my_default.png",
+        "selectedIconPath": "/static/tabbar/my_active.png",
         "pagePath": "pages/my/index",
         "text": "我的",
-        "icon": "icon-xiaochengxu",
-        "iconType": "iconfont"
+        "iconType": "image"
       }
     ]
   },
@@ -51,7 +53,7 @@
       "type": "home",
       "layout": "tabbar",
       "style": {
-        "navigationBarTitleText": "首页"
+        "navigationBarTitleText": "SnailUni"
       },
       "name": "home"
     },
