@@ -73,7 +73,7 @@
     padding-bottom: constant(safe-area-inset-bottom);
     padding-bottom: env(safe-area-inset-bottom);
     background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
     border-top: 1px solid #f5f5f5;
     &__placeholder {
       position: fixed;

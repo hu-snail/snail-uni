@@ -1,7 +1,7 @@
 <route type="home" lang="json">
 {
   "layout": "tabbar",
-  "style": { "navigationBarTitleText": "SnailUni" },
+  "style": { "navigationBarTitleText": "首页" },
   "name": "home"
 }
 </route>
@@ -14,27 +14,20 @@
           <wd-img :width="80" :height="80" src="/static/logo.png" />
         </view>
         <view class="header-desc">
-          <view class="title">
-            SnailUni
-            <wd-text text="foruni-app"></wd-text>
+          <view>
+            <wd-text text="Snail-Uni" bold size="26px" color="#000"></wd-text>
+            <wd-text custom-class="tip" text="For UniApp" size="12px"></wd-text>
           </view>
-          <wd-text text="更懂你的uni-app框架" size="12px"></wd-text>
+          <wd-text text="更懂你的uni-app框架" size="13px"></wd-text>
         </view>
       </view>
     </view>
-
-    <wd-cell-group border>
-      <wd-cell title="路由跳转" is-link to="/pages/index/index" />
-      <wd-cell title="登录拦截" is-link to="/pages/index/index" />
-      <wd-cell title="Pinia 状态" is-link to="/pages/index/index" />
-      <wd-cell title="Axios 请求" is-link to="/pages/index/index" />
-      <wd-cell title="文件上传" is-link to="/pages/index/index" />
-      <wd-cell title="分享设置" is-link to="/pages/index/index" />
-      <wd-cell title="常用模版" is-link to="/pages/index/index" />
-      <wd-cell title="自定义Tabbar" is-link to="/pages/index/index" />
-      <wd-cell title="自定义Navbar" is-link to="/pages/index/index" />
-      <wd-cell title="文档地址" is-link to="/pages/index/index" />
-    </wd-cell-group>
+    <div class="cell-wrap">
+      <div v-for="item in cellList" :key="item.type" class="cell-item">
+        <text class="cell-item_title">{{ item.title }}</text>
+        <wd-icon name="arrow-right" size="14px" color="#999"></wd-icon>
+      </div>
+    </div>
   </view>
 </template>
 
@@ -42,6 +35,50 @@
   import { useUserStore, useCounterStore } from '@/store';
   const userStore = useUserStore();
   const counterStore = useCounterStore();
+
+  const cellList = [
+    {
+      title: 'Router 路由跳转',
+      type: 'router',
+    },
+    {
+      title: 'Login 登录拦截',
+      type: 'login',
+    },
+    {
+      title: 'Pinia 状态',
+      type: 'pinia',
+    },
+    {
+      title: 'Axios 请求',
+      type: 'axios',
+    },
+    {
+      title: 'Share 分享设置',
+      type: 'share',
+    },
+    {
+      title: 'Tabbar 自定导航',
+      type: 'tabbar',
+    },
+    {
+      title: 'Upload 文件上传',
+      type: 'upload',
+    },
+    {
+      title: 'Icon 图标',
+      type: 'icon',
+    },
+    {
+      title: 'Navbar 自定义导航',
+      type: 'navbar',
+    },
+    {
+      title: 'Load 加载刷新',
+      type: 'load',
+    },
+  ];
+
   const isDark = ref(true);
   import { getChannel } from '@/apis';
 
@@ -75,25 +112,44 @@
 
 <style lang="scss" scoped>
   .app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
     width: 100vw;
     overflow-y: auto;
-    background-color: #f5f5f5;
     .header-wrap {
-      padding: 60rpx 50rpx;
+      padding: 20rpx 30rpx;
+      background-color: #fff;
       .header-logo {
         display: flex;
         align-items: center;
-        .title {
-          padding-left: 20rpx;
-          font-size: 60rpx;
-          font-weight: bold;
-          color: #5474f2;
+      }
+      .header-desc {
+        margin-left: 10px;
+        :deep(.tip) {
+          margin-left: 10px;
         }
       }
-      .switch {
+    }
+    .cell-wrap {
+      flex: 1;
+      padding: 20rpx 30rpx;
+      overflow-y: auto;
+      background-color: #f5f5f5;
+      border-top-left-radius: 40rpx;
+      border-top-right-radius: 40rpx;
+      .cell-item {
         display: flex;
         align-items: center;
-        padding: 15px 0;
+        justify-content: space-between;
+        padding: 30rpx 40rpx;
+        margin: 15rpx 0;
+        background-color: #fff;
+        border-radius: 60rpx;
+        &_title {
+          font-weight: 600;
+        }
       }
     }
   }

@@ -53,7 +53,7 @@
       "type": "home",
       "layout": "tabbar",
       "style": {
-        "navigationBarTitleText": "SnailUni"
+        "navigationBarTitleText": "首页"
       },
       "name": "home"
     },
@@ -74,13 +74,6 @@
         "navigationBarTitleText": "模版"
       },
       "name": "template"
-    },
-    {
-      "path": "pages/user/index",
-      "type": "user",
-      "style": {
-        "navigationBarTitleText": "用户"
-      }
     }
   ],
   "subPackages": [

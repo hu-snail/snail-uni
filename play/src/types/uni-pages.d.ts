@@ -7,14 +7,13 @@ interface NavigateToOptions {
   url: "/pages/index/index" |
        "/pages/my/index" |
        "/pages/template/index" |
-       "/pages/user/index" |
        "/sub-pages/detail/index" |
        "/sub-pages/login/index";
 }
 interface RedirectToOptions extends NavigateToOptions {}
 
 interface SwitchTabOptions {
-  url: "/pages/index/index" | "/pages/template/index" | "/pages/my/index"
+  url: '/pages/index/index' | '/pages/template/index' | '/pages/my/index';
 }
 
 type ReLaunchOptions = NavigateToOptions | SwitchTabOptions;
