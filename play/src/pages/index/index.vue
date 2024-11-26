@@ -23,7 +23,7 @@
       </view>
     </view>
     <div class="cell-wrap">
-      <div v-for="item in cellList" :key="item.type" class="cell-item">
+      <div v-for="item in cellList" :key="item.type" class="cell-item" @click="handleToLink(item)">
         <text class="cell-item_title">{{ item.title }}</text>
         <wd-icon name="arrow-right" size="14px" color="#999"></wd-icon>
       </div>
@@ -36,10 +36,15 @@
   const userStore = useUserStore();
   const counterStore = useCounterStore();
 
-  const cellList = [
+  interface ICellItem {
+    title: string;
+    type: string;
+  }
+
+  const cellList: ICellItem[] = [
     {
       title: 'Router 路由跳转',
-      type: 'router',
+      type: 'route',
     },
     {
       title: 'Login 登录拦截',
@@ -95,6 +100,11 @@
     router.push({ path: 'sub-pages/detail/index' });
   }
 
+  const handleToLink = (item: ICellItem) => {
+    const { type } = item;
+    router.push({ path: `sub-pages/${type}/index` });
+  };
+
   function handleSetToken() {
     userStore.setToken('123456');
     console.log(userStore.nickName);
@@ -147,6 +157,10 @@
         margin: 15rpx 0;
         background-color: #fff;
         border-radius: 60rpx;
+        transition: background-color 0.2s ease;
+        &:active {
+          background-color: #f5f5f5;
+        }
         &_title {
           font-weight: 600;
         }

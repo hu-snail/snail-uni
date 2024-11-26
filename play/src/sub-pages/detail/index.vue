@@ -1,5 +1,4 @@
-<!-- 使用 type="my" 属性设置首页 -->
-<route type="detail" lang="json">
+<route type="page" lang="json">
 {
   "style": { "navigationBarTitleText": "详情页" }
 }

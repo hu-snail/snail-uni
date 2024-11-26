@@ -7,8 +7,11 @@ interface NavigateToOptions {
   url: "/pages/index/index" |
        "/pages/my/index" |
        "/pages/template/index" |
+       "/sub-pages/axios/index" |
        "/sub-pages/detail/index" |
-       "/sub-pages/login/index";
+       "/sub-pages/login/index" |
+       "/sub-pages/route/index" |
+       "/sub-pages/route/query";
 }
 interface RedirectToOptions extends NavigateToOptions {}
 

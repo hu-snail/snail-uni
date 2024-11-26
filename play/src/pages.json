@@ -81,8 +81,15 @@
       "root": "sub-pages",
       "pages": [
         {
+          "path": "axios/index",
+          "type": "page",
+          "style": {
+            "navigationBarTitleText": "Axios 请求页"
+          }
+        },
+        {
           "path": "detail/index",
-          "type": "detail",
+          "type": "page",
           "style": {
             "navigationBarTitleText": "详情页"
           }
@@ -92,6 +99,20 @@
           "type": "detail",
           "style": {
             "navigationBarTitleText": "登录"
+          }
+        },
+        {
+          "path": "route/index",
+          "type": "page",
+          "style": {
+            "navigationBarTitleText": "Router 路由跳转"
+          }
+        },
+        {
+          "path": "route/query",
+          "type": "page",
+          "style": {
+            "navigationBarTitleText": "路由参数"
           }
         }
       ]
