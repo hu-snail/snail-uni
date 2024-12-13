@@ -29,7 +29,7 @@ export interface ScaffoldOptions {
 
 export async function create() {
   intro(bold(green('欢迎使用 snail-uni 脚手架！')));
-
+  let title = '';
   const options: ScaffoldOptions = await group(
     {
       title: () =>
@@ -37,13 +37,14 @@ export async function create() {
           message: '项目名称:',
           placeholder: 'snai-uni-app',
           validate: (value) => {
-            if (fs.existsSync(value)) return '该名称已存在，请重新输入';
+            title = value;
+            if (fs.existsSync(value)) return '❌该项目名称已存在，请重新输入!';
           },
         }),
       description: () =>
         text({
           message: '项目描述:',
-          placeholder: 'A snail-uni-app project',
+          placeholder: `A ${title || 'snai-uni-app'} project`,
         }),
       uiType: () =>
         select({
@@ -79,7 +80,7 @@ export async function create() {
         }),
       useTabbar: () =>
         confirm({
-          message: '是否使用自定义 Tabbar?',
+          message: '是否启用 Tabbar?',
           initialValue: true,
         }),
       useEslint: () =>
@@ -182,12 +183,12 @@ export function scaffold({
     '.stylelintrc.json',
   ];
 
-  const tabbarFilesToScaffold = ['src/layouts/tabbar.vue', 'src/components/su-tabbar/su-tabbar.vue'];
+  const tabbarFilesToScaffold = ['src/layouts/tabbar.vue'];
 
   const tsFilesToScaffold = ['src/env.d.ts', 'tsconfig.json', 'shims-uni.d.ts'];
   if (useTs) projectConfigFilesToScaffold.push(...tsFilesToScaffold);
   if (useEslint) projectConfigFilesToScaffold.push(...eslintFilesToScaffold);
-  const staticFilesToScaffold = ['src/static/logo.png', 'src/uni.scss'];
+  const staticFilesToScaffold = ['src/uni.scss'];
   // 添加项目配置文件
   filesToScaffold.push(...projectConfigFilesToScaffold);
   // 添加静态文件
@@ -201,8 +202,14 @@ export function scaffold({
   const fileName = useTs ? 'vite.config.ts' : 'vite.config.js';
   const requestFile = useTs ? 'src/utils/request.ts' : 'src/utils/request.js';
   moveFilesToScaffold.push(...[requestFile, fileName]);
-  if (useTabbar) moveFilesToScaffold.push('src/static/tabbar/home_active.png', 'src/static/tabbar/home_default.png');
-
+  if (useTabbar)
+    moveFilesToScaffold.push(
+      'src/static/tabbar/home_active.png',
+      'src/static/tabbar/home_default.png',
+      'src/static/tabbar/my_default.png',
+      'src/static/tabbar/my_active.png',
+    );
+  moveFilesToScaffold.push('src/static/logo.png');
   for (const filePath of moveFilesToScaffold) {
     moveFiles(templateDir, resolvedRoot, filePath);
   }
@@ -211,7 +218,7 @@ export function scaffold({
     renderFile(file);
   }
   const pm = getPackageManger();
-  return `你已成功创建! 现在请使用 ${green(`${pm}`)} 运行你的项目\n\n   进入项目：${green(`cd ${title}`)}\n   安装依赖：${green(`${pm} install`)} \n   运行项目：${green(`${pm} dev`)} ${gray(`(默认运行微信小程序)`)}`;
+  return `🎉 你已成功创建! 现在请使用 ${green(`${pm}`)} 运行你的项目\n\n   进入项目：${green(`cd ${title}`)}\n   安装依赖：${green(`${pm} install`)} ${gray(`(安装前，请检查Node版本是否>= ${green('18.0.0')})`)} \n   运行项目：${green(`${pm} dev`)} ${gray(`(默认运行微信小程序)`)} \n   snail-uni文档: ${green('https://hu-snail.github.io/snail-uni')}\n`;
 }
 
 export function moveFiles(templateDir: string, resolvedRoot: string, filePath: string) {

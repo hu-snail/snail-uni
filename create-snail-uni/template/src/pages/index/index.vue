@@ -8,53 +8,40 @@
 </route>
 
 <template>
-  <view class="content">
-    <image class="logo" src="/static/logo.png" />
-    <view class="text-area">
-      <text class="title">{{ title }}</text>
+  <view class="text-center m-4">
+    <image class="h-40 w-40" src="/static/logo.png" />
+    <view class="my-4">
+      <text class="text-gray-400 font-bold">{{ title }}</text>
     </view>
-    <wd-button>主要按钮</wd-button>
-    <wd-button type="success">成功按钮</wd-button>
-    <wd-button type="info">信息按钮</wd-button>
-    <wd-button type="warning">警告按钮</wd-button>
-    <wd-button type="error">危险按钮</wd-button>
-    <button type="button" @click="handleToRouter">我的页面</button>
+    <view class="text-center font-bold text-4xl">
+      {{ num }}
+    </view>
+    <view class="flex my-4">
+      <button class="sn-btn-default" @click="handlePlus">
+        <view class="sn-icon-park-outline:plus mr-1"></view>
+        增加
+      </button>
+      <button class="sn-btn-default" @click="handleMinus">
+        <view class="sn-icon-park-outline:minus mr-1"></view>
+        减少
+      </button>
+    </view>
   </view>
 </template>
 
 <script setup<% if (useTs) { %> lang="ts"<% } %>>
-  const title = ref('Hello');
+const title = ref('Hello Snail-Uni App');
 
-  const router = useRouter();
-  function handleToRouter() {
-    router.push({ name: 'my' });
-  }
+import { useCounterStore } from '@/store';
+
+const counterStore = useCounterStore();
+
+const num = computed(() => counterStore.count);
+const handlePlus = () => {
+  counterStore.increment();
+};
+
+const handleMinus = () => {
+  counterStore.decrement();
+};
 </script>
-
-<style>
-  .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .logo {
-    width: 200rpx;
-    height: 200rpx;
-    margin-top: 200rpx;
-    margin-right: auto;
-    margin-bottom: 50rpx;
-    margin-left: auto;
-  }
-
-  .text-area {
-    display: flex;
-    justify-content: center;
-  }
-
-  .title {
-    font-size: 36rpx;
-    color: #8f8f94;
-  }
-</style>

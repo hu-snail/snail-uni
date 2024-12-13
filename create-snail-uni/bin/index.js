@@ -266,19 +266,21 @@ var ScaffoldUIType = /* @__PURE__ */ ((ScaffoldUIType2) => {
 })(ScaffoldUIType || {});
 async function create() {
   intro(bold(green("\u6B22\u8FCE\u4F7F\u7528 snail-uni \u811A\u624B\u67B6\uFF01")));
+  let title2 = "";
   const options = await group(
     {
       title: () => text({
         message: "\u9879\u76EE\u540D\u79F0:",
         placeholder: "snai-uni-app",
         validate: (value) => {
+          title2 = value;
           if (fs.existsSync(value))
-            return "\u8BE5\u540D\u79F0\u5DF2\u5B58\u5728\uFF0C\u8BF7\u91CD\u65B0\u8F93\u5165";
+            return "\u274C\u8BE5\u9879\u76EE\u540D\u79F0\u5DF2\u5B58\u5728\uFF0C\u8BF7\u91CD\u65B0\u8F93\u5165!";
         }
       }),
       description: () => text({
         message: "\u9879\u76EE\u63CF\u8FF0:",
-        placeholder: "A snail-uni-app project"
+        placeholder: `A ${title2 || "snai-uni-app"} project`
       }),
       uiType: () => select({
         message: "\u9009\u62E9 UI \u6846\u67B6:",
@@ -311,7 +313,7 @@ async function create() {
         initialValue: true
       }),
       useTabbar: () => confirm({
-        message: "\u662F\u5426\u4F7F\u7528\u81EA\u5B9A\u4E49 Tabbar?",
+        message: "\u662F\u5426\u542F\u7528 Tabbar?",
         initialValue: true
       }),
       useEslint: () => confirm({
@@ -403,13 +405,13 @@ function scaffold({
     ".stylelintignore",
     ".stylelintrc.json"
   ];
-  const tabbarFilesToScaffold = ["src/layouts/tabbar.vue", "src/components/su-tabbar/su-tabbar.vue"];
+  const tabbarFilesToScaffold = ["src/layouts/tabbar.vue"];
   const tsFilesToScaffold = ["src/env.d.ts", "tsconfig.json", "shims-uni.d.ts"];
   if (useTs2)
     projectConfigFilesToScaffold.push(...tsFilesToScaffold);
   if (useEslint)
     projectConfigFilesToScaffold.push(...eslintFilesToScaffold);
-  const staticFilesToScaffold = ["src/static/logo.png", "src/uni.scss"];
+  const staticFilesToScaffold = ["src/uni.scss"];
   filesToScaffold.push(...projectConfigFilesToScaffold);
   filesToScaffold.push(...staticFilesToScaffold);
   filesToScaffold.push(...envFilesToScaffold);
@@ -420,7 +422,13 @@ function scaffold({
   const requestFile = useTs2 ? "src/utils/request.ts" : "src/utils/request.js";
   moveFilesToScaffold.push(...[requestFile, fileName]);
   if (useTabbar)
-    moveFilesToScaffold.push("src/static/tabbar/home_active.png", "src/static/tabbar/home_default.png");
+    moveFilesToScaffold.push(
+      "src/static/tabbar/home_active.png",
+      "src/static/tabbar/home_default.png",
+      "src/static/tabbar/my_default.png",
+      "src/static/tabbar/my_active.png"
+    );
+  moveFilesToScaffold.push("src/static/logo.png");
   for (const filePath of moveFilesToScaffold) {
     moveFiles(templateDir, resolvedRoot, filePath);
   }
@@ -428,11 +436,13 @@ function scaffold({
     renderFile(file);
   }
   const pm = getPackageManger();
-  return `\u4F60\u5DF2\u6210\u529F\u521B\u5EFA! \u73B0\u5728\u8BF7\u4F7F\u7528 ${green(`${pm}`)} \u8FD0\u884C\u4F60\u7684\u9879\u76EE
+  return `\u{1F389} \u4F60\u5DF2\u6210\u529F\u521B\u5EFA! \u73B0\u5728\u8BF7\u4F7F\u7528 ${green(`${pm}`)} \u8FD0\u884C\u4F60\u7684\u9879\u76EE
 
    \u8FDB\u5165\u9879\u76EE\uFF1A${green(`cd ${title2}`)}
-   \u5B89\u88C5\u4F9D\u8D56\uFF1A${green(`${pm} install`)} 
-   \u8FD0\u884C\u9879\u76EE\uFF1A${green(`${pm} dev`)} ${gray(`(\u9ED8\u8BA4\u8FD0\u884C\u5FAE\u4FE1\u5C0F\u7A0B\u5E8F)`)}`;
+   \u5B89\u88C5\u4F9D\u8D56\uFF1A${green(`${pm} install`)} ${gray(`(\u5B89\u88C5\u524D\uFF0C\u8BF7\u68C0\u67E5Node\u7248\u672C\u662F\u5426>= ${green("18.0.0")})`)} 
+   \u8FD0\u884C\u9879\u76EE\uFF1A${green(`${pm} dev`)} ${gray(`(\u9ED8\u8BA4\u8FD0\u884C\u5FAE\u4FE1\u5C0F\u7A0B\u5E8F)`)} 
+   snail-uni\u6587\u6863: ${green("https://hu-snail.github.io/snail-uni")}
+`;
 }
 function moveFiles(templateDir, resolvedRoot, filePath) {
   fs.copySync(path.resolve(templateDir, filePath), path.resolve(resolvedRoot, filePath));

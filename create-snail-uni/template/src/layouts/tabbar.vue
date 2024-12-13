@@ -1,10 +1,9 @@
 <template><% if (uiType === 'Wot-Design') { %>
   <wd-config-provider theme="light" :theme-vars="themeVars"><% } %>
-    <view class="tabbar-app-layout" :style="{ height: `calc(100vh - ${tabbarHeight}px)` }">
-      <slot />
+    <view class="tabbar-app-layout">
+      <slot /><% if (uiType === 'Wot-Design') { %>
       <wd-toast />
-      <wd-message-box />
-      <su-tabbar ref="tabbarRef" fixed :active="1" />
+      <wd-message-box /><% } %>
     </view><% if (uiType === 'Wot-Design') { %>
   </wd-config-provider><% } %>
 </template>
@@ -15,20 +14,6 @@
     colorTheme: '#5474f2',
   };
   <% } %>
-  const tabbarRef = ref(null);
-  const tabbarHeight = ref(0);
-  onLoad(() => {
-    nextTick(() => {
-      uni
-        .createSelectorQuery()
-        .in(tabbarRef.value)
-        .select('.su-tabbar')
-        .boundingClientRect((rect: any) => {
-          tabbarHeight.value = rect.height;
-        })
-        .exec();
-    });
-  });
 </script>
 
 <style lang="scss" scoped>

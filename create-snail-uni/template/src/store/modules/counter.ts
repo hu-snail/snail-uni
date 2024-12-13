@@ -8,7 +8,10 @@ export const useCounterStore = defineStore(
     function increment() {
       count.value++;
     }
-    return { count, doubleCount, increment };
+    function decrement() {
+      count.value--;
+    }
+    return { count, doubleCount, increment, decrement };
   },
   {
     unistorage: true,

@@ -19,15 +19,14 @@ const isApplet = process.env?.UNI_PLATFORM?.startsWith('mp-') ?? false;
 const transformers<% if (useTs) { %>: SourceCodeTransformer[]<% } %> = [];
 const presets<% if (useTs) { %>: Preset[]<% } %> = [];
 if (isApplet) {
-  presets.push(presetApplet());
-  presets.push(presetRemRpx());
   // 解决第三方样式冲突问题
-  transformers.push(transformerAttributify({ prefixedOnly: true, prefix: 'sn' }));
+  transformers.push(transformerAttributify({ prefixedOnly: true, prefix: 'sn' })<% if (useTs) { %> as any<% } %>);
 } else {
-  presets.push(presetApplet());
-  presets.push(presetAttributify());
-  presets.push(presetRemRpx({ mode: 'rpx2rem' }));
+  presets.push(presetRemRpx({ mode: 'rpx2rem' })<% if (useTs) { %> as any<% } %>);
 }
+
+presets.push(presetApplet()<% if (useTs) { %> as any<% } %>);
+presets.push(presetAttributify()<% if (useTs) { %> as any<% } %>);
 
 export default defineConfig({
   presets: [
@@ -55,7 +54,7 @@ export default defineConfig({
    */
   shortcuts: [
     {
-      'btn-green': 'border-rd-md text-white bg-green-500 hover:bg-green-700',
+      'sn-btn-default': 'text-gray-400 border-rd-20 after:border-none',
     },
   ],
   transformers: [transformerDirectives(), transformerVariantGroup(), ...transformers],
