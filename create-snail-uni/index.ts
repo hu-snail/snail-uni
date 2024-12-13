@@ -157,6 +157,8 @@ export function scaffold({
     'src/apis/index.ts',
     'src/manifest.json',
     'src/pages.json',
+    'src/utils/request.ts',
+    'vite.config.ts',
     'uno.config.ts',
     'manifest.config.ts',
     'pages.config.ts',
@@ -199,9 +201,6 @@ export function scaffold({
   if (useTabbar) filesToScaffold.push(...tabbarFilesToScaffold);
   // 移动文件
   const moveFilesToScaffold = ['verify-commit.mjs', 'src/types/auto-import.d.ts', 'src/types/uni-pages.d.ts'];
-  const fileName = useTs ? 'vite.config.ts' : 'vite.config.js';
-  const requestFile = useTs ? 'src/utils/request.ts' : 'src/utils/request.js';
-  moveFilesToScaffold.push(...[requestFile, fileName]);
   if (useTabbar)
     moveFilesToScaffold.push(
       'src/static/tabbar/home_active.png',
@@ -218,7 +217,7 @@ export function scaffold({
     renderFile(file);
   }
   const pm = getPackageManger();
-  return `🎉 你已成功创建! 现在请使用 ${green(`${pm}`)} 运行你的项目\n\n   进入项目：${green(`cd ${title}`)}\n   安装依赖：${green(`${pm} install`)} ${gray(`(安装前，请检查Node版本是否>= ${green('18.0.0')})`)} \n   运行项目：${green(`${pm} dev`)} ${gray(`(默认运行微信小程序)`)} \n   snail-uni文档: ${green('https://hu-snail.github.io/snail-uni')}\n`;
+  return `🎉 你已成功创建! 现在请使用 ${green(`${pm}`)} 运行你的项目\n\n   进入项目：${green(`cd ${title}`)}\n   安装依赖：${green(`${pm} install`)} ${gray(`(安装前，请检查Node版本>= ${green('18.0.0')})`)} \n   运行项目：${green(`${pm} dev`)} ${gray(`(默认运行微信小程序)`)} \n   snail-uni文档: ${green('https://hu-snail.github.io/snail-uni')}\n`;
 }
 
 export function moveFiles(templateDir: string, resolvedRoot: string, filePath: string) {

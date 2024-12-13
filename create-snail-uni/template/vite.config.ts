@@ -15,9 +15,10 @@ import UniLayouts from '@uni-helper/vite-plugin-uni-layouts';
 import ViteRestart from 'vite-plugin-restart';
 // docs https://github.com/vbenjs/vite-plugin-vue-setup-extend
 import vueSetupExtend from 'vite-plugin-vue-setup-extend';
+import legacy from '@vitejs/plugin-legacy';
 
 // https://vitejs.dev/config/
-export default async({ command, mode }) => {
+export default async({ mode }) => {
   // docs: https://unocss.dev/
   const UnoCSS = (await import('unocss/vite')).default;
   const env = loadEnv(mode, path.resolve(process.cwd(), 'env'));
@@ -39,6 +40,18 @@ export default async({ command, mode }) => {
     },
     // 插件注意： Unixx需要在Uni()之前引入
     plugins: [
+      legacy({
+        // 需要兼容的目标列表，可以设置多个
+        targets: [
+          '> 0%',
+          'Chrome > 4',
+          'Android >= 4',
+          'IOS >= 7',
+          'not ie <= 6',
+          'Firefox ESR',
+        ],
+        renderLegacyChunks: true,
+      }),
       // uni-app pages配置 会根据route配置，自动生成路由
       UniPages({
         // 排除组件文件

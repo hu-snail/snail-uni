@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios';
+import axios<% if (useTs) { %>, { AxiosRequestConfig, AxiosResponse, AxiosInstance }<% } %> from 'axios';
 import { createUniAppAxiosAdapter } from '@uni-helper/axios-adapter';
 import { useUserStore } from '@/store';
 
@@ -19,19 +19,19 @@ const code = VITE_RESPONSE_CODE_KEY;
 const msg = VITE_RESPONSE_MSG_KEY;
 const tokenKey = VITE_TOKEN_KEY;
 const showErr = JSON.parse(VITE_SHOW_ERROR);
-const showLoading = JSON.parse(VITE_SHOW_LOADING);
+const showLoading = JSON.parse(VITE_SHOW_LOADING);<% if (useTs) { %>
 export interface ResponseType<T = any> {
   code: number;
   message: string;
   data: T;
-}
+}<% } %>
 
 let requestNum = 0;
-
+<% if (useTs) { %>
 interface IRequestConfig extends AxiosRequestConfig {
   loading?: boolean;
   showError?: boolean;
-}
+}<% } %>
 
 const addLoading = () => {
   requestNum++;
@@ -50,7 +50,7 @@ const removeLoading = () => {
 
 const debounceTokenCancel = new Map();
 
-export const request = (config?: IRequestConfig): any => {
+export const request = (config<% if (useTs) { %>?: IRequestConfig<% } %>)<% if (useTs) { %>: any<% } %> => {
   const instance = axios.create({
     baseURL,
     timeout,
@@ -63,11 +63,11 @@ export const request = (config?: IRequestConfig): any => {
 
   // 请求拦截器
   instance.interceptors.request.use(
-    (config: IRequestConfig): any => {
+    (config<% if (useTs) { %>: IRequestConfig<% } %>)<% if (useTs) { %>: any<% } %> => {
       // 根据自己的项目进行修改参数
       const token = useUserStore().token;
       // 设置token
-      if (token) config.headers![tokenKey] = token;
+      if (token) config.headers<% if (useTs) { %>!<% } %>[tokenKey] = token;
       const { loading = showLoading } = config;
       if (loading) addLoading();
       const requestTokenKey = `${config.method}_${config.url}`;
@@ -95,9 +95,9 @@ export const request = (config?: IRequestConfig): any => {
      * If you want to get http information such as headers or status
      * Please return  response => response
      */
-    (response: AxiosResponse) => {
+    (response<% if (useTs) { %>: AxiosResponse<% } %>) => {
       const res = response.data;
-      const { loading = showLoading, showError = showErr } = response.config as IRequestConfig;
+      const { loading = showLoading, showError = showErr } = response.config<% if (useTs) { %> as IRequestConfig<% } %>;
       if (loading) removeLoading();
       // 请求出错处理
       if (res[code] === -1) {
@@ -125,10 +125,10 @@ export const request = (config?: IRequestConfig): any => {
       } else return Promise.reject(error);
     },
   );
-  return instance.request(config!);
+  return instance.request(config<% if (useTs) { %>!<% } %>);
 };
 
-const handleNetworkError = (status: number, message: string) => {
+const handleNetworkError = (status<% if (useTs) { %>: number<% } %>, message<% if (useTs) { %>: string<% } %>) => {
   let errMessage = '未知错误';
   if (status) {
     switch (status) {

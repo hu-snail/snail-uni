@@ -385,6 +385,8 @@ function scaffold({
     "src/apis/index.ts",
     "src/manifest.json",
     "src/pages.json",
+    "src/utils/request.ts",
+    "vite.config.ts",
     "uno.config.ts",
     "manifest.config.ts",
     "pages.config.ts"
@@ -418,9 +420,6 @@ function scaffold({
   if (useTabbar)
     filesToScaffold.push(...tabbarFilesToScaffold);
   const moveFilesToScaffold = ["verify-commit.mjs", "src/types/auto-import.d.ts", "src/types/uni-pages.d.ts"];
-  const fileName = useTs2 ? "vite.config.ts" : "vite.config.js";
-  const requestFile = useTs2 ? "src/utils/request.ts" : "src/utils/request.js";
-  moveFilesToScaffold.push(...[requestFile, fileName]);
   if (useTabbar)
     moveFilesToScaffold.push(
       "src/static/tabbar/home_active.png",
@@ -439,7 +438,7 @@ function scaffold({
   return `\u{1F389} \u4F60\u5DF2\u6210\u529F\u521B\u5EFA! \u73B0\u5728\u8BF7\u4F7F\u7528 ${green(`${pm}`)} \u8FD0\u884C\u4F60\u7684\u9879\u76EE
 
    \u8FDB\u5165\u9879\u76EE\uFF1A${green(`cd ${title2}`)}
-   \u5B89\u88C5\u4F9D\u8D56\uFF1A${green(`${pm} install`)} ${gray(`(\u5B89\u88C5\u524D\uFF0C\u8BF7\u68C0\u67E5Node\u7248\u672C\u662F\u5426>= ${green("18.0.0")})`)} 
+   \u5B89\u88C5\u4F9D\u8D56\uFF1A${green(`${pm} install`)} ${gray(`(\u5B89\u88C5\u524D\uFF0C\u8BF7\u68C0\u67E5Node\u7248\u672C>= ${green("18.0.0")})`)} 
    \u8FD0\u884C\u9879\u76EE\uFF1A${green(`${pm} dev`)} ${gray(`(\u9ED8\u8BA4\u8FD0\u884C\u5FAE\u4FE1\u5C0F\u7A0B\u5E8F)`)} 
    snail-uni\u6587\u6863: ${green("https://hu-snail.github.io/snail-uni")}
 `;
