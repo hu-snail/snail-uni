@@ -1,6 +1,6 @@
 <route type="page" lang="json">
 {
-  "style": { "navigationBarTitleText": "路由参数" }
+  "style": { "navigationBarTitleText": "路由参数", "backgroundColor": "#f5f5f5" }
 }
 </route>
 <template>
@@ -43,12 +43,12 @@
 
 <style lang="scss" scoped>
   .content-wrap {
-    height: 100vh;
     padding: 60rpx 30rpx;
-    background-color: #f5f5f5;
+    overflow-x: hidden;
     .code {
       padding: 20rpx;
       margin: 10px 0;
+      overflow-x: hidden;
       white-space: pre-wrap;
       background-color: #fff;
       border-radius: 10rpx;

@@ -7,3 +7,12 @@ export const getChannel = (params: any) => {
     loading: true,
   });
 };
+
+export const getHotList = (params: any) => {
+  return request({
+    url: '/bilibili',
+    method: 'get',
+    params,
+    loading: true,
+  });
+};

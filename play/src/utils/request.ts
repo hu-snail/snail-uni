@@ -96,6 +96,7 @@ export const request = (config?: IRequestConfig): any => {
      * Please return  response => response
      */
     (response: AxiosResponse) => {
+      console.log(response);
       const res = response.data;
       const { loading = showLoading, showError = showErr } = response.config as IRequestConfig;
       if (loading) removeLoading();
@@ -117,6 +118,7 @@ export const request = (config?: IRequestConfig): any => {
       }
     },
     (error) => {
+      console.log(error);
       removeLoading();
       // 是否显示错误信息提示 默认显示 关闭时需要在接口调用处自行处理
       if (JSON.parse(VITE_SHOW_ERROR)) {

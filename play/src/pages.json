@@ -14,36 +14,33 @@
     }
   },
   "tabBar": {
-    "custom": true,
-    "color": "#999999",
-    "selectedColor": "#018d71",
-    "backgroundColor": "#F8F8F8",
-    "borderStyle": "black",
+    "color": "#99999",
+    "selectedColor": "#5474f2",
+    "backgroundColor": "#f5f5f5e6",
+    "borderStyle": "white",
     "height": "50px",
-    "fontSize": "10px",
+    "fontSize": "12px",
     "iconWidth": "24px",
     "spacing": "3px",
+    "blurEffect": "extralight",
     "list": [
       {
         "iconPath": "/static/tabbar/home_default.png",
         "selectedIconPath": "/static/tabbar/home_active.png",
         "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconType": "image"
+        "text": "首页"
       },
       {
         "iconPath": "/static/tabbar/temp_default.png",
         "selectedIconPath": "/static/tabbar/temp_active.png",
         "pagePath": "pages/template/index",
-        "text": "模版",
-        "iconType": "image"
+        "text": "模版"
       },
       {
         "iconPath": "/static/tabbar/my_default.png",
         "selectedIconPath": "/static/tabbar/my_active.png",
         "pagePath": "pages/my/index",
-        "text": "我的",
-        "iconType": "image"
+        "text": "我的"
       }
     ]
   },
@@ -53,7 +50,8 @@
       "type": "home",
       "layout": "tabbar",
       "style": {
-        "navigationBarTitleText": "首页"
+        "navigationBarTitleText": "首页",
+        "backgroundColor": "#f5f5f5"
       },
       "name": "home"
     },
@@ -84,7 +82,8 @@
           "path": "axios/index",
           "type": "page",
           "style": {
-            "navigationBarTitleText": "Axios 请求页"
+            "navigationBarTitleText": "Axios 请求页",
+            "backgroundColor": "#f5f5f5"
           }
         },
         {
@@ -105,14 +104,16 @@
           "path": "route/index",
           "type": "page",
           "style": {
-            "navigationBarTitleText": "Router 路由跳转"
+            "navigationBarTitleText": "Router 路由跳转",
+            "backgroundColor": "#f5f5f5"
           }
         },
         {
           "path": "route/query",
           "type": "page",
           "style": {
-            "navigationBarTitleText": "路由参数"
+            "navigationBarTitleText": "路由参数",
+            "backgroundColor": "#f5f5f5"
           }
         }
       ]

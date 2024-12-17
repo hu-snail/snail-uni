@@ -1,10 +1,10 @@
 <template>
   <wd-config-provider theme="light" :theme-vars="themeVars">
-    <view class="tabbar-app-layout" :style="{ height: `calc(100vh - ${tabbarHeight}px)` }">
+    <view class="tabbar-app-layout">
       <slot />
       <wd-toast />
       <wd-message-box />
-      <su-tabbar ref="tabbarRef" fixed :active="1" />
+      <!-- <su-tabbar ref="tabbarRef" fixed :active="1" /> -->
     </view>
   </wd-config-provider>
 </template>
@@ -20,14 +20,14 @@
   const tabbarHeight = ref(0);
   onLoad(() => {
     nextTick(() => {
-      uni
-        .createSelectorQuery()
-        .in(tabbarRef.value)
-        .select('.su-tabbar')
-        .boundingClientRect((rect: any) => {
-          tabbarHeight.value = rect.height;
-        })
-        .exec();
+      // uni
+      //   .createSelectorQuery()
+      //   .in(tabbarRef.value)
+      //   .select('.su-tabbar')
+      //   .boundingClientRect((rect: any) => {
+      //     tabbarHeight.value = rect.height;
+      //   })
+      //   .exec();
     });
   });
 </script>

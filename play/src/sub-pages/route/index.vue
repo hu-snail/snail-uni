@@ -1,6 +1,6 @@
 <route type="page" lang="json">
 {
-  "style": { "navigationBarTitleText": "Router 路由跳转" }
+  "style": { "navigationBarTitleText": "Router 路由跳转", "backgroundColor": "#f5f5f5" }
 }
 </route>
 <template>
@@ -190,9 +190,7 @@
 
 <style lang="scss" scoped>
   .content-wrap {
-    height: 100vh;
     padding: 60rpx 30rpx;
-    background-color: #f5f5f5;
     .item {
       margin-bottom: 10px;
       &-content {

@@ -1,7 +1,7 @@
 <route type="home" lang="json">
 {
   "layout": "tabbar",
-  "style": { "navigationBarTitleText": "首页" },
+  "style": { "navigationBarTitleText": "首页", "backgroundColor": "#f5f5f5" },
   "name": "home"
 }
 </route>

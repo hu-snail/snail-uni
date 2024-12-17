@@ -1,4 +1,4 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
 
 settings:
   autoInstallPeers: false
@@ -230,6 +230,9 @@ importers:
       axios:
         specifier: ^1.7.4
         version: 1.7.7
+      mockjs:
+        specifier: ^1.1.0
+        version: 1.1.0
       pinia:
         specifier: ^2.2.1
         version: 2.2.6(typescript@5.7.2)(vue@3.5.13)
@@ -270,6 +273,9 @@ importers:
       '@iconify-json/icon-park-outline':
         specifier: ^1.1.16
         version: 1.2.1
+      '@types/mockjs':
+        specifier: ^1.0.10
+        version: 1.0.10
       '@types/node':
         specifier: ^20.14.12
         version: 20.17.7
@@ -5014,6 +5020,10 @@ packages:
     resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
     dev: true
 
+  /@types/mockjs@1.0.10:
+    resolution: {integrity: sha512-SXgrhajHG7boLv6oU93CcmdDm0HYRiceuz6b+7z+/2lCJPTWDv0V5YiwFHT2ejE4bQqgSXQiVPQYPWv7LGsK1g==}
+    dev: true
+
   /@types/node@20.17.7:
     resolution: {integrity: sha512-sZXXnpBFMKbao30dUAvzKbdwA2JM1fwUtVEq/kxKuPI5mMwZiRElCpTXb0Biq/LMEVpXDZL5G5V0RPnxKeyaYg==}
     dependencies:
@@ -5249,6 +5259,13 @@ packages:
 
   /@unocss-applet/preset-applet@0.8.5:
     resolution: {integrity: sha512-pI6Rl5+XznuGnEBhaWN57KuYDdgRBE81F/uC1ryQksOqTAPOSUCnP1ctTkGnhbrlX7R1/yKy1pTq10tYEhvzrw==}
+    peerDependenciesMeta:
+      '@unocss/core':
+        optional: true
+      '@unocss/preset-mini':
+        optional: true
+      '@unocss/preset-uno':
+        optional: true
     dependencies:
       '@unocss/core': 0.63.6
       '@unocss/preset-mini': 0.63.6
@@ -5263,6 +5280,9 @@ packages:
 
   /@unocss-applet/transformer-attributify@0.8.5:
     resolution: {integrity: sha512-Us15VcQBWEGjG63rMQKlwtQTARTy4scIiaLdOHdDCcKivBhjUKRXUzmUe92jtAQ5Ib9OLdWtgmYp0zlhnyOTPw==}
+    peerDependenciesMeta:
+      '@unocss/core':
+        optional: true
     dependencies:
       '@unocss/core': 0.63.6
       magic-string: 0.30.13
@@ -6709,7 +6729,6 @@ packages:
   /commander@4.1.1:
     resolution: {integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==}
     engines: {node: '>= 6'}
-    dev: true
 
   /compare-versions@3.6.0:
     resolution: {integrity: sha512-W6Af2Iw1z4CB7q4uU4hv646dW9GQuBM+YpC0UvUCWSD8w90SJjp+ujJuXaEMtAXBtSqGfMPuFOVn4/+FlaqfBA==}
@@ -9621,6 +9640,13 @@ packages:
       pathe: 1.1.2
       pkg-types: 1.2.1
       ufo: 1.5.4
+
+  /mockjs@1.1.0:
+    resolution: {integrity: sha512-eQsKcWzIaZzEZ07NuEyO4Nw65g0hdWAyurVol1IPl1gahRwY+svqzfgfey8U8dahLwG44d6/RwEzuK52rSa/JQ==}
+    hasBin: true
+    dependencies:
+      commander: 4.1.1
+    dev: false
 
   /module-alias@2.2.3:
     resolution: {integrity: sha512-23g5BFj4zdQL/b6tor7Ji+QY4pEfNH784BMslY9Qb0UnJWRAt+lQGLYmRaM0KDBwIG23ffEBELhZDP2rhi9f/Q==}
