@@ -40,17 +40,17 @@ export default async({ mode }) => {
     },
     // 插件注意： Unixx需要在Uni()之前引入
     plugins: [
-      legacy({
-        // 需要兼容的目标列表，可以设置多个
-        targets: [
-          '> 0%',
-          'Chrome > 4',
-          'Android >= 4',
-          'IOS >= 7',
-          'not ie <= 6',
-          'Firefox ESR',
-        ],
-        renderLegacyChunks: true,
+      process.env.UNI_PLATFORM === 'h5' &&
+        legacy({
+          targets: [
+            '> 0%',
+            'Chrome > 4',
+            'Android >= 4',
+            'IOS >= 7',
+            'not ie <= 6',
+            'Firefox ESR',
+          ],
+          renderLegacyChunks: true,
       }),
       // uni-app pages配置 会根据route配置，自动生成路由
       UniPages({
