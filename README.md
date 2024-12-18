@@ -15,7 +15,9 @@
 - [gitee地址](https://gitee.com/hu-snail/snail-uni)
 
 ## 🚀 使用
+
 在使用前建议先全局安装脚手架，命令如下：
+
 ```sh
 # npm
 npm install snail-uni -g
@@ -26,7 +28,9 @@ yarn add snail-uni
 ```
 
 ### 一.命令导向方式
+
 如果使用 `pnpm`, `yarn` 命令安装，请先全局安装 `snail-uni` 脚手架工具, 否则命令无效!
+
 ```sh
 # npm
 npx snail-uni create
@@ -37,17 +41,27 @@ yarn snail-uni create
 
 ```
 
-将需要回答几个简单的问题：
-
-![image.png](https://gitee.com/hu-snail/snail-uni/raw/main/create-snail-uni/static/cli.jpg)
-
 ### 二.命令行选项
 
-语法：`snail-uni create <project-name> <语言类型（js/ts）>` 不指定类型默认为 `js` 版本， `ts` 版本如下
+通过附加的命令行选项直接指定项目名称和你想要使用的模板, 例如：
+`npx snail-uni create <project-name> <语言类型（js/ts）> <是否使用（tabbar/no)> <是否使用代码检查（eslint/no）> <ui库（Wot-Design/Uv-ui/Uview-plus/TuniaoUI）>` 不指定类型默认为 `js` 版本且其他都默认关闭！
 
 ```sh
 # npm
+# 创建 ts、tabbar、eslint版本 
+npx snail-uni create snail-uni-app ts tabbar eslint
+# 创建 js、tabbar、eslint版本
+npx snail-uni create snail-uni-app js tabbar eslint
+# 创建 ts、tabbar, 不使用 eslint版本
+npx snail-uni create snail-uni-app ts tabbar
+# 创建 js、tabbar, 不使用 eslint版本
+npx snail-uni create snail-uni-app js tabbar
+# 创建ts、不需要tabbar 不需要eslint
 npx snail-uni create snail-uni-app ts
+# 创建js、不需要tabbar 不需要eslint
+npx snail-uni create snail-uni-app
+# 创建指定ui库版本
+npx snail-uni create snail-uni-app ts tabbar eslint Uv-ui
 
 # pnpm
 pnpm create snail-uni snail-uni-app ts
@@ -57,5 +71,3 @@ yarn create snail-uni snail-uni-app ts
 ```
 
 执行完之后，将生成一个新的项目
-
-![image.png](https://gitee.com/hu-snail/snail-uni/raw/main/create-snail-uni/static/cli-res.jpg)
