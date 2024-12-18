@@ -7,6 +7,8 @@ import path from 'path';
 import pic from 'picocolors';
 import template from 'lodash.template';
 
+import { version } from './package.json';
+
 const { bold, green, red, gray } = pic;
 const argv: any = minimist(process.argv.slice(2));
 
@@ -28,7 +30,7 @@ export interface ScaffoldOptions {
 }
 
 export async function create() {
-  intro(bold(green('欢迎使用 snail-uni 脚手架！')));
+  intro(bold(green(`欢迎使用 snail-uni@${version} 脚手架！`)));
   let title = '';
   const options: ScaffoldOptions = await group(
     {
@@ -224,15 +226,31 @@ export function moveFiles(templateDir: string, resolvedRoot: string, filePath: s
   fs.copySync(path.resolve(templateDir, filePath), path.resolve(resolvedRoot, filePath));
 }
 
-export const createTemp = (title?: string, useTs?: string) => {
+export const createTemp = (title?: string, useTs?: string, tabbar?: string, eslint?: string, ui?: ScaffoldUIType) => {
   if (title) {
     if (fs.existsSync(title)) log.error(red('该名称已存在，请重新输入'));
-    else outro(scaffold({ title, useTs: useTs === 'ts' }));
+    else
+      outro(
+        scaffold({
+          title,
+          useTs: useTs === 'ts',
+          useTabbar: tabbar === 'tabbar',
+          useEslint: eslint === 'eslint',
+          uiType: ui,
+        }),
+      );
   } else create();
 };
 const command = argv._[0];
-const title = argv._[1];
-const useTs = argv._[2];
+const projectName = argv._[1];
+const isTs = argv._[2];
+const isTabbar = argv._[3];
+const isEslint = argv._[4];
+let uiType = argv._[5];
+if (!['Wot-Design', 'Uv-ui', 'Uview-plus', 'TuniaoUI'].includes(uiType)) {
+  uiType = ScaffoldUIType.Default;
+}
+
 if (command === 'create') {
-  createTemp(title, useTs);
-} else createTemp(title, useTs);
+  createTemp(projectName, isTs, isTabbar, isEslint, uiType);
+} else createTemp(projectName, isTs, isTabbar, isEslint, uiType);
