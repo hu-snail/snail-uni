@@ -1,5 +1,5 @@
 {
-  "name": "snail-uni",
+  "name": "create-snail-uni",
   "version": "1.0.0",
   "description": "used for quickly creating snail-uni app",
   "type": "module",
@@ -13,7 +13,7 @@
   "homepage": "https://hu-snail.github.io/snail-uni/",
   "sideEffects": false,
   "bin": {
-    "snail-uni": "bin/index.js"
+    "create-snail-uni": "bin/index.js"
   },
   "repository": {
     "type": "git",
