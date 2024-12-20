@@ -283,7 +283,7 @@ import pic from 'picocolors';
 import template from 'lodash.template';
 
 // package.json
-var version = '1.0.1';
+var version = '1.0.2';
 
 // index.ts
 var { bold, green, red, gray } = pic;
@@ -495,16 +495,13 @@ var createTemp = (title, useTs, tabbar, eslint, ui) => {
       );
   } else create();
 };
-var command = argv._[0];
-var projectName = argv._[1];
-var isTs = argv._[2];
-var isTabbar = argv._[3];
-var isEslint = argv._[4];
-var uiType = argv._[5];
+var projectName = argv._[0];
+var isTs = argv._[1];
+var isTabbar = argv._[2];
+var isEslint = argv._[3];
+var uiType = argv._[4];
 if (!['Wot-Design', 'Uv-ui', 'Uview-plus', 'TuniaoUI'].includes(uiType)) {
   uiType = 'Wot-Design' /* Default */;
 }
-if (command === 'create') {
-  createTemp(projectName, isTs, isTabbar, isEslint, uiType);
-} else createTemp(projectName, isTs, isTabbar, isEslint, uiType);
+createTemp(projectName, isTs, isTabbar, isEslint, uiType);
 export { ScaffoldUIType, create, createTemp, moveFiles, scaffold };
