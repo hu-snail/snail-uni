@@ -114,7 +114,7 @@ export function scaffold({
   useTabbar,
   useEslint,
 }: ScaffoldOptions): string {
-  const resolvedRoot = path.resolve('./', title);
+  const resolvedRoot = path.resolve(process.cwd(), title);
   const templateDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../template');
   const data = {
     title: JSON.stringify(title),

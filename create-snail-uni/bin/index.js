@@ -283,7 +283,7 @@ import pic from 'picocolors';
 import template from 'lodash.template';
 
 // package.json
-var version = '1.2.2';
+var version = '1.0.0';
 
 // index.ts
 var { bold, green, red, gray } = pic;
@@ -379,7 +379,7 @@ function scaffold({
   useTabbar,
   useEslint,
 }) {
-  const resolvedRoot = path.resolve('./', title);
+  const resolvedRoot = path.resolve(process.cwd(), title);
   const templateDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../template');
   const data = {
     title: JSON.stringify(title),
