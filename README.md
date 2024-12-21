@@ -16,58 +16,56 @@
 
 ## 🚀 使用
 
-在使用前建议先全局安装脚手架，命令如下：
-
-```sh
-# npm
-npm install snail-uni -g
-# or pnpm
-pnpm add snail-uni -g
-# or yarn
-yarn add snail-uni 
-```
-
 ### 一.命令导向方式
 
-如果使用 `pnpm`, `yarn` 命令安装，请先全局安装 `snail-uni` 脚手架工具, 否则命令无效!
-
 ```sh
 # npm
-npx snail-uni create
+npm create snail-uni
 # pnpm
-pnpm snail-uni create  
+pnpm create snail-uni 
 # yarn
-yarn snail-uni create
+yarn create snail-uni
+# bun
+bun create snail-uni
 
 ```
 
 ### 二.命令行选项
 
-通过附加的命令行选项直接指定项目名称和你想要使用的模板, 例如：
-`npx snail-uni create <project-name> <语言类型（js/ts）> <是否使用（tabbar/no)> <是否使用代码检查（eslint/no）> <ui库（Wot-Design/Uv-ui/Uview-plus/TuniaoUI）>` 不指定类型默认为 `js` 版本且其他都默认关闭！
+命令行支持两种方式创建：
+
+#### 方式一
+
+npm create snail-uni `<project-name> --t <template-name 模板名称> --ui <ui库（Wot-Design/Uv-ui/Uview-plus/TuniaoUI> --lint <yes/no）>`
+
+```sh
+# npm
+npm create snail-uni my-snail-app --t uni-ts --ui Uv-ui  --lint yes
+# pnpm
+pnpm create snail-uni my-snail-app --t uni-ts --ui Uv-ui  --lint yes
+# yarn
+yarn create snail-uni my-snail-app --t uni-ts --ui Uv-ui  --lint yes
+# bun
+bun create snail-uni my-snail-app --t uni-ts --ui Uv-ui  --lint yes
+```
+
+- 支持以下模板：`uni-ts`、`uni-tabbar-ts`、`uni-js`、`uni-tabbar-js`
+- 支持以下ui库：`Wot-Design`、`Uv-ui`、`Uview-plus`、`TuniaoUI`
+
+#### 方式二
+
+npm create snail-uni `<project-name> <语言类型（js/ts）> <是否使用（tabbar/no)> <是否使用代码检查（eslint/no）> <ui库（Wot-Design/Uv-ui/Uview-plus/TuniaoUI）>`
 
 ```sh
 # npm
 # 创建 ts、tabbar、eslint版本 
-npx snail-uni create snail-uni-app ts tabbar eslint
-# 创建 js、tabbar、eslint版本
-npx snail-uni create snail-uni-app js tabbar eslint
-# 创建 ts、tabbar, 不使用 eslint版本
-npx snail-uni create snail-uni-app ts tabbar
-# 创建 js、tabbar, 不使用 eslint版本
-npx snail-uni create snail-uni-app js tabbar
-# 创建ts、不需要tabbar 不需要eslint
-npx snail-uni create snail-uni-app ts
-# 创建js、不需要tabbar 不需要eslint
-npx snail-uni create snail-uni-app
-# 创建指定ui库版本
-npx snail-uni create snail-uni-app ts tabbar eslint Uv-ui
-
+npm create snail-uni snail-uni-app ts tabbar eslint
 # pnpm
-pnpm create snail-uni snail-uni-app ts
-
+pnpm create snail-uni snail-uni-app ts tabbar eslint
 # yarn
-yarn create snail-uni snail-uni-app ts
+yarn create snail-uni snail-uni-app ts tabbar eslint
+# bun
+bun create snail-uni snail-uni-app ts tabbar eslint
 ```
 
-执行完之后，将生成一个新的项目
+执行完之后，将生成一个 `uni-app` 的项目
