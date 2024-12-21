@@ -1,6 +1,6 @@
 {
   "name": "create-snail-uni",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "used for quickly creating snail-uni app",
   "type": "module",
   "scripts": {
@@ -30,7 +30,6 @@
     "bin",
     "template",
     "package.json",
-    "static",
     "README.md"
   ],
   "keywords": [

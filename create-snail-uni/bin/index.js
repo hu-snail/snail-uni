@@ -283,7 +283,7 @@ import pic from 'picocolors';
 import template from 'lodash.template';
 
 // package.json
-var version = '1.0.2';
+var version = '1.0.3';
 
 // index.ts
 var { bold, green, red, gray } = pic;
@@ -479,7 +479,7 @@ function scaffold({
 function moveFiles(templateDir, resolvedRoot, filePath) {
   fs.copySync(path.resolve(templateDir, filePath), path.resolve(resolvedRoot, filePath));
 }
-var createTemp = (title, useTs, tabbar, eslint, ui) => {
+var createTemp = (title, useTs, tabbar, eslint, ui2) => {
   if (title) {
     if (fs.existsSync(title))
       log.error(red('\u8BE5\u540D\u79F0\u5DF2\u5B58\u5728\uFF0C\u8BF7\u91CD\u65B0\u8F93\u5165'));
@@ -490,7 +490,7 @@ var createTemp = (title, useTs, tabbar, eslint, ui) => {
           useTs: useTs === 'ts',
           useTabbar: tabbar === 'tabbar',
           useEslint: eslint === 'eslint',
-          uiType: ui,
+          uiType: ui2,
         }),
       );
   } else create();
@@ -503,5 +503,28 @@ var uiType = argv._[4];
 if (!['Wot-Design', 'Uv-ui', 'Uview-plus', 'TuniaoUI'].includes(uiType)) {
   uiType = 'Wot-Design' /* Default */;
 }
+var { t, ui, lint } = argv;
+if (t) {
+  switch (t) {
+    case 'uni-ts':
+      isTs = 'ts';
+      break;
+    case 'uni-tabbar-ts':
+      isTabbar = 'tabbar';
+      isTs = 'ts';
+      break;
+    case 'uni-js':
+      isTs = 'js';
+      break;
+    case 'uni-tabbar-js':
+      isTabbar = 'tabbar';
+      isTs = 'js';
+      break;
+    default:
+      break;
+  }
+}
+if (ui) uiType = ui;
+if (lint) isEslint = lint === 'yes' ? 'eslint' : 'no';
 createTemp(projectName, isTs, isTabbar, isEslint, uiType);
 export { ScaffoldUIType, create, createTemp, moveFiles, scaffold };

@@ -241,13 +241,39 @@ export const createTemp = (title?: string, useTs?: string, tabbar?: string, esli
       );
   } else create();
 };
+
 const projectName = argv._[0];
-const isTs = argv._[1];
-const isTabbar = argv._[2];
-const isEslint = argv._[3];
+let isTs = argv._[1];
+let isTabbar = argv._[2];
+let isEslint = argv._[3];
 let uiType = argv._[4];
 if (!['Wot-Design', 'Uv-ui', 'Uview-plus', 'TuniaoUI'].includes(uiType)) {
   uiType = ScaffoldUIType.Default;
 }
+
+const { t, ui, lint } = argv;
+if (t) {
+  switch (t) {
+    case 'uni-ts':
+      isTs = 'ts';
+      break;
+    case 'uni-tabbar-ts':
+      isTabbar = 'tabbar';
+      isTs = 'ts';
+      break;
+    case 'uni-js':
+      isTs = 'js';
+      break;
+    case 'uni-tabbar-js':
+      isTabbar = 'tabbar';
+      isTs = 'js';
+      break;
+    default:
+      break;
+  }
+}
+
+if (ui) uiType = ui;
+if (lint) isEslint = lint === 'yes' ? 'eslint' : 'no';
 
 createTemp(projectName, isTs, isTabbar, isEslint, uiType);

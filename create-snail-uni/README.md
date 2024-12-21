@@ -1,7 +1,7 @@
 <h1 align="center">🌾 snail-uni 🌾</h1>
 <p align="center">
-    <a href="https://www.npmjs.com/package/snail-uni"><img src="https://img.shields.io/npm/dm/snail-uni?colorA=363a4f&colorB=f5a97f&style=for-the-badge"></a>
-    <a href="https://www.npmjs.com/package/snail-uni"><img src="https://img.shields.io/npm/v/snail-uni?colorA=363a4f&colorB=a6da95&style=for-the-badge"></a>
+    <a href="https://www.npmjs.com/package/create-snail-uni"><img src="https://img.shields.io/npm/dm/create-snail-uni?colorA=363a4f&colorB=f5a97f&style=for-the-badge"></a>
+    <a href="https://www.npmjs.com/package/create-snail-uni"><img src="https://img.shields.io/npm/v/create-snail-uni?colorA=363a4f&colorB=a6da95&style=for-the-badge"></a>
 </p>
 
 <p align="center">更懂你的uni-app框架</p>
@@ -20,33 +20,52 @@
 
 ```sh
 # npm
-npx snail-uni create
+npm create snail-uni
 # pnpm
 pnpm create snail-uni 
 # yarn
 yarn create snail-uni
+# bun
+bun create snail-uni
 
 ```
-
-将需要回答几个简单的问题：
-
-![image.png](https://gitee.com/hu-snail/snail-uni/raw/main/create-snail-uni/static/cli.jpg)
 
 ### 二.命令行选项
 
-语法：`snail-uni create <project-name> <语言类型（js/ts）>` 不指定类型默认为 `js` 版本， `ts` 版本如下
+命令行支持两种方式创建：
+
+#### 方式一
+
+npm create snail-uni `<project-name> --t <template-name 模板名称> --ui <ui库（Wot-Design/Uv-ui/Uview-plus/TuniaoUI> --lint <yes/no）>`
 
 ```sh
 # npm
-npx snail-uni create snail-uni-app ts
-
+npm create snail-uni my-snail-app --t uni-ts --ui Uv-ui  --lint yes
 # pnpm
-pnpm create snail-uni snail-uni-app ts
-
+pnpm create snail-uni my-snail-app --t uni-ts --ui Uv-ui  --lint yes
 # yarn
-yarn create snail-uni snail-uni-app ts
+yarn create snail-uni my-snail-app --t uni-ts --ui Uv-ui  --lint yes
+# bun
+bun create snail-uni my-snail-app --t uni-ts --ui Uv-ui  --lint yes
+```
+
+- 支持以下模板：`uni-ts`、`uni-tabbar-ts`、`uni-js`、`uni-tabbar-js`
+- 支持以下ui库：`Wot-Design`、`Uv-ui`、`Uview-plus`、`TuniaoUI`
+
+#### 方式二
+
+npm create snail-uni `<project-name> <语言类型（js/ts）> <是否使用（tabbar/no)> <是否使用代码检查（eslint/no）> <ui库（Wot-Design/Uv-ui/Uview-plus/TuniaoUI）>`
+
+```sh
+# npm
+# 创建 ts、tabbar、eslint版本 
+npm create snail-uni snail-uni-app ts tabbar eslint
+# pnpm
+pnpm create snail-uni snail-uni-app ts tabbar eslint
+# yarn
+yarn create snail-uni snail-uni-app ts tabbar eslint
+# bun
+bun create snail-uni snail-uni-app ts tabbar eslint
 ```
 
 执行完之后，将生成一个新的项目
-
-![image.png](https://gitee.com/hu-snail/snail-uni/raw/main/create-snail-uni/static/cli-res.jpg)
