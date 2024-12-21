@@ -1,5 +1,9 @@
 # 快速开始
 
+::: tip 兼容性注意
+Snail-uni 要求 [Node.js](https://nodejs.org/en/) 版本 `18+` 或者 `20+`. 请注意升级你的 `Node.js` 版本！否则会导致项目无法正常运行！
+:::
+
 ### 前置准备
 
 - **Node.js** 18 及以上版本
@@ -10,23 +14,6 @@
 
 > 注：无需**App**开发，则无需下载HBuilderX
 
-**Snail-uni** 自带脚手架工具, 在使用前建议先请先执行以下安装命令：
-::: code-group
-
-```sh [npm]
-npm add snail-uni -g
-```
-
-```sh [pnpm]
-pnpm add snail-uni -g
-```
-
-```sh [yarn]
-yarn add snail-uni -g
-```
-
-:::
-
 ## Vscode插件安装
 
 `snail-uni`内置了插件安装配置文件，使用`Vscode`打开项目文件夹，点击`安装插件`即可安装插件。
@@ -36,24 +23,28 @@ yarn add snail-uni -g
 │   └── extensions.json
 ```
 
-## 创建项目
+## 创建一个Snail-uni项目
 
 `snail-uni` 附带一个命令行创建向导，可以帮助你构建一个基本项目。支持创建 `js` 与 `ts` 让你无需纠结。
 ::: warning 注意
-如果使用 `pnpm` , `yarn` 命令安装，请先全局安装 `snail-uni` 脚手架工具, 否则命令无效，全局安装方法请查看前置准备安装命令！
+Snail-uni 要求 [Node.js](https://nodejs.org/en/) 版本 `18+` 或者 `20+`. 请注意升级你的 `Node.js` 版本！否则会导致项目无法正常运行！
 :::
 ::: code-group
 
-```sh [npm]
-npx snail-uni create
+```bash [npm]
+npm create snail-uni
 ```
 
-```sh [pnpm]
-pnpm snail-uni create
+```bash [pnpm]
+pnpm create snail-uni 
 ```
 
-```sh [yarn]
-yarn snail-uni create
+```bash [Yarn]
+yarn create snail-uni 
+```
+
+```bash [Bun]
+bun create snail-uni 
 ```
 
 :::
@@ -62,59 +53,110 @@ yarn snail-uni create
 
 <<< @/snippets/create.ansi
 
+::: tip Tabbar说明
+Snail-uni 使用[uni-app](https://uniapp.dcloud.net.cn/api/ui/tabbar.html#settabbaritem)原生导航，自定义导航性能不如原生，非必要不建议使用自定义！
+:::
+
 你还可以通过附加的命令行选项直接指定项目名称和你想要使用的模板, 例如：
-`npx snail-uni create <project-name> <语言类型（js/ts）> <是否使用（tabbar/no)> <是否使用代码检查（eslint/no）> <ui库（Wot-Design/Uv-ui/Uview-plus/TuniaoUI）>` 不指定类型默认为 `js` 版本且其他都默认关闭！
+ 不指定类型默认为 `js` 版本且其他都默认关闭！支持两种创建语法：
+
+### 方式一
+
+npm create snail-uni `<project-name> --t <template-name 模板名称> --ui <ui库（Wot-Design/Uv-ui/Uview-plus/TuniaoUI> --lint <yes/no）>`
 ::: code-group
 
-```sh [npm]
-# 创建 ts、tabbar、eslint版本 
-npx snail-uni create snail-uni-app ts tabbar eslint
-# 创建 js、tabbar、eslint版本
-npx snail-uni create snail-uni-app js tabbar eslint
-# 创建 ts、tabbar, 不使用 eslint版本
-npx snail-uni create snail-uni-app ts tabbar
-# 创建 js、tabbar, 不使用 eslint版本
-npx snail-uni create snail-uni-app js tabbar
-# 创建ts、不需要tabbar 不需要eslint
-npx snail-uni create snail-uni-app ts
-# 创建js、不需要tabbar 不需要eslint
-npx snail-uni create snail-uni-app
-# 创建指定ui库版本
-npx snail-uni create snail-uni-app ts tabbar eslint Uv-ui
+```bash [npm]
+npm create snail-uni my-snail-app --t uni-ts --ui Uv-ui  --lint yes
 ```
 
-```sh [pnpm]
-# 创建 ts、tabbar、eslint版本 
-pnpm snail-uni create snail-uni-app ts tabbar eslint
-# 创建 js、tabbar、eslint版本
-pnpm snail-uni create snail-uni-app js tabbar eslint
-# 创建 ts、tabbar, 不使用 eslint版本
-pnpm snail-uni create snail-uni-app ts tabbar
-# 创建 js、tabbar, 不使用 eslint版本
-pnpm snail-uni create snail-uni-app js tabbar
-# 创建ts、不需要tabbar 不需要eslint
-pnpm snail-uni create snail-uni-app ts
-# 创建js、不需要tabbar 不需要eslint
-pnpm snail-uni create snail-uni-app
-# 创建指定ui库版本
-pnpm snail-uni create snail-uni-app ts tabbar eslint Uv-ui
+```bash [pnpm]
+pnpm create snail-uni my-snail-app --t uni-ts --ui Uv-ui  --lint yes
 ```
 
-```sh [yarn]
+```bash [Yarn]
+yarn create snail-uni my-snail-app --t uni-ts --ui Uv-ui  --lint yes
+```
+
+```bash [Bun]
+bun create snail-uni my-snail-app --t uni-ts --ui Uv-ui  --lint yes
+```
+
+:::
+
+- 支持以下模板：`uni-ts`、`uni-tabbar-ts`、`uni-js`、`uni-tabbar-js`
+- 支持以下ui库：`Wot-Design`、`Uv-ui`、`Uview-plus`、`TuniaoUI`
+
+### 方式二
+
+npm create snail-uni `<project-name> <语言类型（js/ts）> <是否使用（tabbar/no)> <是否使用代码检查（eslint/no）> <ui库（Wot-Design/Uv-ui/Uview-plus/TuniaoUI）>`
+::: code-group
+
+```bash [npm]
+# 创建 ts、tabbar、eslint版本 
+npm create snail-uni snail-uni-app ts tabbar eslint
+# 创建 js、tabbar、eslint版本
+npm create snail-uni snail-uni-app js tabbar eslint
+# 创建 ts、tabbar, 不使用 eslint版本
+npm create snail-uni snail-uni-app ts tabbar
+# 创建 js、tabbar, 不使用 eslint版本
+npm create snail-uni snail-uni-app js tabbar
+# 创建ts、不需要tabbar 不需要eslint
+npm create snail-uni snail-uni-app ts
+# 创建js、不需要tabbar 不需要eslint
+npm create snail-uni snail-uni-app
+# 创建指定ui库版本 Wot-Design | Uv-ui | Uview-plus | TuniaoUI
+npm create snail-uni snail-uni-app ts tabbar eslint Uv-ui
+```
+
+```bash [pnpm]
+# 创建 ts、tabbar、eslint版本 
+pnpm create snail-uni snail-uni-app ts tabbar eslint
+# 创建 js、tabbar、eslint版本
+pnpm create snail-uni snail-uni-app js tabbar eslint
+# 创建 ts、tabbar, 不使用 eslint版本
+pnpm create snail-uni snail-uni-app ts tabbar
+# 创建 js、tabbar, 不使用 eslint版本
+pnpm create snail-uni snail-uni-app js tabbar
+# 创建ts、不需要tabbar 不需要eslint
+pnpm create snail-uni snail-uni-app ts
+# 创建js、不需要tabbar 不需要eslint
+pnpm create snail-uni snail-uni-app
+# 创建指定ui库版本  Wot-Design | Uv-ui | Uview-plus | TuniaoUI
+pnpm create snail-uni snail-uni-app ts tabbar eslint Uv-ui
+```
+
+```bash [Yarn]
 # 创建 ts、tabbar、eslint版本
-yarn snail-uni create snail-uni-app ts tabbar eslint
+yarn create snail-uni snail-uni-app ts tabbar eslint
 # 创建 js、tabbar、eslint版本
-yarn snail-uni create snail-uni-app js tabbar eslint
+yarn create snail-uni snail-uni-app js tabbar eslint
 # 创建 ts、tabbar, 不使用 eslint版本
-yarn snail-uni create snail-uni-app ts tabbar
+yarn create snail-uni snail-uni-app ts tabbar
 # 创建 js、tabbar, 不使用 eslint版本
-yarn snail-uni create snail-uni-app js tabbar
+yarn create snail-uni snail-uni-app js tabbar
 # 创建ts、不需要tabbar 不需要eslint
-yarn snail-uni create snail-uni-app ts
+yarn create snail-uni snail-uni-app ts
 # 创建js、不需要tabbar 不需要eslint
-yarn snail-uni create snail-uni-app
-# 创建指定ui库版本
-yarn snail-uni create snail-uni-app ts tabbar eslint Uv-ui
+yarn create snail-uni snail-uni-app
+# 创建指定ui库版本  Wot-Design | Uv-ui | Uview-plus | TuniaoUI
+yarn create snail-uni snail-uni-app ts tabbar eslint Uv-ui
+```
+
+```bash [Bun]
+# 创建 ts、tabbar、eslint版本
+bun create snail-uni snail-uni-app ts tabbar eslint
+# 创建 js、tabbar、eslint版本
+bun create snail-uni snail-uni-app js tabbar eslint
+# 创建 ts、tabbar, 不使用 eslint版本
+bun create snail-uni snail-uni-app ts tabbar
+# 创建 js、tabbar, 不使用 eslint版本
+bun create snail-uni snail-uni-app js tabbar
+# 创建ts、不需要tabbar 不需要eslint
+bun create snail-uni snail-uni-app ts
+# 创建js、不需要tabbar 不需要eslint
+bun create snail-uni snail-uni-app
+# 创建指定ui库版本  Wot-Design | Uv-ui | Uview-plus | TuniaoUI
+bun create snail-uni snail-uni-app ts tabbar eslint Uv-ui
 ```
 
 :::
@@ -146,16 +188,20 @@ yarn snail-uni create snail-uni-app ts tabbar eslint Uv-ui
 >
 ::: code-group
 
-```sh [npm]
+```bash [npm]
 npm run dev
 ```
 
-```sh [pnpm]
+```bash [pnpm]
 pnpm run dev # or pnpm dev
 ```
 
-```sh [yarn]
+```sh [Yarn]
 yarn dev
+```
+
+```bash [Bun]
+bun run dev
 ```
 
 :::
@@ -165,14 +211,18 @@ yarn dev
 
 ::: code-group
 
-```sh [npm]
+```bash [npm]
 npm run build
 ```
 
-```sh [pnpm]
+```bash [pnpm]
 pnpm run build # or pnpm build
 ```
 
-```sh [yarn]
+```bash [Yarn]
 yarn build
+```
+
+```bash [Bun]
+bun run build
 ```

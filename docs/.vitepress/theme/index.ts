@@ -6,6 +6,7 @@ import Layout from './Layout.vue';
 import './rainbow.css';
 import './vars.css';
 import './style.css';
+import 'virtual:group-icons.css';
 
 export default {
   extends: DefaultTheme,
