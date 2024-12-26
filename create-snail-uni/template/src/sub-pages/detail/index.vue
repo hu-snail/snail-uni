@@ -1,7 +1,7 @@
-<!-- 使用 type="my" 属性设置首页 -->
-<route type="detail" lang="json">
+<route lang="json">
 {
-  "style": { "navigationBarTitleText": "详情页" }
+  "style": { "navigationBarTitleText": "详情页" },
+  "name": "Detail"
 }
 </route>
 <template>

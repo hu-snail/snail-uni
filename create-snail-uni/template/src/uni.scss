@@ -13,6 +13,7 @@
  */
 
 <% if (uiType === 'Uview-plus') { %>@import 'uview-plus/theme'; <% } %>
+<% if (uiType === 'NutUI') { %>@import 'nutui-uniapp/styles/variables'; <% } %>
 
 /* 颜色变量 */
 

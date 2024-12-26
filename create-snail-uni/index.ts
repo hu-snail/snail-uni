@@ -17,6 +17,8 @@ export enum ScaffoldUIType {
   UvUi = 'Uv-ui',
   UviewPlus = 'Uview-plus',
   TuniaoUI = 'TuniaoUI',
+  NutuUI = 'NutUI',
+  UniUI = 'UniUI',
 }
 
 export interface ScaffoldOptions {
@@ -25,7 +27,6 @@ export interface ScaffoldOptions {
   uiType?: ScaffoldUIType;
   useTs?: boolean;
   useTabbar?: boolean;
-
   useEslint?: boolean;
 }
 
@@ -56,22 +57,38 @@ export async function create() {
               // @ts-ignore
               value: ScaffoldUIType.Default,
               label: 'wot-design-ui',
-              hint: '推荐',
+              hint: '推荐，目前支持微信、支付宝、钉钉小程序、H5、APP等平台',
             },
             {
               // @ts-ignore
               value: ScaffoldUIType.UvUi,
               label: 'uv-ui',
+              hint: '全平台支持',
             },
             {
               // @ts-ignore
               value: ScaffoldUIType.UviewPlus,
               label: 'uview-plus',
+              hint: '全平台支持',
             },
             {
               // @ts-ignore
               value: ScaffoldUIType.TuniaoUI,
               label: 'tuniao-ui',
+              hint: '目前支持微信、支付宝、H5、APP等平台',
+            },
+            {
+              // @ts-ignore
+              value: ScaffoldUIType.NutuUI,
+              label: 'nut-ui',
+              hint: '京东, 目前仅支持微信小程序、H5平台',
+            },
+
+            {
+              // @ts-ignore
+              value: ScaffoldUIType.UniUI,
+              label: 'uni-ui',
+              hint: 'uni-app官方, 全平台支持',
             },
           ],
         }),
@@ -147,6 +164,8 @@ export function scaffold({
     'src/layouts/default.vue',
     'src/pages/index/index.vue',
     'src/pages/my/index.vue',
+    'src/sub-pages/detail/index.vue',
+    'src/sub-pages/login/index.vue',
     'index.html',
     'src/App.vue',
     'src/main.ts',

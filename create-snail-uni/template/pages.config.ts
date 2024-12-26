@@ -18,8 +18,8 @@ export default defineUniPages({
       <% if (uiType === 'Wot-Design') { %>'^wd-(.*)': 'wot-design-uni/components/wd-$1/wd-$1.vue'<% } %><% if (uiType === 'Uv-ui') { %>'^uv-(.*)': '@climblee/uv-ui/components/uv-$1/uv-$1.vue'<% } %><% if (uiType === 'Uview-plus') { %>"^u--(.*)": "uview-plus/components/u-$1/u-$1.vue",
       "^up-(.*)": "uview-plus/components/u-$1/u-$1.vue",
       "^u-([^-].*)": "uview-plus/components/u-$1/u-$1.vue"<% } %><% if (uiType === 'TuniaoUI') { %>'^tn-(.*)-(item|group)$': '@tuniao/tnui-vue3-uniapp/components/$1/src/$1-$2.vue',
-      '^tn-(.*)': '@tuniao/tnui-vue3-uniapp/components/$1/src/$1.vue'<% } %><% if (useTabbar) { %>,
-      '^su-(.*)': '@/components/su-$1.vue' <% } %>
+      '^tn-(.*)': '@tuniao/tnui-vue3-uniapp/components/$1/src/$1.vue'<% } %><% if (uiType === 'NutUI') { %>'^nut-(.*)?-(.*)': 'nutui-uniapp/components/$1$2/$1$2.vue',
+      '^nut-(.*)': 'nutui-uniapp/components/$1/$1.vue'<% } %><% if (uiType === 'UniUI') { %>'^uni-(.*)': '@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue'<% } %>
     },
   }<% if (useTabbar) { %>,
   tabBar: {

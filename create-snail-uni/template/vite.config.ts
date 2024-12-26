@@ -32,6 +32,8 @@ export default async({ mode }) => {
   } = env;
 
   return defineConfig({
+    // 配置环境变量路径
+    envDir: './env',
     // 配置别名
     resolve: {
       alias: {

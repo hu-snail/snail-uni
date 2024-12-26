@@ -32,8 +32,9 @@
 <script setup<% if (useTs) { %> lang="ts"<% } %>>
 const title = ref('Hello Snail-Uni App');
 
-import { useCounterStore } from '@/store';
+const router = useRouter();
 
+import { useCounterStore } from '@/store';
 const counterStore = useCounterStore();
 
 const num = computed(() => counterStore.count);
@@ -43,5 +44,10 @@ const handlePlus = () => {
 
 const handleMinus = () => {
   counterStore.decrement();
+};
+
+const handleToDetail = () => {
+  router.push('/sub-pages/detail/index');
+  // router.push({ name: 'Detail' }); 注：Detail 为<route>配置中的name参数，路由文档地址：https://hu-snail.github.io/snail-uni/guide/router.html
 };
 </script>
