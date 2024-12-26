@@ -32,7 +32,7 @@ Snail-uni 要求 [Node.js](https://nodejs.org/en/) 版本 `18+` 或者 `20+`. �
 ::: code-group
 
 ```bash [npm]
-npm create snail-uni
+npm create snail-uni@latest
 ```
 
 ```bash [pnpm]
@@ -66,7 +66,7 @@ npm create snail-uni `<project-name> --t <template-name 模板名称> --ui <ui�
 ::: code-group
 
 ```bash [npm]
-npm create snail-uni my-snail-app --t uni-ts --ui Uv-ui  --lint yes
+npm create snail-uni@latest my-snail-app --t uni-ts --ui Uv-ui  --lint yes
 ```
 
 ```bash [pnpm]
