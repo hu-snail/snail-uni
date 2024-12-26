@@ -1,9 +1,8 @@
-<h1 align="center">🌾 snail-uni 🌾</h1>
 <p align="center">
-    <a href="https://www.npmjs.com/package/snail-uni"><img src="https://img.shields.io/npm/dm/snail-uni?colorA=363a4f&colorB=f5a97f&style=for-the-badge"></a>
-    <a href="https://www.npmjs.com/package/snail-uni"><img src="https://img.shields.io/npm/v/snail-uni?colorA=363a4f&colorB=a6da95&style=for-the-badge"></a>
-</p>
-
+  <a href="https://hu-snail.github.io/snail-uni" target="_blank" rel="noopener noreferrer">
+    <img width="180" src="https://hu-snail.github.io/snail-uni/logo.png" alt="Snail-uni logo">
+  </a>
+<h1 align="center">Snail-uni</h1>
 <p align="center">更懂你的uni-app框架</p>
 
 ## 🌴 介绍
@@ -20,7 +19,7 @@
 
 ```sh
 # npm
-npm create snail-uni
+npm create snail-uni@latest
 # pnpm
 pnpm create snail-uni 
 # yarn
@@ -40,7 +39,7 @@ npm create snail-uni `<project-name> --t <template-name 模板名称> --ui <ui�
 
 ```sh
 # npm
-npm create snail-uni my-snail-app --t uni-ts --ui Uv-ui  --lint yes
+npm create snail-uni@latest my-snail-app --t uni-ts --ui Uv-ui  --lint yes
 # pnpm
 pnpm create snail-uni my-snail-app --t uni-ts --ui Uv-ui  --lint yes
 # yarn
