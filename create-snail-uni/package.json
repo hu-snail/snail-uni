@@ -1,6 +1,6 @@
 {
   "name": "create-snail-uni",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "used for quickly creating snail-uni app",
   "type": "module",
   "scripts": {

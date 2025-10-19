@@ -89,7 +89,7 @@
     } %><% if (uiType === 'Sard-ui') { %>
     "sard-uniapp": "^1.24.7",<%
     } %><% if (uiType === 'Uview-Pro') { %>
-    "uview-pro": "^1.24.7",<%
+    "uview-pro": "^0.3.3",<%
     } %><% if (uiType === 'Uv-ui') { %>
     "@climblee/uv-ui": "^1.1.20",<%
     } %><% if (uiType === 'Uview-plus') { %>

@@ -15,7 +15,7 @@
     },
     "lib": ["esnext", "dom"],
     "outDir": "dist",
-    "types": ["@dcloudio/types", "@types/wechat-miniprogram"<% if (uiType === 'Sard-ui'){%>, "sard-uniapp/global"<%}%>]
+    "types": ["@dcloudio/types", "@types/wechat-miniprogram"<% if (uiType === 'Sard-ui'){%>, "sard-uniapp/global"<%}%><% if (uiType === 'Uview-Pro'){%>, "uview-pro/types"<%}%>]
   },
   "vueCompilerOptions": {
     "target": 3,

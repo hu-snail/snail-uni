@@ -10,7 +10,9 @@
   });
 </script>
 <style lang="scss"><% if (uiType === 'TuniaoUI'){%>
-@import '@tuniao/tn-style/dist/uniapp/index.css';<%}%><% if (uiType === 'Sard-ui'){%>@import 'sard-uniapp/index';
+@import '@tuniao/tn-style/dist/uniapp/index.css';<%}%><% if (uiType === 'Uview-Pro'){%>
+@import 'uview-pro/index';<% } %><% if (uiType === 'Sard-ui'){%>
+@import 'sard-uniapp/index';
 page,
   .sar-portal {
     font-family:
