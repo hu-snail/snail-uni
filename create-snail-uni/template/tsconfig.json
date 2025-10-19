@@ -9,14 +9,13 @@
     "noImplicitThis": true,
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
-
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
     "lib": ["esnext", "dom"],
     "outDir": "dist",
-    "types": ["@dcloudio/types", "@types/wechat-miniprogram"]
+    "types": ["@dcloudio/types", "@types/wechat-miniprogram"<% if (uiType === 'Sard-ui'){%>, "sard-uniapp/global"<%}%>]
   },
   "vueCompilerOptions": {
     "target": 3,

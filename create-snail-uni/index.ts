@@ -14,6 +14,8 @@ const argv: any = minimist(process.argv.slice(2));
 
 export enum ScaffoldUIType {
   Default = 'Wot-Design',
+  Sard = 'Sard-ui',
+  UViewPro = 'Uview-Pro',
   UvUi = 'Uv-ui',
   UviewPlus = 'Uview-plus',
   TuniaoUI = 'TuniaoUI',
@@ -37,27 +39,39 @@ export async function create() {
     {
       title: () =>
         text({
-          message: '项目名称:',
+          message: '项目名称：',
           placeholder: 'snai-uni-app',
           validate: (value) => {
             title = value;
-            if (fs.existsSync(value)) return '❌该项目名称已存在，请重新输入!';
+            if (fs.existsSync(value)) return '❌该项目名称已存在，请重新输入！';
           },
         }),
       description: () =>
         text({
-          message: '项目描述:',
+          message: '项目描述：',
           placeholder: `A ${title || 'snai-uni-app'} project`,
         }),
       uiType: () =>
         select({
-          message: '选择 UI 框架:',
+          message: '选择 UI 框架：',
           options: [
             {
               // @ts-ignore
               value: ScaffoldUIType.Default,
               label: 'wot-design-ui',
-              hint: '推荐，目前支持微信、支付宝、钉钉小程序、H5、APP等平台',
+              hint: '推荐，目前支持微信、支付宝、钉钉小程序、H5、APP 等平台',
+            },
+            {
+              // @ts-ignore
+              value: ScaffoldUIType.Sard,
+              label: 'sard-ui',
+              hint: '支持 H5、微信、支付宝小程序',
+            },
+            {
+              // @ts-ignore
+              value: ScaffoldUIType.UViewPro,
+              label: 'uview-pro',
+              hint: '全平台支持',
             },
             {
               // @ts-ignore
@@ -75,20 +89,20 @@ export async function create() {
               // @ts-ignore
               value: ScaffoldUIType.TuniaoUI,
               label: 'tuniao-ui',
-              hint: '目前支持微信、支付宝、H5、APP等平台',
+              hint: '目前支持微信、支付宝、H5、APP 等平台',
             },
             {
               // @ts-ignore
               value: ScaffoldUIType.NutuUI,
               label: 'nut-ui',
-              hint: '京东, 目前仅支持微信小程序、H5平台',
+              hint: '京东，目前仅支持微信小程序、H5 平台',
             },
 
             {
               // @ts-ignore
               value: ScaffoldUIType.UniUI,
               label: 'uni-ui',
-              hint: 'uni-app官方, 全平台支持',
+              hint: 'uni-app 官方，全平台支持',
             },
           ],
         }),
@@ -104,7 +118,7 @@ export async function create() {
         }),
       useEslint: () =>
         confirm({
-          message: '是否使用Eslint代码规范？',
+          message: '是否使用 Eslint 代码规范？',
           initialValue: true,
         }),
     },
@@ -197,7 +211,7 @@ export function scaffold({
     'package.json',
   ];
 
-  // eslint文件配置
+  // eslint 文件配置
   const eslintFilesToScaffold = [
     '.eslintignore',
     '.eslintrc.json',
@@ -216,9 +230,9 @@ export function scaffold({
   filesToScaffold.push(...projectConfigFilesToScaffold);
   // 添加静态文件
   filesToScaffold.push(...staticFilesToScaffold);
-  // 添加env文件
+  // 添加 env 文件
   filesToScaffold.push(...envFilesToScaffold);
-  // 添加tabbar文件
+  // 添加 tabbar 文件
   if (useTabbar) filesToScaffold.push(...tabbarFilesToScaffold);
   // 移动文件
   const moveFilesToScaffold = ['verify-commit.mjs', 'src/types/auto-import.d.ts', 'src/types/uni-pages.d.ts'];
@@ -238,7 +252,7 @@ export function scaffold({
     renderFile(file);
   }
   const pm = getPackageManger();
-  return `🎉 你已成功创建! 现在请使用 ${green(`${pm}`)} 运行你的项目\n\n   进入项目：${green(`cd ${title}`)}\n   安装依赖：${green(`${pm} install`)} ${gray(`(安装前，请检查Node版本>= ${green('18.0.0')})`)} \n   运行项目：${green(`${pm} dev`)} ${gray(`(默认运行微信小程序)`)} \n   snail-uni文档: ${green('https://hu-snail.github.io/snail-uni')}\n`;
+  return `🎉 你已成功创建！现在请使用 ${green(`${pm}`)} 运行你的项目\n\n   进入项目：${green(`cd ${title}`)}\n   安装依赖：${green(`${pm} install`)} ${gray(`(安装前，请检查Node版本>= ${green('18.0.0')})`)} \n   运行项目：${green(`${pm} dev`)} ${gray(`(默认运行微信小程序)`)} \n   snail-uni 文档：${green('https://hu-snail.github.io/snail-uni')}\n`;
 }
 
 export function moveFiles(templateDir: string, resolvedRoot: string, filePath: string) {

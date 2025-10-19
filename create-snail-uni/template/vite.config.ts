@@ -40,7 +40,7 @@ export default async({ mode }) => {
         '@': path.join(process.cwd(), './src'),
       },
     },
-    // 插件注意： Unixx需要在Uni()之前引入
+    // 插件注意：Unixx 需要在 Uni() 之前引入
     plugins: [
       process.env.UNI_PLATFORM === 'h5' &&
         legacy({
@@ -54,7 +54,7 @@ export default async({ mode }) => {
           ],
           renderLegacyChunks: true,
       }),
-      // uni-app pages配置 会根据route配置，自动生成路由
+      // uni-app pages 配置 会根据 route 配置，自动生成路由
       UniPages({
         // 排除组件文件
         exclude: ['**/components/**/**.*'],
@@ -85,7 +85,7 @@ export default async({ mode }) => {
       vueSetupExtend(),
 
       ViteRestart({
-        restart: ['vite.config.ts'], // 监听vite.config.js文件修改,无需重启
+        restart: ['vite.config.ts'], // 监听 vite.config.js 文件修改，无需重启
       }),
     ],
     // 开发配置
@@ -93,7 +93,7 @@ export default async({ mode }) => {
       host: '0.0.0.0',
       hmr: true,
       port: Number.parseInt(VITE_APP_PORT, 10),
-      // h5端配置跨域配置，配置文件.env进行开启关闭
+      // h5 端配置跨域配置，配置文件.env 进行开启关闭
       proxy: JSON.parse(VITE_PROXY_ENABLED)
         ? {
             [VITE_PROXY_PREFIX]: {
@@ -116,6 +116,9 @@ export default async({ mode }) => {
           drop_debugger: true,
         },
       },
-    },
+    },<% if (uiType === 'Sard-ui'){ %>
+    optimizeDeps: {
+      exclude: ['sard-uniapp'],
+    },<%}%>
   });
 };
