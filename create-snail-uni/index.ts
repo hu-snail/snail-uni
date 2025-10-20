@@ -23,10 +23,16 @@ export enum ScaffoldUIType {
   UniUI = 'UniUI',
 }
 
+export enum ScaffoldRequestType {
+  Axios = 'axios',
+  Alova = 'alova',
+}
+
 export interface ScaffoldOptions {
   title?: string;
   description?: string;
   uiType?: ScaffoldUIType;
+  requestType?: ScaffoldRequestType;
   useTs?: boolean;
   useTabbar?: boolean;
   useEslint?: boolean;
@@ -106,6 +112,24 @@ export async function create() {
             },
           ],
         }),
+
+      requestType: () =>
+        select({
+          message: '请选择请求库',
+          options: [
+            {
+              // @ts-ignore
+              value: ScaffoldRequestType.Alova,
+              label: 'alova.js',
+              hint: '推荐',
+            },
+            {
+              // @ts-ignore
+              value: ScaffoldRequestType.Axios,
+              label: 'axios.js',
+            },
+          ],
+        }),
       useTs: () =>
         confirm({
           message: '是否使用 TypeScript?',
@@ -141,6 +165,7 @@ export function scaffold({
   title = 'snail-uni-app',
   description = 'A snail-uni-app project',
   uiType = ScaffoldUIType.Default,
+  requestType = ScaffoldRequestType.Alova,
   useTs,
   useTabbar,
   useEslint,
@@ -151,6 +176,7 @@ export function scaffold({
     title: JSON.stringify(title),
     description: JSON.stringify(description),
     uiType,
+    requestType,
     useTs,
     useTabbar,
     useEslint,
@@ -192,7 +218,6 @@ export function scaffold({
     'src/apis/index.ts',
     'src/manifest.json',
     'src/pages.json',
-    'src/utils/request.ts',
     'vite.config.ts',
     'uno.config.ts',
     'manifest.config.ts',
@@ -234,6 +259,9 @@ export function scaffold({
   filesToScaffold.push(...envFilesToScaffold);
   // 添加 tabbar 文件
   if (useTabbar) filesToScaffold.push(...tabbarFilesToScaffold);
+  // 使用 alova 请求库
+  if (requestType === 'alova') filesToScaffold.push('src/utils/alova.ts');
+  else filesToScaffold.push('src/utils/request.ts');
   // 移动文件
   const moveFilesToScaffold = ['verify-commit.mjs', 'src/types/auto-import.d.ts', 'src/types/uni-pages.d.ts'];
   if (useTabbar)

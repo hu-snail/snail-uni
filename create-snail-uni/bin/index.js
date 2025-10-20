@@ -273,6 +273,11 @@ var ScaffoldUIType = /* @__PURE__ */ ((ScaffoldUIType2) => {
   ScaffoldUIType2["UniUI"] = "UniUI";
   return ScaffoldUIType2;
 })(ScaffoldUIType || {});
+var ScaffoldRequestType = /* @__PURE__ */ ((ScaffoldRequestType2) => {
+  ScaffoldRequestType2["Axios"] = "axios";
+  ScaffoldRequestType2["Alova"] = "alova";
+  return ScaffoldRequestType2;
+})(ScaffoldRequestType || {});
 async function create() {
   intro(bold(green(`\u6B22\u8FCE\u4F7F\u7528 snail-uni@${version} \u811A\u624B\u67B6\uFF01`)));
   let title = "";
@@ -344,6 +349,22 @@ async function create() {
           }
         ]
       }),
+      requestType: () => select({
+        message: "\u8BF7\u9009\u62E9\u8BF7\u6C42\u5E93",
+        options: [
+          {
+            // @ts-ignore
+            value: "alova" /* Alova */,
+            label: "alova.js",
+            hint: "\u63A8\u8350"
+          },
+          {
+            // @ts-ignore
+            value: "axios" /* Axios */,
+            label: "axios.js"
+          }
+        ]
+      }),
       useTs: () => confirm({
         message: "\u662F\u5426\u4F7F\u7528 TypeScript?",
         initialValue: true
@@ -374,6 +395,7 @@ function scaffold({
   title = "snail-uni-app",
   description = "A snail-uni-app project",
   uiType: uiType2 = "Wot-Design" /* Default */,
+  requestType = "alova" /* Alova */,
   useTs,
   useTabbar,
   useEslint
@@ -384,6 +406,7 @@ function scaffold({
     title: JSON.stringify(title),
     description: JSON.stringify(description),
     uiType: uiType2,
+    requestType,
     useTs,
     useTabbar,
     useEslint
@@ -423,7 +446,6 @@ function scaffold({
     "src/apis/index.ts",
     "src/manifest.json",
     "src/pages.json",
-    "src/utils/request.ts",
     "vite.config.ts",
     "uno.config.ts",
     "manifest.config.ts",
@@ -457,6 +479,10 @@ function scaffold({
   filesToScaffold.push(...envFilesToScaffold);
   if (useTabbar)
     filesToScaffold.push(...tabbarFilesToScaffold);
+  if (requestType === "alova")
+    filesToScaffold.push("src/utils/alova.ts");
+  else
+    filesToScaffold.push("src/utils/request.ts");
   const moveFilesToScaffold = ["verify-commit.mjs", "src/types/auto-import.d.ts", "src/types/uni-pages.d.ts"];
   if (useTabbar)
     moveFilesToScaffold.push(
@@ -536,6 +562,7 @@ if (lint)
   isEslint = lint === "yes" ? "eslint" : "no";
 createTemp(projectName, isTs, isTabbar, isEslint, uiType);
 export {
+  ScaffoldRequestType,
   ScaffoldUIType,
   create,
   createTemp,
