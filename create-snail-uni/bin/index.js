@@ -257,7 +257,7 @@ import pic from "picocolors";
 import template from "lodash.template";
 
 // package.json
-var version = "1.0.5";
+var version = "1.0.6";
 
 // index.ts
 var { bold, green, red, gray } = pic;
